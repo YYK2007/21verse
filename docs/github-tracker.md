@@ -22,7 +22,7 @@ The private GitHub tracker is configured for public-release readiness work.
 | --- | --- | --- |
 | #1 | `docs/design-and-nas-inventory.md`, `docs/nas-review-runbook.md`, `docs/nas-review-checklist.md`, `docs/inventory/nas-review-status.csv` | NAS share access is still blocked; five NAS review status rows are not complete. |
 | #2 | `docs/third-party-assets.md`, `docs/asset-removal-plan.md`, `docs/asset-disposition-tracker.md`, `docs/inventory/unity-asset-disposition.csv` | Nine Unity asset disposition rows are still `pending`. |
-| #3 | `docs/unity-validation.md`, `tools/run-unity-scene-validation.ps1` | Batchmode validation passed; interactive Unity/VR smoke testing is still required. |
+| #3 | `docs/unity-validation.md`, `docs/unity-smoke-test-checklist.md`, `docs/inventory/unity-smoke-test-status.csv` | Batchmode validation passed; five interactive smoke-test status rows are not complete. |
 
 ## Release Labels
 

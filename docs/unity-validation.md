@@ -45,3 +45,4 @@ Open the project interactively in Unity `2022.3.25f1` and smoke-test these proje
 - `Assets/Scenes/Cashier.unity`
 
 Track remaining work in GitHub issue #3.
+Detailed interactive smoke-test status is tracked in `docs/unity-smoke-test-checklist.md` and `docs/inventory/unity-smoke-test-status.csv`.

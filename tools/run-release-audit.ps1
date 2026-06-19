@@ -86,6 +86,7 @@ try {
         "docs/public-release-runbook.md",
         "docs/nas-review-runbook.md",
         "docs/nas-review-checklist.md",
+        "docs/unity-smoke-test-checklist.md",
         "docs/repository-maintenance.md",
         "docs/github-private-repo.md",
         "docs/github-metadata.md",
@@ -96,6 +97,7 @@ try {
         "docs/inventory/local-design-summary.csv",
         "docs/inventory/nas-access-log.csv",
         "docs/inventory/nas-review-status.csv",
+        "docs/inventory/unity-smoke-test-status.csv",
         "docs/inventory/unity-asset-disposition.csv",
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
@@ -119,6 +121,10 @@ try {
     $sceneValidator = Test-Path -LiteralPath "tools/run-unity-scene-validation.ps1"
     $unityValidation = Select-String -LiteralPath "docs/unity-validation.md" -Pattern "zero missing script references" -Quiet
     Add-Gate $gates "Unity batchmode scene validation" ($(if ($sceneValidator -and $unityValidation) { "pass" } else { "blocker" })) "Scene validator script present: $sceneValidator; docs record zero missing script references: $unityValidation." "Run tools/run-unity-scene-validation.ps1 and update docs/unity-validation.md."
+
+    $unitySmokeRows = @(Import-Csv -LiteralPath "docs/inventory/unity-smoke-test-status.csv")
+    $openUnitySmokeSteps = @($unitySmokeRows | Where-Object { $_.status -ne "complete" })
+    Add-Gate $gates "Unity interactive smoke testing" ($(if ($openUnitySmokeSteps.Count -eq 0) { "pass" } else { "blocker" })) "$($openUnitySmokeSteps.Count) Unity smoke-test status rows are not complete." "Open the project interactively, smoke-test README scenes, and update issue #3."
 
     $assetAuditRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-audit.csv")
     $assetReferenceRows = @(Import-Csv -LiteralPath "docs/inventory/unity-risky-asset-references.csv")

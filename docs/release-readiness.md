@@ -10,6 +10,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Google Drive presentations, docs, and sheets have a curated inventory in `docs/inventory/google-drive-21verse.csv`.
 - Google Drive public-release decisions are staged in `docs/inventory/google-drive-release-plan.csv` and summarized in `docs/google-drive-release-plan.md`.
 - Unity `2022.3.25f1` batchmode project open/import passed for `unity/21verse-vr-game-hub`, and all listed scenes open in batchmode with zero missing script references; see `docs/unity-validation.md`.
+- Interactive Unity/VR smoke-test status is tracked in `docs/unity-smoke-test-checklist.md` and `docs/inventory/unity-smoke-test-status.csv`.
 - Unity bundled asset folders have a machine-readable audit in `docs/inventory/unity-asset-audit.csv`.
 - Risky Unity asset references are mapped in `docs/inventory/unity-risky-asset-references.csv` and summarized in `docs/asset-removal-plan.md`.
 - Unity asset release decisions are tracked in `docs/asset-disposition-tracker.md` and `docs/inventory/unity-asset-disposition.csv`.
@@ -52,6 +53,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Batchmode scene-open validation passed for all main scenes with zero missing script references.
    - Load and smoke-test the main scenes listed in `README.md`.
    - Review shader fallback warnings seen during import.
+   - Mark every row in `docs/inventory/unity-smoke-test-status.csv` as `complete`.
    - Close GitHub issue #3.
 
 4. Google Drive/public docs

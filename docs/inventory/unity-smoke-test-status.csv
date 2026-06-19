@@ -1,0 +1,6 @@
+"step","status","evidence","next_action","issue"
+"open_project_interactively","pending","Batchmode open/import passed, but interactive Unity Hub open has not been recorded.","Open unity/21verse-vr-game-hub in Unity 2022.3.25f1 after clone.","#3"
+"smoke_test_readme_scenes","pending","README scenes passed batchmode scene-open validation, but interactive scene smoke testing has not been recorded.","Load MainMenu, WordLevel01, AdjectiveLevel01, IdentifyingColors, NumberLevelUI01, NumberInequalitiesLevel, and Cashier interactively.","#3"
+"review_xr_setup_and_interactions","pending","XR origin/controllers and key learning interactions have not been manually verified.","Check navigation, controller setup, scene transitions, and core learning interactions.","#3"
+"review_rendering_warnings","pending","Batchmode import recorded shader fallback/material warnings that need visual review.","Review material/skybox/text rendering in affected scenes after asset decisions.","#3"
+"refresh_validation_evidence","pending","Issue #3 and validation docs still record interactive smoke testing as pending.","Update docs/unity-validation.md, docs/unity-smoke-test-checklist.md, issue #3, and release audit after smoke testing.","#3"

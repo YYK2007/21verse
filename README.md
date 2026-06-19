@@ -45,6 +45,7 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/nas-review-runbook.md`
 - `docs/nas-review-checklist.md`
 - `docs/game-design-summary.md`
+- `docs/unity-smoke-test-checklist.md`
 - `docs/asset-removal-plan.md`
 - `docs/asset-disposition-tracker.md`
 - `docs/unity-dependencies.md`
