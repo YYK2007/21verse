@@ -16,6 +16,14 @@ The private GitHub tracker is configured for public-release readiness work.
 | [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2) | Resolve asset rights, replacement, or removal decisions. | Yes |
 | [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3) | Complete interactive Unity/VR smoke testing. | Yes |
 
+## Issue Evidence Sources
+
+| Issue | Primary evidence in repo | Current unresolved evidence |
+| --- | --- | --- |
+| #1 | `docs/design-and-nas-inventory.md`, `docs/nas-review-runbook.md`, `docs/inventory/nas-access-log.csv` | NAS share access is still blocked by credentials or Windows guest-access policy. |
+| #2 | `docs/third-party-assets.md`, `docs/asset-removal-plan.md`, `docs/asset-disposition-tracker.md`, `docs/inventory/unity-asset-disposition.csv` | Nine Unity asset disposition rows are still `pending`. |
+| #3 | `docs/unity-validation.md`, `tools/run-unity-scene-validation.ps1` | Batchmode validation passed; interactive Unity/VR smoke testing is still required. |
+
 ## Release Labels
 
 | Label | Meaning |
