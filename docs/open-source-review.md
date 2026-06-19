@@ -28,11 +28,12 @@ Status: private staging repository prepared on 2026-06-19.
   - https://github.com/YYK2007/21verse_opensource/issues/1
   - https://github.com/YYK2007/21verse_opensource/issues/2
   - https://github.com/YYK2007/21verse_opensource/issues/3
+- Unity batchmode open/import has passed; see `docs/unity-validation.md`.
 
 ## Recommended Release Steps
 
-1. Open `unity/21verse-vr-game-hub` in Unity `2022.3.25f1` and let Unity regenerate local caches.
-2. Run through the main scenes listed in `README.md`.
+1. Open `unity/21verse-vr-game-hub` interactively in Unity `2022.3.25f1`.
+2. Run through the main scenes listed in `README.md` and review shader fallback warnings.
 3. Replace any non-redistributable third-party assets with package dependencies, placeholders, or links.
 4. Confirm final code and asset licensing.
 5. Push to a private GitHub repository.

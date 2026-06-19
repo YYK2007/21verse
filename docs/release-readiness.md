@@ -8,6 +8,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Curated Unity project is included under `unity/21verse-vr-game-hub`.
 - Local Unity projects and local design files have machine-readable inventories in `docs/inventory/`.
 - Google Drive presentations, docs, and sheets have a curated inventory in `docs/inventory/google-drive-21verse.csv`.
+- Unity `2022.3.25f1` batchmode project open/import passed for `unity/21verse-vr-game-hub`; see `docs/unity-validation.md`.
 - NAS device has been identified but not reviewed because share access is blocked.
 
 ## Required Before Public Release
@@ -25,9 +26,9 @@ This repository is private and staged for a future open-source release. Do not m
    - Close GitHub issue #2.
 
 3. Unity validation
-   - Open `unity/21verse-vr-game-hub` with Unity `2022.3.25f1`.
-   - Let Unity regenerate local caches.
+   - Batchmode open/import with Unity `2022.3.25f1` passed on 2026-06-19.
    - Load and smoke-test the main scenes listed in `README.md`.
+   - Review shader fallback warnings seen during import.
    - Close GitHub issue #3.
 
 4. Google Drive/public docs
