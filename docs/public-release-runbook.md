@@ -57,6 +57,7 @@ Run:
 .\tools\export-google-drive-release-plan.ps1
 .\tools\test-repo-hygiene.ps1
 .\tools\run-release-audit.ps1
+.\tools\test-github-release-state.ps1
 git status --short --branch
 ```
 

@@ -25,6 +25,7 @@ git ls-remote --heads origin main
 git lfs ls-files | Measure-Object
 .\tools\test-repo-hygiene.ps1
 .\tools\run-release-audit.ps1
+.\tools\test-github-release-state.ps1
 ```
 
 Expected state:
@@ -37,6 +38,7 @@ Expected state:
 - Release evidence map is present at `docs/release-evidence-manifest.md`.
 - Git LFS is installed and tracks Unity binary/media assets.
 - `Repo Hygiene` GitHub Actions checks pass.
+- `tools/test-github-release-state.ps1` passes from a Windows session with GitHub credentials.
 
 ## Private Tracker Issues
 

@@ -96,6 +96,12 @@ To run lightweight repo hygiene checks without opening Unity:
 .\tools\test-repo-hygiene.ps1
 ```
 
+To verify the private GitHub repository state from this Windows session:
+
+```powershell
+.\tools\test-github-release-state.ps1
+```
+
 Private GitHub tracker issues:
 
 - [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)

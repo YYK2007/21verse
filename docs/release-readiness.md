@@ -67,6 +67,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Confirm `docs/inventory/release-requirements-status.csv` has no `blocked` rows.
    - Run `tools/test-repo-hygiene.ps1`.
    - Run `tools/run-release-audit.ps1`.
+   - Run `tools/test-github-release-state.ps1`.
    - Review `CONTRIBUTING.md`, `SECURITY.md`, and `.github/` templates.
    - Review `CODE_OF_CONDUCT.md`, `SUPPORT.md`, and `CHANGELOG.md`.
    - Review `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
