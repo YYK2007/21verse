@@ -47,6 +47,7 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/unity-dependencies.md`
 - `docs/third-party-assets.md`
 - `docs/release-readiness.md`
+- `docs/public-release-runbook.md`
 - `docs/repository-maintenance.md`
 - `docs/github-private-repo.md`
 - `docs/inventory/`

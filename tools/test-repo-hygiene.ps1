@@ -25,6 +25,7 @@ try {
         ".github/ISSUE_TEMPLATE/release-gate.md",
         ".github/workflows/repo-hygiene.yml",
         "docs/release-readiness.md",
+        "docs/public-release-runbook.md",
         "docs/repository-maintenance.md",
         "docs/inventory/release-audit.md",
         "docs/inventory/google-drive-21verse.csv",

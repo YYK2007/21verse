@@ -1,61 +1,53 @@
 # Private GitHub Repo Handoff
 
-The local repo is committed and ready to push from:
+The private staging repository exists at:
+
+`https://github.com/YYK2007/21verse_opensource`
+
+Local checkout:
 
 `C:\Users\youss\OneDrive\Documents\21verse_opensource`
 
-Current branch:
+Default branch:
 
 `main`
 
-Current commit:
+The repository must remain private until the release audit has no blockers.
 
-`505fd00 Prepare 21Verse open-source staging repo`
+## Current Verification
 
-## Required GitHub Settings
-
-Create the GitHub repository as private.
-
-Recommended name:
-
-`21verse_opensource`
-
-Recommended owner:
-
-`YYK2007`
-
-Do not initialize the GitHub repo with a README, license, or `.gitignore`; those already exist locally.
-
-## Push Commands
-
-After creating the private GitHub repository:
-
-```powershell
-cd C:\Users\youss\OneDrive\Documents\21verse_opensource
-git remote add origin https://github.com/YYK2007/21verse_opensource.git
-git push -u origin main
-git lfs push origin main
-```
-
-## Verification Commands
+Use these commands to verify local and remote state:
 
 ```powershell
 git status --short --branch
 git remote -v
+git ls-remote --heads origin main
 git lfs ls-files | Measure-Object
+.\tools\test-repo-hygiene.ps1
+.\tools\run-release-audit.ps1
 ```
 
-Expected local status before pushing:
+Expected state:
 
-- Branch is `main`.
-- Working tree is clean.
+- Local branch is `main`.
+- Local branch tracks `origin/main`.
+- Working tree is clean after generated audit snapshots are committed.
+- GitHub repository visibility is `private`.
 - Git LFS is installed and tracks Unity binary/media assets.
+- `Repo Hygiene` GitHub Actions checks pass.
 
-## Tooling Note
+## Private Tracker Issues
 
-During the Codex review on 2026-06-19:
+- [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)
+- [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2)
+- [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3)
 
-- The GitHub connector could inspect existing repos but did not expose repository creation.
-- `gh` was not installed initially.
-- `winget` found GitHub CLI but installation did not complete in this session.
-- `YYK2007/21verse_opensource` returned 404 through the GitHub connector, so the target repo did not exist at that time or was not accessible to the connector.
+## Do Not Publish Until
+
+- NAS review is complete or explicitly documented as intentionally excluded.
+- Third-party Unity assets are confirmed redistributable, replaced, or removed with import instructions.
+- Interactive Unity/VR smoke testing is complete.
+- Google Drive public candidates are redacted before export.
+- `docs/inventory/release-audit.md` reports no blockers.
+
+Changing repository visibility from private to public is the final step, not a staging step.

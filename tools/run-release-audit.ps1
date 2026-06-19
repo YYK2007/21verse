@@ -76,6 +76,7 @@ try {
         "docs/unity-dependencies.md",
         "docs/unity-validation.md",
         "docs/release-readiness.md",
+        "docs/public-release-runbook.md",
         "docs/repository-maintenance.md",
         "docs/github-private-repo.md",
         "docs/inventory/google-drive-21verse.csv",
