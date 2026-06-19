@@ -2,6 +2,8 @@
 
 21Verse is currently staged in a private repository for a future open-source release. Contributions should stay private until the release blockers in `docs/release-readiness.md` are resolved.
 
+Please follow `CODE_OF_CONDUCT.md` and `SUPPORT.md` when participating in project discussions or reviews.
+
 ## Development Setup
 
 1. Install Unity `2022.3.25f1`.

@@ -15,6 +15,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Current local release gate snapshot is in `docs/inventory/release-audit.md`.
 - Final publication steps are documented in `docs/public-release-runbook.md`.
 - Public-repo governance docs and GitHub issue/PR templates are staged for release review.
+- Conduct, support, and changelog docs are staged for public release review.
 - Lightweight repository hygiene checks are staged in `.github/workflows/repo-hygiene.yml`.
 - Repository ownership and dependency-maintenance config are staged in `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
 - NAS device has been identified but not reviewed because share access is blocked.
@@ -58,6 +59,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Run `tools/test-repo-hygiene.ps1`.
    - Run `tools/run-release-audit.ps1`.
    - Review `CONTRIBUTING.md`, `SECURITY.md`, and `.github/` templates.
+   - Review `CODE_OF_CONDUCT.md`, `SUPPORT.md`, and `CHANGELOG.md`.
    - Review `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
    - Run a secret scan.
    - Confirm no non-LFS file exceeds GitHub's 100 MB limit.

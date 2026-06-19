@@ -54,6 +54,9 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/inventory/`
 - `CONTRIBUTING.md`
 - `SECURITY.md`
+- `CODE_OF_CONDUCT.md`
+- `SUPPORT.md`
+- `CHANGELOG.md`
 - third-party Unity asset licenses under `unity/21verse-vr-game-hub/Assets`
 
 To regenerate the Unity asset folder audit:
