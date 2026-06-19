@@ -65,4 +65,7 @@ See `docs/design-and-nas-inventory.md` for aggregate counts of local design/docu
 
 - `docs/inventory/unity-projects.csv`
 - `docs/inventory/local-design-summary.csv`
+- `docs/inventory/google-drive-21verse.csv`
 - `docs/inventory/nas-access-log.csv`
+
+The local inventory files can be rebuilt with `tools/rebuild-local-inventories.ps1`.
