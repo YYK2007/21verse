@@ -92,6 +92,7 @@ try {
         "docs/github-tracker.md",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",
+        "docs/inventory/release-requirements-status.csv",
         "docs/inventory/local-design-summary.csv",
         "docs/inventory/nas-access-log.csv",
         "docs/inventory/nas-review-status.csv",
@@ -103,6 +104,10 @@ try {
     )
     $missingFiles = @($requiredFiles | Where-Object { -not (Test-Path -LiteralPath $_) })
     Add-Gate $gates "Required handoff docs" ($(if ($missingFiles.Count -eq 0) { "pass" } else { "blocker" })) ($(if ($missingFiles.Count -eq 0) { "All expected handoff docs and inventories are present." } else { "Missing: " + ($missingFiles -join ", ") })) "Restore missing docs."
+
+    $requirementRows = @(Import-Csv -LiteralPath "docs/inventory/release-requirements-status.csv")
+    $blockedRequirements = @($requirementRows | Where-Object { $_.status -eq "blocked" })
+    Add-Gate $gates "Release evidence manifest" ($(if ($blockedRequirements.Count -eq 0) { "pass" } else { "blocker" })) "$($requirementRows.Count) release requirements tracked; $($blockedRequirements.Count) requirements are blocked." "Resolve or document every blocked release requirement before changing visibility."
 
     $sceneValidator = Test-Path -LiteralPath "tools/run-unity-scene-validation.ps1"
     $unityValidation = Select-String -LiteralPath "docs/unity-validation.md" -Pattern "zero missing script references" -Quiet

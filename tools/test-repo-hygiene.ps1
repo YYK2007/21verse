@@ -38,6 +38,7 @@ try {
         "docs/github-metadata.md",
         "docs/github-tracker.md",
         "docs/inventory/release-audit.md",
+        "docs/inventory/release-requirements-status.csv",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",
         "docs/inventory/nas-review-status.csv",
@@ -67,6 +68,7 @@ try {
     $csvExpectations = @{
         "docs/inventory/google-drive-21verse.csv" = 1
         "docs/inventory/google-drive-release-plan.csv" = 1
+        "docs/inventory/release-requirements-status.csv" = 8
         "docs/inventory/nas-review-status.csv" = 5
         "docs/inventory/unity-asset-audit.csv" = 18
         "docs/inventory/unity-asset-disposition.csv" = 9

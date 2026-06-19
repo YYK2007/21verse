@@ -57,6 +57,7 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/github-metadata.md`
 - `docs/github-tracker.md`
 - `docs/inventory/`
+- `docs/inventory/release-requirements-status.csv`
 - `CONTRIBUTING.md`
 - `SECURITY.md`
 - `CODE_OF_CONDUCT.md`

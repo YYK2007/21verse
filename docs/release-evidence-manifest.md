@@ -4,6 +4,8 @@ This manifest is the reviewer-facing map from the original open-source preparati
 
 The repository must stay private until every required item below is either `complete` or deliberately excluded with a documented public-release rationale.
 
+Machine-readable status is tracked in `docs/inventory/release-requirements-status.csv`.
+
 ## Evidence Map
 
 | Requirement | Current status | Authoritative evidence | Completion condition |
