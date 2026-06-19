@@ -28,6 +28,7 @@ try {
         "docs/repository-maintenance.md",
         "docs/inventory/release-audit.md",
         "docs/inventory/google-drive-21verse.csv",
+        "docs/inventory/google-drive-release-plan.csv",
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
         "tools/run-release-audit.ps1",
@@ -51,6 +52,7 @@ try {
 
     $csvExpectations = @{
         "docs/inventory/google-drive-21verse.csv" = 1
+        "docs/inventory/google-drive-release-plan.csv" = 1
         "docs/inventory/unity-asset-audit.csv" = 18
         "docs/inventory/unity-risky-asset-references.csv" = 9
         "docs/inventory/unity-projects.csv" = 1

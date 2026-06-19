@@ -37,3 +37,4 @@ Additional Google Drive search for `21Verse Design` found older design and prese
 The May 2024 GDD was fetched and reviewed. Because the raw Google Doc includes comment/reaction metadata and personal contact details, the repo contains a sanitized summary at `docs/game-design-summary.md` instead of the full document.
 
 The curated machine-readable Drive inventory is stored at `docs/inventory/google-drive-21verse.csv`.
+The public-release decision matrix is stored at `docs/inventory/google-drive-release-plan.csv` and summarized in `docs/google-drive-release-plan.md`.

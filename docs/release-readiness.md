@@ -8,6 +8,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Curated Unity project is included under `unity/21verse-vr-game-hub`.
 - Local Unity projects and local design files have machine-readable inventories in `docs/inventory/`.
 - Google Drive presentations, docs, and sheets have a curated inventory in `docs/inventory/google-drive-21verse.csv`.
+- Google Drive public-release decisions are staged in `docs/inventory/google-drive-release-plan.csv` and summarized in `docs/google-drive-release-plan.md`.
 - Unity `2022.3.25f1` batchmode project open/import passed for `unity/21verse-vr-game-hub`, and all listed scenes open in batchmode with zero missing script references; see `docs/unity-validation.md`.
 - Unity bundled asset folders have a machine-readable audit in `docs/inventory/unity-asset-audit.csv`.
 - Risky Unity asset references are mapped in `docs/inventory/unity-risky-asset-references.csv` and summarized in `docs/asset-removal-plan.md`.
@@ -44,6 +45,8 @@ This repository is private and staged for a future open-source release. Do not m
 
 4. Google Drive/public docs
    - Review `docs/inventory/google-drive-21verse.csv`.
+   - Regenerate `docs/inventory/google-drive-release-plan.csv` with `tools/export-google-drive-release-plan.ps1` after Drive inventory changes.
+   - Follow `docs/google-drive-release-plan.md` before exporting any Google Drive material into `docs/`.
    - Export only redacted, public-safe versions of selected decks/docs.
    - Keep testing, IRB, financial, investor, outreach, and partner materials private unless deliberately sanitized.
 
