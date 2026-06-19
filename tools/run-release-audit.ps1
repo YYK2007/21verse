@@ -44,7 +44,7 @@ try {
         })
     Add-Gate $gates "Non-LFS >100 MB file check" ($(if ($largeFiles.Count -eq 0) { "pass" } else { "blocker" })) ($(if ($largeFiles.Count -eq 0) { "No non-generated files over 100 MB found." } else { ($largeFiles | ForEach-Object { "$($_.FullName) ($($_.Length) bytes)" }) -join "; " })) "Move oversized files to Git LFS or remove them."
 
-    $secretMatches = @(rg -n --hidden -S "(api[_-]?key|secret|password|passwd|token|client_secret|private_key|BEGIN RSA|BEGIN PRIVATE|ghp_|AIza|sk-[A-Za-z0-9])" --glob "!.git/**" --glob "!docs/inventory/generated/**" --glob "!docs/inventory/release-audit.md" --glob "!tools/run-release-audit.ps1" . 2>$null)
+    $secretMatches = @(rg -n --hidden -S "(api[_-]?key|secret|password|passwd|token|client_secret|private_key|BEGIN RSA|BEGIN PRIVATE|ghp_|AIza|sk-[A-Za-z0-9])" --glob "!.git/**" --glob "!docs/inventory/generated/**" --glob "!docs/inventory/release-audit.md" --glob "!tools/run-release-audit.ps1" --glob "!tools/test-repo-hygiene.ps1" . 2>$null)
     $unexpectedSecrets = @($secretMatches | Where-Object {
         $_ -notmatch '^\.\\\.gitignore:' -and
         $_ -notmatch '^\.\\SECURITY\.md:' -and
@@ -63,6 +63,7 @@ try {
         ".github/ISSUE_TEMPLATE/asset-release-review.md",
         ".github/ISSUE_TEMPLATE/nas-review.md",
         ".github/ISSUE_TEMPLATE/release-gate.md",
+        ".github/workflows/repo-hygiene.yml",
         "docs/open-source-review.md",
         "docs/source-inventory.md",
         "docs/google-drive-inventory.md",

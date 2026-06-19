@@ -65,6 +65,12 @@ To regenerate the release gate snapshot:
 .\tools\run-release-audit.ps1
 ```
 
+To run lightweight repo hygiene checks without opening Unity:
+
+```powershell
+.\tools\test-repo-hygiene.ps1
+```
+
 Private GitHub tracker issues:
 
 - [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)

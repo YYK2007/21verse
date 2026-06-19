@@ -13,6 +13,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Risky Unity asset references are mapped in `docs/inventory/unity-risky-asset-references.csv` and summarized in `docs/asset-removal-plan.md`.
 - Current local release gate snapshot is in `docs/inventory/release-audit.md`.
 - Public-repo governance docs and GitHub issue/PR templates are staged for release review.
+- Lightweight repository hygiene checks are staged in `.github/workflows/repo-hygiene.yml`.
 - NAS device has been identified but not reviewed because share access is blocked.
 
 ## Required Before Public Release
@@ -46,6 +47,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Keep testing, IRB, financial, investor, outreach, and partner materials private unless deliberately sanitized.
 
 5. Final repo hygiene
+   - Run `tools/test-repo-hygiene.ps1`.
    - Run `tools/run-release-audit.ps1`.
    - Review `CONTRIBUTING.md`, `SECURITY.md`, and `.github/` templates.
    - Run a secret scan.

@@ -14,6 +14,7 @@
 Before opening a pull request or publishing a release candidate, run:
 
 ```powershell
+.\tools\test-repo-hygiene.ps1
 .\tools\run-unity-scene-validation.ps1
 .\tools\export-unity-asset-audit.ps1
 .\tools\export-unity-risky-asset-references.ps1
