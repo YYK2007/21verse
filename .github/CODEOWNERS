@@ -1,0 +1,8 @@
+# Default owner for the private staging repo.
+* @YYK2007
+
+# Release-sensitive project areas.
+/unity/ @YYK2007
+/docs/ @YYK2007
+/tools/ @YYK2007
+/.github/ @YYK2007

@@ -23,6 +23,8 @@ Before opening a pull request or publishing a release candidate, run:
 
 The scene validation must pass. The release audit may still report blockers while the repo is private; do not make the repo public while blockers remain.
 
+Unity Package Manager dependency changes should be made in Unity and validated manually; see `docs/repository-maintenance.md`.
+
 ## Asset Policy
 
 - Do not add Asset Store, downloaded, generated, or sample assets to the future public release unless redistribution rights are confirmed.
