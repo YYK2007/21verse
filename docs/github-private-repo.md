@@ -38,9 +38,12 @@ Expected state:
 
 ## Private Tracker Issues
 
+- [Public release readiness milestone](https://github.com/YYK2007/21verse_opensource/milestone/1)
 - [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)
 - [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2)
 - [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3)
+
+See `docs/github-tracker.md` for label and milestone details.
 
 ## Do Not Publish Until
 

@@ -31,6 +31,7 @@ try {
         "docs/public-release-runbook.md",
         "docs/nas-review-runbook.md",
         "docs/repository-maintenance.md",
+        "docs/github-tracker.md",
         "docs/inventory/release-audit.md",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",

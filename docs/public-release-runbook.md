@@ -66,6 +66,6 @@ Only after all release blockers are resolved:
 
 1. Confirm GitHub Actions are green on `main`.
 2. Confirm `docs/inventory/release-audit.md` reports no blockers.
-3. Confirm no open private-blocker issues remain.
+3. Confirm the `Public release readiness` milestone has no open blocker issues.
 4. Change GitHub repository visibility from private to public.
 5. Create a release announcement or tag only after visibility is public and verified.

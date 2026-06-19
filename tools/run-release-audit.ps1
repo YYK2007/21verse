@@ -83,6 +83,7 @@ try {
         "docs/nas-review-runbook.md",
         "docs/repository-maintenance.md",
         "docs/github-private-repo.md",
+        "docs/github-tracker.md",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",
         "docs/inventory/local-design-summary.csv",

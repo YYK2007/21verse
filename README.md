@@ -51,6 +51,7 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/public-release-runbook.md`
 - `docs/repository-maintenance.md`
 - `docs/github-private-repo.md`
+- `docs/github-tracker.md`
 - `docs/inventory/`
 - `CONTRIBUTING.md`
 - `SECURITY.md`

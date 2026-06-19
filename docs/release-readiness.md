@@ -18,6 +18,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Conduct, support, and changelog docs are staged for public release review.
 - Lightweight repository hygiene checks are staged in `.github/workflows/repo-hygiene.yml`.
 - Repository ownership and dependency-maintenance config are staged in `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
+- GitHub tracker milestone and labels are documented in `docs/github-tracker.md`.
 - NAS device has been identified but not reviewed because share access is blocked.
 - NAS review instructions are staged in `docs/nas-review-runbook.md`.
 
@@ -61,6 +62,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Review `CONTRIBUTING.md`, `SECURITY.md`, and `.github/` templates.
    - Review `CODE_OF_CONDUCT.md`, `SUPPORT.md`, and `CHANGELOG.md`.
    - Review `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
+   - Confirm the `Public release readiness` milestone has no open blocker issues.
    - Run a secret scan.
    - Confirm no non-LFS file exceeds GitHub's 100 MB limit.
    - Confirm `git status --short --branch` is clean.
