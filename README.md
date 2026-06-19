@@ -42,6 +42,7 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/google-drive-inventory.md`
 - `docs/google-drive-release-plan.md`
 - `docs/design-and-nas-inventory.md`
+- `docs/nas-review-runbook.md`
 - `docs/game-design-summary.md`
 - `docs/asset-removal-plan.md`
 - `docs/unity-dependencies.md`
@@ -66,6 +67,12 @@ To regenerate the Google Drive release decision matrix:
 
 ```powershell
 .\tools\export-google-drive-release-plan.ps1
+```
+
+To scan a mounted NAS share after access is available:
+
+```powershell
+.\tools\export-nas-inventory.ps1 -Roots "Z:\"
 ```
 
 To regenerate the release gate snapshot:

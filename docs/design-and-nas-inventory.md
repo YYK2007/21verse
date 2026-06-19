@@ -55,3 +55,5 @@ Access result from this session:
 Conclusion:
 
 The NAS is reachable, but its shares were not accessible for file review in this session. Reviewing NAS-hosted 21Verse files still requires either valid NAS share credentials in the current Windows session, a mounted drive/share, or a deliberate Windows SMB guest-access policy change by the user.
+
+When a share is mounted, use `tools/export-nas-inventory.ps1` and follow `docs/nas-review-runbook.md`.

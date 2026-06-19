@@ -18,11 +18,13 @@ This repository is private and staged for a future open-source release. Do not m
 - Lightweight repository hygiene checks are staged in `.github/workflows/repo-hygiene.yml`.
 - Repository ownership and dependency-maintenance config are staged in `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
 - NAS device has been identified but not reviewed because share access is blocked.
+- NAS review instructions are staged in `docs/nas-review-runbook.md`.
 
 ## Required Before Public Release
 
 1. NAS review
    - Mount or authenticate to `Youssef Storage` / `WDMyCloudEX4100`.
+   - Run `tools/export-nas-inventory.ps1` against the mounted share.
    - Search for 21Verse files on the NAS.
    - Add any repo-worthy files or document exclusions.
    - Close GitHub issue #1.

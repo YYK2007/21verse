@@ -77,6 +77,7 @@ try {
         "docs/unity-validation.md",
         "docs/release-readiness.md",
         "docs/public-release-runbook.md",
+        "docs/nas-review-runbook.md",
         "docs/repository-maintenance.md",
         "docs/github-private-repo.md",
         "docs/inventory/google-drive-21verse.csv",
@@ -85,7 +86,8 @@ try {
         "docs/inventory/nas-access-log.csv",
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
-        "docs/inventory/unity-projects.csv"
+        "docs/inventory/unity-projects.csv",
+        "tools/export-nas-inventory.ps1"
     )
     $missingFiles = @($requiredFiles | Where-Object { -not (Test-Path -LiteralPath $_) })
     Add-Gate $gates "Required handoff docs" ($(if ($missingFiles.Count -eq 0) { "pass" } else { "blocker" })) ($(if ($missingFiles.Count -eq 0) { "All expected handoff docs and inventories are present." } else { "Missing: " + ($missingFiles -join ", ") })) "Restore missing docs."

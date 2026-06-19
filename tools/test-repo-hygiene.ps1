@@ -26,6 +26,7 @@ try {
         ".github/workflows/repo-hygiene.yml",
         "docs/release-readiness.md",
         "docs/public-release-runbook.md",
+        "docs/nas-review-runbook.md",
         "docs/repository-maintenance.md",
         "docs/inventory/release-audit.md",
         "docs/inventory/google-drive-21verse.csv",
@@ -33,6 +34,7 @@ try {
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
         "tools/run-release-audit.ps1",
+        "tools/export-nas-inventory.ps1",
         "tools/run-unity-scene-validation.ps1"
     )
 

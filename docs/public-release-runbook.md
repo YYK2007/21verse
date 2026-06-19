@@ -6,10 +6,12 @@ This runbook describes the final path from private staging repo to public open-s
 
 1. Mount or authenticate to `Youssef Storage` / `WDMyCloudEX4100`.
 2. Search for 21Verse files across Unity projects, design files, documents, decks, and archives.
-3. Copy only repo-worthy public-safe files into this repository.
-4. Document exclusions and duplicates in `docs/design-and-nas-inventory.md`.
-5. Update `docs/inventory/nas-access-log.csv`.
-6. Close or update issue #1.
+3. Run `tools/export-nas-inventory.ps1` against the mounted share.
+4. Review `docs/inventory/generated/nas-candidate-files.csv`.
+5. Copy only repo-worthy public-safe files into this repository.
+6. Document exclusions and duplicates in `docs/design-and-nas-inventory.md`.
+7. Update `docs/inventory/nas-access-log.csv`.
+8. Close or update issue #1.
 
 ## 2. Resolve Unity Asset Rights
 
