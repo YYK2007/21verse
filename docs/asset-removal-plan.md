@@ -6,6 +6,7 @@ Source audits:
 
 - `docs/inventory/unity-asset-audit.csv`
 - `docs/inventory/unity-risky-asset-references.csv`
+- `docs/inventory/unity-asset-disposition.csv`
 
 Regenerate them with:
 
@@ -48,4 +49,4 @@ Every high-risk bundled asset folder has serialized references from scenes, pref
 .\tools\run-release-audit.ps1
 ```
 
-7. Update `NOTICE.md`, `docs/third-party-assets.md`, and issue #2 with the final decision for each folder.
+7. Update `docs/inventory/unity-asset-disposition.csv`, `NOTICE.md`, `docs/third-party-assets.md`, and issue #2 with the final decision for each folder.

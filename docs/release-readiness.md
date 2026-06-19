@@ -12,6 +12,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Unity `2022.3.25f1` batchmode project open/import passed for `unity/21verse-vr-game-hub`, and all listed scenes open in batchmode with zero missing script references; see `docs/unity-validation.md`.
 - Unity bundled asset folders have a machine-readable audit in `docs/inventory/unity-asset-audit.csv`.
 - Risky Unity asset references are mapped in `docs/inventory/unity-risky-asset-references.csv` and summarized in `docs/asset-removal-plan.md`.
+- Unity asset release decisions are tracked in `docs/asset-disposition-tracker.md` and `docs/inventory/unity-asset-disposition.csv`.
 - Current local release gate snapshot is in `docs/inventory/release-audit.md`.
 - Final publication steps are documented in `docs/public-release-runbook.md`.
 - Public-repo governance docs and GitHub issue/PR templates are staged for release review.
@@ -37,6 +38,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Regenerate `docs/inventory/unity-risky-asset-references.csv` with `tools/export-unity-risky-asset-references.ps1` after asset changes.
    - Review the UPM/package and bundled asset handoff in `docs/unity-dependencies.md`.
    - Follow `docs/asset-removal-plan.md` for replacement/removal sequencing.
+   - Resolve all `pending` rows in `docs/inventory/unity-asset-disposition.csv`.
    - Resolve all high-priority items in `docs/third-party-assets.md`.
    - Remove or replace any asset that cannot be redistributed in a public source repo.
    - Update `NOTICE.md`.

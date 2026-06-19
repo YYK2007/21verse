@@ -77,6 +77,7 @@ try {
         "docs/google-drive-release-plan.md",
         "docs/design-and-nas-inventory.md",
         "docs/game-design-summary.md",
+        "docs/asset-disposition-tracker.md",
         "docs/third-party-assets.md",
         "docs/unity-dependencies.md",
         "docs/unity-validation.md",
@@ -91,6 +92,7 @@ try {
         "docs/inventory/google-drive-release-plan.csv",
         "docs/inventory/local-design-summary.csv",
         "docs/inventory/nas-access-log.csv",
+        "docs/inventory/unity-asset-disposition.csv",
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
         "docs/inventory/unity-projects.csv",
@@ -105,11 +107,13 @@ try {
 
     $assetAuditRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-audit.csv")
     $assetReferenceRows = @(Import-Csv -LiteralPath "docs/inventory/unity-risky-asset-references.csv")
+    $assetDispositionRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-disposition.csv")
     $assetBlockers = @($assetAuditRows | Where-Object {
         $_.public_release_action -match 'remove|replace|Confirm|Treat as Unity Asset Store|Review sprite ownership|Prefer documenting'
     })
     $referencedRiskyFolders = @($assetReferenceRows | Where-Object { [int]$_.external_reference_count -gt 0 })
-    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references." "Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps."
+    $pendingDispositions = @($assetDispositionRows | Where-Object { $_.release_decision -eq "pending" })
+    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references; $($pendingDispositions.Count) asset disposition rows are pending." "Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps."
 
     $nasRows = @(Import-Csv -LiteralPath "docs/inventory/nas-access-log.csv")
     $nasEvidence = ($nasRows | ForEach-Object { "$($_.check): $($_.result)" }) -join "; "
