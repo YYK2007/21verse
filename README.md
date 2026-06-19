@@ -27,6 +27,12 @@ Important scenes live under:
 
 Unity-generated folders such as `Library`, `Logs`, `Temp`, `Obj`, `Build`, `Builds`, and `UserSettings` are intentionally excluded.
 
+To rerun the batchmode scene-open validation:
+
+```powershell
+.\tools\run-unity-scene-validation.ps1
+```
+
 ## Before Public Release
 
 This repo is private-ready, not public-published. Before changing visibility to public, review:
