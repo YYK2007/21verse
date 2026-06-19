@@ -82,6 +82,7 @@ try {
         "docs/unity-dependencies.md",
         "docs/unity-validation.md",
         "docs/release-readiness.md",
+        "docs/release-evidence-manifest.md",
         "docs/public-release-runbook.md",
         "docs/nas-review-runbook.md",
         "docs/nas-review-checklist.md",

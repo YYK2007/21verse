@@ -29,6 +29,7 @@ try {
         ".github/ISSUE_TEMPLATE/release-gate.md",
         ".github/workflows/repo-hygiene.yml",
         "docs/release-readiness.md",
+        "docs/release-evidence-manifest.md",
         "docs/public-release-runbook.md",
         "docs/nas-review-runbook.md",
         "docs/nas-review-checklist.md",

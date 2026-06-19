@@ -34,6 +34,7 @@ Expected state:
 - Working tree is clean after generated audit snapshots are committed.
 - GitHub repository visibility is `private`.
 - GitHub metadata matches `docs/github-metadata.md`.
+- Release evidence map is present at `docs/release-evidence-manifest.md`.
 - Git LFS is installed and tracks Unity binary/media assets.
 - `Repo Hygiene` GitHub Actions checks pass.
 
@@ -52,6 +53,7 @@ See `docs/github-tracker.md` for label and milestone details.
 - Third-party Unity assets are confirmed redistributable, replaced, or removed with import instructions.
 - Interactive Unity/VR smoke testing is complete.
 - Google Drive public candidates are redacted before export.
+- `docs/release-evidence-manifest.md` has no blocked requirements.
 - `docs/inventory/release-audit.md` reports no blockers.
 
 Changing repository visibility from private to public is the final step, not a staging step.

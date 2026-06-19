@@ -2,6 +2,8 @@
 
 This runbook describes the final path from private staging repo to public open-source repository. Do not run the visibility-change step while `docs/inventory/release-audit.md` still reports blockers.
 
+Use `docs/release-evidence-manifest.md` as the evidence map for the final review.
+
 ## 1. Resolve NAS Review
 
 1. Mount or authenticate to `Youssef Storage` / `WDMyCloudEX4100`.
@@ -65,7 +67,8 @@ Commit any regenerated inventory or audit changes.
 Only after all release blockers are resolved:
 
 1. Confirm GitHub Actions are green on `main`.
-2. Confirm `docs/inventory/release-audit.md` reports no blockers.
-3. Confirm the `Public release readiness` milestone has no open blocker issues.
-4. Change GitHub repository visibility from private to public.
-5. Create a release announcement or tag only after visibility is public and verified.
+2. Confirm `docs/release-evidence-manifest.md` has no blocked requirements.
+3. Confirm `docs/inventory/release-audit.md` reports no blockers.
+4. Confirm the `Public release readiness` milestone has no open blocker issues.
+5. Change GitHub repository visibility from private to public.
+6. Create a release announcement or tag only after visibility is public and verified.

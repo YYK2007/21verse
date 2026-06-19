@@ -14,6 +14,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Risky Unity asset references are mapped in `docs/inventory/unity-risky-asset-references.csv` and summarized in `docs/asset-removal-plan.md`.
 - Unity asset release decisions are tracked in `docs/asset-disposition-tracker.md` and `docs/inventory/unity-asset-disposition.csv`.
 - Current local release gate snapshot is in `docs/inventory/release-audit.md`.
+- Release evidence is mapped in `docs/release-evidence-manifest.md`.
 - Final publication steps are documented in `docs/public-release-runbook.md`.
 - Public-repo governance docs and GitHub issue/PR templates are staged for release review.
 - Conduct, support, and changelog docs are staged for public release review.
@@ -62,6 +63,7 @@ This repository is private and staged for a future open-source release. Do not m
 
 5. Final repo hygiene
    - Follow `docs/public-release-runbook.md`.
+   - Review `docs/release-evidence-manifest.md`.
    - Run `tools/test-repo-hygiene.ps1`.
    - Run `tools/run-release-audit.ps1`.
    - Review `CONTRIBUTING.md`, `SECURITY.md`, and `.github/` templates.
