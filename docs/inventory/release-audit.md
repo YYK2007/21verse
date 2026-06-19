@@ -1,13 +1,13 @@
 ﻿# Release Audit
 
-Generated: 2026-06-19 22:45:35 +03:00
+Generated: 2026-06-19 22:50:20 +03:00
 
 This audit is a local verification snapshot for the private staging repo. A `blocker` status means the repo must not be made public yet.
 
 | Gate | Status | Evidence | Next step |
 | --- | --- | --- | --- |
 | Git working tree | pass | ## main...origin/main | Commit, discard, or document all local changes. |
-| GitHub remote main | pass | 507b2840ff7c1e5c62519fadc118ee8eb515c226	refs/heads/main | Restore origin/main tracking. |
+| GitHub remote main | pass | f209d5b9fb37743c822092e85c250cfba31fc297	refs/heads/main | Restore origin/main tracking. |
 | Non-LFS >100 MB file check | pass | No non-generated files over 100 MB found. | Move oversized files to Git LFS or remove them. |
 | Secret scan | pass | Only expected documentation matches found. | Investigate and remove any real secret material. |
 | Required handoff docs | pass | All expected handoff docs and inventories are present. | Restore missing docs. |
