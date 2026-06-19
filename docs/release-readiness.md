@@ -20,6 +20,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Close GitHub issue #1.
 
 2. Unity asset licensing
+   - Review the UPM/package and bundled asset handoff in `docs/unity-dependencies.md`.
    - Resolve all high-priority items in `docs/third-party-assets.md`.
    - Remove or replace any asset that cannot be redistributed in a public source repo.
    - Update `NOTICE.md`.

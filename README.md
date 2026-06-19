@@ -36,6 +36,7 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/google-drive-inventory.md`
 - `docs/design-and-nas-inventory.md`
 - `docs/game-design-summary.md`
+- `docs/unity-dependencies.md`
 - `docs/third-party-assets.md`
 - `docs/release-readiness.md`
 - `docs/github-private-repo.md`

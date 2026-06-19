@@ -4,6 +4,8 @@ This register is based on files currently included under `unity/21verse-vr-game-
 
 It is not legal advice. Treat every item below as needing owner/license confirmation before the repository is made public.
 
+For Unity Package Manager dependencies and a public-release handoff plan, see `docs/unity-dependencies.md`.
+
 ## High-Priority Review Items
 
 | Asset folder | Approx. size | Evidence found | Public-release action |
