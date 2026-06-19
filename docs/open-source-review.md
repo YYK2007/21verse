@@ -1,0 +1,34 @@
+# Open-Source Review
+
+Status: private staging repository prepared on 2026-06-19.
+
+## Included
+
+- Main Unity project copied from `C:\Users\youss\Desktop\21Verse\21VerseVRGameHub-adjectives-game\21VerseVRGameHub-with-more`.
+- Selected brand assets copied from `C:\Users\youss\Desktop\21Verse`.
+- Public-facing poster PDF copied as `docs/poster-2.pdf`.
+- Repository docs, ignore rules, Git LFS patterns, license, and notices.
+
+## Excluded
+
+- Unity generated folders: `Library`, `Logs`, `Temp`, `Obj`, `Build`, `Builds`, `UserSettings`.
+- Local IDE files: `.vscode`, `.vs`, `.csproj`, `.sln`, user prefs.
+- Private Google Drive folders: Financials, Testing Notes/Insights, Research, Proposals, and Decks.
+- Investor, partner, testing, pilot, financial, and outreach documents unless explicitly sanitized later.
+- Backup archives and duplicate project zips/rar files.
+
+## Publication Blockers
+
+- Third-party Unity assets need license review before public release. Visible candidates include `Fantasy Skybox FREE`, `Fresh_Raystore`, `Lana Studio`, `TextMesh Pro`, XR samples, and other downloaded/sample content.
+- Brand assets are included for private staging, but public reuse terms should be stated before release.
+- The Google Drive materials contain business, research, testing, and financial files. Keep them out of the public repo unless redacted.
+- Confirm whether MIT is the desired code license before making the repo public.
+
+## Recommended Release Steps
+
+1. Open `unity/21verse-vr-game-hub` in Unity `2022.3.25f1` and let Unity regenerate local caches.
+2. Run through the main scenes listed in `README.md`.
+3. Replace any non-redistributable third-party assets with package dependencies, placeholders, or links.
+4. Confirm final code and asset licensing.
+5. Push to a private GitHub repository.
+6. Only after review, change GitHub visibility from private to public.

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6ab7f2511ce424c9059cc884aeca17, type: 3}
+  m_Name: Lemon
+  m_EditorClassIdentifier: 
+  fruitSprite: {fileID: 21300000, guid: 836c43dbf93860441ad4ac8447976acb, type: 3}
+  correctColor: 2
+  questionAudio: {fileID: 8300000, guid: 288796ff58a3257428297acf7daefa7d, type: 3}
