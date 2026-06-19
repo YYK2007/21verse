@@ -24,6 +24,10 @@ Status: private staging repository prepared on 2026-06-19.
 - The Google Drive materials contain business, research, testing, and financial files. Keep them out of the public repo unless redacted.
 - Confirm whether MIT is the desired code license before making the repo public.
 - Push to a private GitHub repository after the repo exists. See `docs/github-private-repo.md`.
+- Review private tracker issues before public release:
+  - https://github.com/YYK2007/21verse_opensource/issues/1
+  - https://github.com/YYK2007/21verse_opensource/issues/2
+  - https://github.com/YYK2007/21verse_opensource/issues/3
 
 ## Recommended Release Steps
 

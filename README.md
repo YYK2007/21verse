@@ -38,7 +38,14 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/game-design-summary.md`
 - `docs/third-party-assets.md`
 - `docs/github-private-repo.md`
+- `docs/inventory/`
 - third-party Unity asset licenses under `unity/21verse-vr-game-hub/Assets`
+
+Private GitHub tracker issues:
+
+- [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)
+- [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2)
+- [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3)
 
 ## License
 

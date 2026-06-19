@@ -60,3 +60,9 @@ Those folders appear to be older prototypes, backups, templates, or much larger 
 - Local project zips/rar files
 
 See `docs/design-and-nas-inventory.md` for aggregate counts of local design/document files.
+
+## Machine-Readable Inventories
+
+- `docs/inventory/unity-projects.csv`
+- `docs/inventory/local-design-summary.csv`
+- `docs/inventory/nas-access-log.csv`

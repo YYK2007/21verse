@@ -1,0 +1,11 @@
+﻿check,result
+Get-SmbMapping,no active mapping for Youssef Storage/WDMyCloudEX4100
+net use,no active connection
+ARP,192.168.0.104 reachable
+NetBIOS,WDMYCLOUDEX4100 registered
+Reverse DNS,WDMyCloudEX4100
+Open TCP ports,22 SSH; 80 HTTP; 139/445 SMB
+Closed TCP ports,21 FTP; 443 HTTPS; 548 AFP; 2049 NFS
+SMB public share,blocked by Windows guest policy or invalid credential
+SSH admin,batch mode denied; password required
+WD web UI,HTTP 200 at root; obvious unauthenticated share APIs unavailable
