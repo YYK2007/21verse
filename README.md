@@ -34,6 +34,8 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/open-source-review.md`
 - `docs/source-inventory.md`
 - `docs/google-drive-inventory.md`
+- `docs/design-and-nas-inventory.md`
+- `docs/game-design-summary.md`
 - `docs/third-party-assets.md`
 - `docs/github-private-repo.md`
 - third-party Unity asset licenses under `unity/21verse-vr-game-hub/Assets`

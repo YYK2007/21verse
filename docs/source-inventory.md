@@ -17,7 +17,7 @@ Mounted drives checked:
 - `D:` HDD
 - `E:` Old PC
 
-No active SMB/NAS mapping was detected with `Get-SmbMapping` during the review. If the NAS is mounted later under a UNC path or drive letter, run another targeted inventory pass before public release.
+No active SMB/NAS mapping was detected with `Get-SmbMapping` during the first review. The user later identified the NAS as `Youssef Storage`; see `docs/design-and-nas-inventory.md` for the follow-up network evidence and access result.
 
 ## Unity Projects Found
 
@@ -58,3 +58,5 @@ Those folders appear to be older prototypes, backups, templates, or much larger 
 - Backup archives
 - Duplicate logos and old banners
 - Local project zips/rar files
+
+See `docs/design-and-nas-inventory.md` for aggregate counts of local design/document files.
