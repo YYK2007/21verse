@@ -5,6 +5,7 @@ This register is based on files currently included under `unity/21verse-vr-game-
 It is not legal advice. Treat every item below as needing owner/license confirmation before the repository is made public.
 
 For Unity Package Manager dependencies and a public-release handoff plan, see `docs/unity-dependencies.md`.
+For the machine-readable folder audit, see `docs/inventory/unity-asset-audit.csv`.
 
 ## High-Priority Review Items
 
@@ -42,6 +43,8 @@ These appear more project-specific but still deserve review:
 5. Keep Git LFS for all binary assets that remain.
 
 ## Scan Notes
+
+The machine-readable audit currently covers 18 top-level folders under `Assets`, including file counts, approximate size, Unity `.meta` `licenseType` values, evidence files, and the recommended public-release action.
 
 The scan found license/readme-style files only in:
 

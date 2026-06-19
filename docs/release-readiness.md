@@ -9,6 +9,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Local Unity projects and local design files have machine-readable inventories in `docs/inventory/`.
 - Google Drive presentations, docs, and sheets have a curated inventory in `docs/inventory/google-drive-21verse.csv`.
 - Unity `2022.3.25f1` batchmode project open/import passed for `unity/21verse-vr-game-hub`, and all listed scenes open in batchmode with zero missing script references; see `docs/unity-validation.md`.
+- Unity bundled asset folders have a machine-readable audit in `docs/inventory/unity-asset-audit.csv`.
 - NAS device has been identified but not reviewed because share access is blocked.
 
 ## Required Before Public Release
@@ -20,6 +21,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Close GitHub issue #1.
 
 2. Unity asset licensing
+   - Regenerate `docs/inventory/unity-asset-audit.csv` with `tools/export-unity-asset-audit.ps1` after asset changes.
    - Review the UPM/package and bundled asset handoff in `docs/unity-dependencies.md`.
    - Resolve all high-priority items in `docs/third-party-assets.md`.
    - Remove or replace any asset that cannot be redistributed in a public source repo.

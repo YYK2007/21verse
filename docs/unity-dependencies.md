@@ -8,6 +8,7 @@ This file separates reconstructable Unity Package Manager dependencies from bund
 - Project path: `unity/21verse-vr-game-hub`
 - Package manifest: `unity/21verse-vr-game-hub/Packages/manifest.json`
 - Package lock: `unity/21verse-vr-game-hub/Packages/packages-lock.json`
+- Bundled asset audit: `docs/inventory/unity-asset-audit.csv`
 
 ## Direct Unity Package Manager Dependencies
 
@@ -36,6 +37,12 @@ The `com.unity.modules.*` entries in the manifest are built-in Unity modules and
 ## Bundled Asset Folders Requiring Release Decisions
 
 These folders are committed in the private staging repo today. Before making the repository public, either confirm their redistribution rights in writing, replace them, or remove them and document import steps.
+
+The source CSV for this table is regenerated with:
+
+```powershell
+.\tools\export-unity-asset-audit.ps1
+```
 
 | Folder | Evidence in repo | Recommended public-release treatment |
 | --- | --- | --- |

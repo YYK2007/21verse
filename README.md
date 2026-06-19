@@ -49,6 +49,12 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/inventory/`
 - third-party Unity asset licenses under `unity/21verse-vr-game-hub/Assets`
 
+To regenerate the Unity asset folder audit:
+
+```powershell
+.\tools\export-unity-asset-audit.ps1
+```
+
 Private GitHub tracker issues:
 
 - [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)
