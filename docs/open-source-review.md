@@ -19,10 +19,11 @@ Status: private staging repository prepared on 2026-06-19.
 
 ## Publication Blockers
 
-- Third-party Unity assets need license review before public release. Visible candidates include `Fantasy Skybox FREE`, `Fresh_Raystore`, `Lana Studio`, `TextMesh Pro`, XR samples, and other downloaded/sample content.
+- Third-party Unity assets need license review before public release. See `docs/third-party-assets.md`.
 - Brand assets are included for private staging, but public reuse terms should be stated before release.
 - The Google Drive materials contain business, research, testing, and financial files. Keep them out of the public repo unless redacted.
 - Confirm whether MIT is the desired code license before making the repo public.
+- Push to a private GitHub repository after the repo exists. See `docs/github-private-repo.md`.
 
 ## Recommended Release Steps
 
