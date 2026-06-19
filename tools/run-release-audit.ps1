@@ -47,6 +47,7 @@ try {
     $secretMatches = @(rg -n --hidden -S "(api[_-]?key|secret|password|passwd|token|client_secret|private_key|BEGIN RSA|BEGIN PRIVATE|ghp_|AIza|sk-[A-Za-z0-9])" --glob "!.git/**" --glob "!docs/inventory/generated/**" --glob "!docs/inventory/release-audit.md" --glob "!tools/run-release-audit.ps1" . 2>$null)
     $unexpectedSecrets = @($secretMatches | Where-Object {
         $_ -notmatch '^\.\\\.gitignore:' -and
+        $_ -notmatch '^\.\\SECURITY\.md:' -and
         $_ -notmatch '^\.\\docs\\release-readiness\.md:' -and
         $_ -notmatch '^\.\\docs\\inventory\\nas-access-log\.csv:'
     })
@@ -56,6 +57,12 @@ try {
         "README.md",
         "LICENSE",
         "NOTICE.md",
+        "CONTRIBUTING.md",
+        "SECURITY.md",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/asset-release-review.md",
+        ".github/ISSUE_TEMPLATE/nas-review.md",
+        ".github/ISSUE_TEMPLATE/release-gate.md",
         "docs/open-source-review.md",
         "docs/source-inventory.md",
         "docs/google-drive-inventory.md",

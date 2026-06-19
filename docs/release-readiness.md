@@ -12,6 +12,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Unity bundled asset folders have a machine-readable audit in `docs/inventory/unity-asset-audit.csv`.
 - Risky Unity asset references are mapped in `docs/inventory/unity-risky-asset-references.csv` and summarized in `docs/asset-removal-plan.md`.
 - Current local release gate snapshot is in `docs/inventory/release-audit.md`.
+- Public-repo governance docs and GitHub issue/PR templates are staged for release review.
 - NAS device has been identified but not reviewed because share access is blocked.
 
 ## Required Before Public Release
@@ -46,6 +47,7 @@ This repository is private and staged for a future open-source release. Do not m
 
 5. Final repo hygiene
    - Run `tools/run-release-audit.ps1`.
+   - Review `CONTRIBUTING.md`, `SECURITY.md`, and `.github/` templates.
    - Run a secret scan.
    - Confirm no non-LFS file exceeds GitHub's 100 MB limit.
    - Confirm `git status --short --branch` is clean.
