@@ -9,6 +9,7 @@ This file separates reconstructable Unity Package Manager dependencies from bund
 - Package manifest: `unity/21verse-vr-game-hub/Packages/manifest.json`
 - Package lock: `unity/21verse-vr-game-hub/Packages/packages-lock.json`
 - Bundled asset audit: `docs/inventory/unity-asset-audit.csv`
+- Risky asset reference audit: `docs/inventory/unity-risky-asset-references.csv`
 
 ## Direct Unity Package Manager Dependencies
 
@@ -42,6 +43,7 @@ The source CSV for this table is regenerated with:
 
 ```powershell
 .\tools\export-unity-asset-audit.ps1
+.\tools\export-unity-risky-asset-references.ps1
 ```
 
 | Folder | Evidence in repo | Recommended public-release treatment |

@@ -70,6 +70,7 @@ try {
         "docs/inventory/local-design-summary.csv",
         "docs/inventory/nas-access-log.csv",
         "docs/inventory/unity-asset-audit.csv",
+        "docs/inventory/unity-risky-asset-references.csv",
         "docs/inventory/unity-projects.csv"
     )
     $missingFiles = @($requiredFiles | Where-Object { -not (Test-Path -LiteralPath $_) })
@@ -80,10 +81,12 @@ try {
     Add-Gate $gates "Unity batchmode scene validation" ($(if ($sceneValidator -and $unityValidation) { "pass" } else { "blocker" })) "Scene validator script present: $sceneValidator; docs record zero missing script references: $unityValidation." "Run tools/run-unity-scene-validation.ps1 and update docs/unity-validation.md."
 
     $assetAuditRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-audit.csv")
+    $assetReferenceRows = @(Import-Csv -LiteralPath "docs/inventory/unity-risky-asset-references.csv")
     $assetBlockers = @($assetAuditRows | Where-Object {
         $_.public_release_action -match 'remove|replace|Confirm|Treat as Unity Asset Store|Review sprite ownership|Prefer documenting'
     })
-    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions." "Resolve issue #2 by confirming rights, removing assets, or documenting import steps."
+    $referencedRiskyFolders = @($assetReferenceRows | Where-Object { [int]$_.external_reference_count -gt 0 })
+    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references." "Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps."
 
     $nasRows = @(Import-Csv -LiteralPath "docs/inventory/nas-access-log.csv")
     $nasEvidence = ($nasRows | ForEach-Object { "$($_.check): $($_.result)" }) -join "; "

@@ -6,6 +6,7 @@ It is not legal advice. Treat every item below as needing owner/license confirma
 
 For Unity Package Manager dependencies and a public-release handoff plan, see `docs/unity-dependencies.md`.
 For the machine-readable folder audit, see `docs/inventory/unity-asset-audit.csv`.
+For serialized scene/prefab reference impact and removal sequencing, see `docs/asset-removal-plan.md` and `docs/inventory/unity-risky-asset-references.csv`.
 
 ## High-Priority Review Items
 
@@ -45,6 +46,7 @@ These appear more project-specific but still deserve review:
 ## Scan Notes
 
 The machine-readable audit currently covers 18 top-level folders under `Assets`, including file counts, approximate size, Unity `.meta` `licenseType` values, evidence files, and the recommended public-release action.
+The risky reference audit confirms every high-priority bundled asset folder is referenced by scenes, prefabs, or materials, so removals need a Unity replacement pass rather than filesystem deletion.
 
 The scan found license/readme-style files only in:
 

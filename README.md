@@ -42,6 +42,7 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/google-drive-inventory.md`
 - `docs/design-and-nas-inventory.md`
 - `docs/game-design-summary.md`
+- `docs/asset-removal-plan.md`
 - `docs/unity-dependencies.md`
 - `docs/third-party-assets.md`
 - `docs/release-readiness.md`
@@ -53,6 +54,7 @@ To regenerate the Unity asset folder audit:
 
 ```powershell
 .\tools\export-unity-asset-audit.ps1
+.\tools\export-unity-risky-asset-references.ps1
 ```
 
 To regenerate the release gate snapshot:
