@@ -23,6 +23,7 @@ This repository is private and staged for a future open-source release. Do not m
 - GitHub repository metadata is documented in `docs/github-metadata.md`.
 - NAS device has been identified but not reviewed because share access is blocked.
 - NAS review instructions are staged in `docs/nas-review-runbook.md`.
+- NAS review completion status is tracked in `docs/nas-review-checklist.md` and `docs/inventory/nas-review-status.csv`.
 
 ## Required Before Public Release
 
@@ -31,6 +32,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Run `tools/export-nas-inventory.ps1` against the mounted share.
    - Search for 21Verse files on the NAS.
    - Add any repo-worthy files or document exclusions.
+   - Mark every row in `docs/inventory/nas-review-status.csv` as `complete`.
    - Close GitHub issue #1.
 
 2. Unity asset licensing

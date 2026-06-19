@@ -1,0 +1,6 @@
+"step","status","evidence","next_action","issue"
+"confirm_access_method","blocked","NAS is reachable as WDMyCloudEX4100 / 192.168.0.104, but no mounted/listable share is available in this session.","Mount a share or add valid SMB credentials for Youssef Storage / WDMyCloudEX4100.","#1"
+"run_inventory_export","pending","No reviewed NAS candidate inventory is available yet.","Run tools/export-nas-inventory.ps1 against the mounted drive or UNC share.","#1"
+"review_candidate_files","pending","NAS candidate files have not been classified for public release.","Review generated NAS candidate rows and classify include, exclude, or private-only.","#1"
+"promote_or_exclude_files","pending","No repo-worthy NAS files have been copied or explicitly excluded from reviewed NAS results.","Copy only public-safe repo-worthy files, or document exclusions with rationale.","#1"
+"refresh_release_evidence","pending","Release docs and issue #1 still record NAS as blocked.","Update tracked NAS docs, issue #1, and release audit after the review is complete.","#1"

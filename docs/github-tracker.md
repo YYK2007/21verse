@@ -20,7 +20,7 @@ The private GitHub tracker is configured for public-release readiness work.
 
 | Issue | Primary evidence in repo | Current unresolved evidence |
 | --- | --- | --- |
-| #1 | `docs/design-and-nas-inventory.md`, `docs/nas-review-runbook.md`, `docs/inventory/nas-access-log.csv` | NAS share access is still blocked by credentials or Windows guest-access policy. |
+| #1 | `docs/design-and-nas-inventory.md`, `docs/nas-review-runbook.md`, `docs/nas-review-checklist.md`, `docs/inventory/nas-review-status.csv` | NAS share access is still blocked; five NAS review status rows are not complete. |
 | #2 | `docs/third-party-assets.md`, `docs/asset-removal-plan.md`, `docs/asset-disposition-tracker.md`, `docs/inventory/unity-asset-disposition.csv` | Nine Unity asset disposition rows are still `pending`. |
 | #3 | `docs/unity-validation.md`, `tools/run-unity-scene-validation.ps1` | Batchmode validation passed; interactive Unity/VR smoke testing is still required. |
 

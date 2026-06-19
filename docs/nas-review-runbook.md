@@ -5,7 +5,9 @@ This runbook is for completing the `Youssef Storage` / `WDMyCloudEX4100` review 
 Current NAS access evidence:
 
 - `docs/inventory/nas-access-log.csv`
+- `docs/inventory/nas-review-status.csv`
 - `docs/design-and-nas-inventory.md`
+- `docs/nas-review-checklist.md`
 
 ## Access Requirements
 
@@ -41,7 +43,7 @@ The script writes:
 3. Do not copy generated Unity folders such as `Library`, `Temp`, `Logs`, `Obj`, `Build`, `Builds`, or `UserSettings`.
 4. Prefer source files only when ownership and public-release rights are clear.
 5. Promote only reviewed, public-safe NAS findings into committed docs or repo files.
-6. Update `docs/design-and-nas-inventory.md` and `docs/public-release-runbook.md` after the NAS review is complete.
+6. Update `docs/inventory/nas-review-status.csv`, `docs/design-and-nas-inventory.md`, and `docs/public-release-runbook.md` after the NAS review is complete.
 7. Rerun:
 
 ```powershell

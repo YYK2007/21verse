@@ -43,6 +43,7 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/google-drive-release-plan.md`
 - `docs/design-and-nas-inventory.md`
 - `docs/nas-review-runbook.md`
+- `docs/nas-review-checklist.md`
 - `docs/game-design-summary.md`
 - `docs/asset-removal-plan.md`
 - `docs/asset-disposition-tracker.md`

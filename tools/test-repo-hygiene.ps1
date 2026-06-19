@@ -31,6 +31,7 @@ try {
         "docs/release-readiness.md",
         "docs/public-release-runbook.md",
         "docs/nas-review-runbook.md",
+        "docs/nas-review-checklist.md",
         "docs/repository-maintenance.md",
         "docs/asset-disposition-tracker.md",
         "docs/github-metadata.md",
@@ -38,6 +39,7 @@ try {
         "docs/inventory/release-audit.md",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",
+        "docs/inventory/nas-review-status.csv",
         "docs/inventory/unity-asset-disposition.csv",
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
@@ -64,6 +66,7 @@ try {
     $csvExpectations = @{
         "docs/inventory/google-drive-21verse.csv" = 1
         "docs/inventory/google-drive-release-plan.csv" = 1
+        "docs/inventory/nas-review-status.csv" = 5
         "docs/inventory/unity-asset-audit.csv" = 18
         "docs/inventory/unity-asset-disposition.csv" = 9
         "docs/inventory/unity-risky-asset-references.csv" = 9

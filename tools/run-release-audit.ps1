@@ -84,6 +84,7 @@ try {
         "docs/release-readiness.md",
         "docs/public-release-runbook.md",
         "docs/nas-review-runbook.md",
+        "docs/nas-review-checklist.md",
         "docs/repository-maintenance.md",
         "docs/github-private-repo.md",
         "docs/github-metadata.md",
@@ -92,6 +93,7 @@ try {
         "docs/inventory/google-drive-release-plan.csv",
         "docs/inventory/local-design-summary.csv",
         "docs/inventory/nas-access-log.csv",
+        "docs/inventory/nas-review-status.csv",
         "docs/inventory/unity-asset-disposition.csv",
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
@@ -116,9 +118,11 @@ try {
     Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references; $($pendingDispositions.Count) asset disposition rows are pending." "Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps."
 
     $nasRows = @(Import-Csv -LiteralPath "docs/inventory/nas-access-log.csv")
+    $nasStatusRows = @(Import-Csv -LiteralPath "docs/inventory/nas-review-status.csv")
     $nasEvidence = ($nasRows | ForEach-Object { "$($_.check): $($_.result)" }) -join "; "
-    $nasBlocked = $nasEvidence -match "blocked|password required|no active"
-    Add-Gate $gates "NAS review" ($(if ($nasBlocked) { "blocker" } else { "pass" })) "NAS access log records: $nasEvidence" "Mount/authenticate to Youssef Storage / WDMyCloudEX4100 and inventory 21Verse files."
+    $openNasSteps = @($nasStatusRows | Where-Object { $_.status -ne "complete" })
+    $nasBlocked = $nasEvidence -match "blocked|password required|no active" -or $openNasSteps.Count -gt 0
+    Add-Gate $gates "NAS review" ($(if ($nasBlocked) { "blocker" } else { "pass" })) "NAS access log records: $nasEvidence; $($openNasSteps.Count) NAS review status rows are not complete." "Mount/authenticate to Youssef Storage / WDMyCloudEX4100 and inventory 21Verse files."
 
     $driveRows = @(Import-Csv -LiteralPath "docs/inventory/google-drive-21verse.csv")
     Add-Gate $gates "Google Drive inventory" ($(if ($driveRows.Count -gt 0) { "pass" } else { "blocker" })) "$($driveRows.Count) Google Drive rows inventoried." "Only export public-safe, redacted docs/decks when selected."
