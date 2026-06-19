@@ -27,7 +27,7 @@ Push-Location $repoRoot
 
 try {
     $gates = [System.Collections.Generic.List[object]]::new()
-    $gitStatus = git status --short --branch -- . ":(exclude)docs/inventory/release-audit.md"
+    $gitStatus = @(git status --short --branch -- . ":(exclude)docs/inventory/release-audit.md")
     $isClean = ($gitStatus.Count -eq 1 -and $gitStatus[0] -match '^## main\.\.\.origin/main( \[.*\])?$')
     Add-Gate $gates "Git working tree" ($(if ($isClean) { "pass" } else { "blocker" })) ($gitStatus -join " | ") "Commit, discard, or document all local changes."
 
