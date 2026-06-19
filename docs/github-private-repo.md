@@ -33,6 +33,7 @@ Expected state:
 - Local branch tracks `origin/main`.
 - Working tree is clean after generated audit snapshots are committed.
 - GitHub repository visibility is `private`.
+- GitHub metadata matches `docs/github-metadata.md`.
 - Git LFS is installed and tracks Unity binary/media assets.
 - `Repo Hygiene` GitHub Actions checks pass.
 
