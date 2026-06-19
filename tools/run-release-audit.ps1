@@ -32,7 +32,8 @@ try {
     Add-Gate $gates "Git working tree" ($(if ($isClean) { "pass" } else { "blocker" })) ($gitStatus -join " | ") "Commit, discard, or document all local changes."
 
     $remoteHead = git ls-remote --heads origin main
-    Add-Gate $gates "GitHub remote main" ($(if ($remoteHead) { "pass" } else { "blocker" })) $remoteHead "Restore origin/main tracking."
+    $remoteEvidence = if ($remoteHead) { "origin/main resolved." } else { "origin/main did not resolve." }
+    Add-Gate $gates "GitHub remote main" ($(if ($remoteHead) { "pass" } else { "blocker" })) $remoteEvidence "Restore origin/main tracking."
 
     $largeFiles = @(Get-ChildItem -Recurse -Force -File |
         Where-Object {
