@@ -107,7 +107,13 @@ try {
 
     $requirementRows = @(Import-Csv -LiteralPath "docs/inventory/release-requirements-status.csv")
     $blockedRequirements = @($requirementRows | Where-Object { $_.status -eq "blocked" })
-    Add-Gate $gates "Release evidence manifest" ($(if ($blockedRequirements.Count -eq 0) { "pass" } else { "blocker" })) "$($requirementRows.Count) release requirements tracked; $($blockedRequirements.Count) requirements are blocked." "Resolve or document every blocked release requirement before changing visibility."
+    $blockedRequirementNames = if ($blockedRequirements.Count -eq 0) {
+        "none"
+    }
+    else {
+        ($blockedRequirements | ForEach-Object { "$($_.requirement) ($($_.issue))" }) -join "; "
+    }
+    Add-Gate $gates "Release evidence manifest" ($(if ($blockedRequirements.Count -eq 0) { "pass" } else { "blocker" })) "$($requirementRows.Count) release requirements tracked; $($blockedRequirements.Count) requirements are blocked: $blockedRequirementNames." "Resolve or document every blocked release requirement before changing visibility."
 
     $sceneValidator = Test-Path -LiteralPath "tools/run-unity-scene-validation.ps1"
     $unityValidation = Select-String -LiteralPath "docs/unity-validation.md" -Pattern "zero missing script references" -Quiet

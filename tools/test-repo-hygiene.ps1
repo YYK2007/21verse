@@ -11,6 +11,12 @@ try {
         $failures.Add($Message) | Out-Null
     }
 
+    function ConvertTo-ComparableText {
+        param([string] $Text)
+
+        return (($Text.ToLowerInvariant() -replace '[^a-z0-9]+', ' ').Trim() -replace '\s+', ' ')
+    }
+
     $requiredFiles = @(
         "README.md",
         "LICENSE",
@@ -82,6 +88,36 @@ try {
             if ($rows.Count -lt $entry.Value) {
                 Add-Failure "CSV $($entry.Key) has $($rows.Count) rows; expected at least $($entry.Value)."
             }
+        }
+    }
+
+    $requirementRows = @(Import-Csv -LiteralPath "docs/inventory/release-requirements-status.csv")
+    $manifest = Get-Content -LiteralPath "docs/release-evidence-manifest.md" -Raw
+    $comparableManifest = ConvertTo-ComparableText $manifest
+    $allowedRequirementStatuses = @(
+        "complete",
+        "blocked",
+        "complete_inventory_pending_exports",
+        "complete_ongoing"
+    )
+
+    foreach ($row in $requirementRows) {
+        if ([string]::IsNullOrWhiteSpace($row.requirement)) {
+            Add-Failure "Release requirement row has an empty requirement name."
+            continue
+        }
+
+        if ($allowedRequirementStatuses -notcontains $row.status) {
+            Add-Failure "Release requirement '$($row.requirement)' has unexpected status '$($row.status)'."
+        }
+
+        $comparableRequirement = ConvertTo-ComparableText $row.requirement
+        if (-not $comparableManifest.Contains($comparableRequirement)) {
+            Add-Failure "Release requirement '$($row.requirement)' is missing from docs/release-evidence-manifest.md."
+        }
+
+        if ($row.status -eq "blocked" -and [string]::IsNullOrWhiteSpace($row.issue)) {
+            Add-Failure "Blocked release requirement '$($row.requirement)' is not linked to a tracker issue."
         }
     }
 
