@@ -55,6 +55,12 @@ To regenerate the Unity asset folder audit:
 .\tools\export-unity-asset-audit.ps1
 ```
 
+To regenerate the release gate snapshot:
+
+```powershell
+.\tools\run-release-audit.ps1
+```
+
 Private GitHub tracker issues:
 
 - [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)

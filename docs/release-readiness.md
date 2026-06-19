@@ -10,6 +10,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Google Drive presentations, docs, and sheets have a curated inventory in `docs/inventory/google-drive-21verse.csv`.
 - Unity `2022.3.25f1` batchmode project open/import passed for `unity/21verse-vr-game-hub`, and all listed scenes open in batchmode with zero missing script references; see `docs/unity-validation.md`.
 - Unity bundled asset folders have a machine-readable audit in `docs/inventory/unity-asset-audit.csv`.
+- Current local release gate snapshot is in `docs/inventory/release-audit.md`.
 - NAS device has been identified but not reviewed because share access is blocked.
 
 ## Required Before Public Release
@@ -41,6 +42,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Keep testing, IRB, financial, investor, outreach, and partner materials private unless deliberately sanitized.
 
 5. Final repo hygiene
+   - Run `tools/run-release-audit.ps1`.
    - Run a secret scan.
    - Confirm no non-LFS file exceeds GitHub's 100 MB limit.
    - Confirm `git status --short --branch` is clean.
