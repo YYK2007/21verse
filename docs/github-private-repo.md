@@ -35,6 +35,7 @@ Expected state:
 - Working tree is clean after generated audit snapshots are committed.
 - GitHub repository visibility is `private`.
 - GitHub metadata matches `docs/github-metadata.md`.
+- Branch protection handoff is documented in `docs/github-branch-protection.md`.
 - Release evidence map is present at `docs/release-evidence-manifest.md`.
 - Git LFS is installed and tracks Unity binary/media assets.
 - `Repo Hygiene` GitHub Actions checks pass, including the repository visibility guard.
@@ -48,6 +49,7 @@ Expected state:
 - [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3)
 
 See `docs/github-tracker.md` for label and milestone details.
+See `docs/github-branch-protection.md` for the branch protection handoff.
 
 ## Do Not Publish Until
 

@@ -41,10 +41,12 @@ try {
         "docs/nas-review-checklist.md",
         "docs/unity-smoke-test-checklist.md",
         "docs/repository-maintenance.md",
+        "docs/github-branch-protection.md",
         "docs/asset-disposition-tracker.md",
         "docs/github-metadata.md",
         "docs/github-tracker.md",
         "docs/inventory/release-audit.md",
+        "docs/inventory/github-branch-protection-status.csv",
         "docs/inventory/release-requirements-status.csv",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",
@@ -84,6 +86,7 @@ try {
     $csvExpectations = @{
         "docs/inventory/google-drive-21verse.csv" = 1
         "docs/inventory/google-drive-release-plan.csv" = 1
+        "docs/inventory/github-branch-protection-status.csv" = 5
         "docs/inventory/release-requirements-status.csv" = 9
         "docs/inventory/nas-review-status.csv" = 5
         "docs/inventory/unity-smoke-test-status.csv" = 5

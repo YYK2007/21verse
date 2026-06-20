@@ -23,6 +23,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Repository ownership and dependency-maintenance config are staged in `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
 - GitHub tracker milestone and labels are documented in `docs/github-tracker.md`.
 - GitHub repository metadata is documented in `docs/github-metadata.md`.
+- GitHub branch protection handoff is documented in `docs/github-branch-protection.md`.
 - NAS device has been identified but not reviewed because share access is blocked.
 - NAS review instructions are staged in `docs/nas-review-runbook.md`.
 - NAS review completion status is tracked in `docs/nas-review-checklist.md` and `docs/inventory/nas-review-status.csv`.
@@ -74,6 +75,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Review `CODE_OF_CONDUCT.md`, `SUPPORT.md`, and `CHANGELOG.md`.
    - Review `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
    - Review `docs/github-metadata.md`.
+   - Review `docs/github-branch-protection.md`.
    - Confirm the `Public release readiness` milestone has no open blocker issues.
    - Run a secret scan.
    - Confirm no non-LFS file exceeds GitHub's 100 MB limit.
