@@ -10,4 +10,4 @@
 "issue","#2","open","title=Blocker: Confirm third-party Unity asset redistribution rights; labels=blocker; licensing; open-source-readiness; milestone=Public release readiness"
 "issue","#3","open","title=Validation: Open curated Unity project and smoke test main scenes; labels=blocker; open-source-readiness; unity; validation; milestone=Public release readiness"
 "issue","#5","open","title=Blocker: Verify GitHub branch protection before public release; labels=blocker; open-source-readiness; validation; milestone=Public release readiness"
-"actions","repo_hygiene_latest_completed","success","conclusion=success; sha=8298c3fcd51dd17336fa0e59fe841cd6d8e48bea"
+"actions","repo_hygiene_latest_completed","success","conclusion=success; sha=4f1a31efc7624697afba55b1b932acc1db95ec00"
