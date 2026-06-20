@@ -38,6 +38,7 @@ try {
         "docs/release-evidence-manifest.md",
         "docs/public-release-runbook.md",
         "docs/public-release-file-plan.md",
+        "docs/google-drive-public-manifest.md",
         "docs/nas-review-runbook.md",
         "docs/nas-review-checklist.md",
         "docs/unity-smoke-test-checklist.md",
@@ -53,6 +54,7 @@ try {
         "docs/inventory/release-requirements-status.csv",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",
+        "docs/inventory/google-drive-public-manifest.csv",
         "docs/inventory/public-release-file-plan.csv",
         "docs/inventory/nas-review-status.csv",
         "docs/inventory/unity-smoke-test-status.csv",
@@ -70,6 +72,7 @@ try {
         "tools/export-unity-pre-smoke-status.ps1",
         "tools/run-release-audit.ps1",
         "tools/export-nas-inventory.ps1",
+        "tools/export-google-drive-public-manifest.ps1",
         "tools/export-unity-asset-replacement-worklist.ps1",
         "tools/export-public-asset-manifest.ps1",
         "tools/export-public-release-file-plan.ps1",
@@ -101,6 +104,7 @@ try {
     $csvExpectations = @{
         "docs/inventory/google-drive-21verse.csv" = 1
         "docs/inventory/google-drive-release-plan.csv" = 1
+        "docs/inventory/google-drive-public-manifest.csv" = 1
         "docs/inventory/public-release-file-plan.csv" = 1
         "docs/inventory/github-branch-protection-status.csv" = 5
         "docs/inventory/release-requirements-status.csv" = 10
@@ -122,6 +126,29 @@ try {
             if ($rows.Count -lt $entry.Value) {
                 Add-Failure "CSV $($entry.Key) has $($rows.Count) rows; expected at least $($entry.Value)."
             }
+        }
+    }
+
+    $driveReleaseRows = @(Import-Csv -LiteralPath "docs/inventory/google-drive-release-plan.csv")
+    $driveManifestRows = @(Import-Csv -LiteralPath "docs/inventory/google-drive-public-manifest.csv")
+    if ($driveManifestRows.Count -ne $driveReleaseRows.Count) {
+        Add-Failure "Google Drive public manifest has $($driveManifestRows.Count) rows; expected $($driveReleaseRows.Count) from google-drive-release-plan.csv."
+    }
+
+    foreach ($row in $driveManifestRows) {
+        if ([string]::IsNullOrWhiteSpace($row.title) -or
+            [string]::IsNullOrWhiteSpace($row.public_release_decision) -or
+            [string]::IsNullOrWhiteSpace($row.export_gate) -or
+            [string]::IsNullOrWhiteSpace($row.required_review)) {
+            Add-Failure "Google Drive public manifest row '$($row.title)' is missing release handoff detail."
+        }
+
+        if ($row.public_release_decision -eq "exclude_private" -and $row.export_gate -ne "keep_private_no_public_export") {
+            Add-Failure "Google Drive private row '$($row.title)' has export gate '$($row.export_gate)'."
+        }
+
+        if (-not [string]::IsNullOrWhiteSpace($row.local_public_artifact) -and -not (Test-Path -LiteralPath $row.local_public_artifact)) {
+            Add-Failure "Google Drive public manifest row '$($row.title)' references missing local artifact '$($row.local_public_artifact)'."
         }
     }
 

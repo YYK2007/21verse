@@ -87,6 +87,7 @@ try {
         "docs/release-evidence-manifest.md",
         "docs/public-release-runbook.md",
         "docs/public-release-file-plan.md",
+        "docs/google-drive-public-manifest.md",
         "docs/nas-review-runbook.md",
         "docs/nas-review-checklist.md",
         "docs/unity-smoke-test-checklist.md",
@@ -97,6 +98,7 @@ try {
         "docs/github-tracker.md",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",
+        "docs/inventory/google-drive-public-manifest.csv",
         "docs/inventory/public-release-file-plan.csv",
         "docs/inventory/github-branch-protection-status.csv",
         "docs/inventory/release-requirements-status.csv",
@@ -120,6 +122,7 @@ try {
         "tools/export-unity-asset-replacement-worklist.ps1",
         "tools/export-public-asset-manifest.ps1",
         "tools/export-public-release-file-plan.ps1",
+        "tools/export-google-drive-public-manifest.ps1",
         "tools/export-nas-inventory.ps1"
     )
     $missingFiles = @($requiredFiles | Where-Object { -not (Test-Path -LiteralPath $_) })
@@ -170,7 +173,11 @@ try {
     Add-Gate $gates "NAS review" ($(if ($nasBlocked) { "blocker" } else { "pass" })) "NAS access log records: $nasEvidence; $($openNasSteps.Count) NAS review status rows are not complete." "Mount/authenticate to Youssef Storage / WDMyCloudEX4100 and inventory 21Verse files."
 
     $driveRows = @(Import-Csv -LiteralPath "docs/inventory/google-drive-21verse.csv")
-    Add-Gate $gates "Google Drive inventory" ($(if ($driveRows.Count -gt 0) { "pass" } else { "blocker" })) "$($driveRows.Count) Google Drive rows inventoried." "Only export public-safe, redacted docs/decks when selected."
+    $driveManifestRows = @(Import-Csv -LiteralPath "docs/inventory/google-drive-public-manifest.csv")
+    $privateDriveRows = @($driveManifestRows | Where-Object { $_.export_gate -eq "keep_private_no_public_export" })
+    $reviewDriveRows = @($driveManifestRows | Where-Object { $_.export_gate -match "sanitize|redact|manual" })
+    $stagedDriveRows = @($driveManifestRows | Where-Object { $_.export_gate -match "already_staged" })
+    Add-Gate $gates "Google Drive inventory" ($(if ($driveRows.Count -gt 0 -and $driveManifestRows.Count -eq $driveRows.Count) { "pass" } else { "blocker" })) "$($driveRows.Count) Google Drive rows inventoried; $($driveManifestRows.Count) Drive public manifest rows tracked; $($privateDriveRows.Count) rows gated private; $($reviewDriveRows.Count) rows require sanitization/redaction/manual review; $($stagedDriveRows.Count) rows have staged local derivatives." "Only export public-safe, redacted docs/decks when selected."
 
     $branchProtectionRows = @(Import-Csv -LiteralPath "docs/inventory/github-branch-protection-status.csv")
     $openBranchProtectionRows = @($branchProtectionRows | Where-Object { $_.status -ne "complete" })
