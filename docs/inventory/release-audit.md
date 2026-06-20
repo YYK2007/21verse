@@ -1,6 +1,6 @@
 ﻿# Release Audit
 
-Generated: 2026-06-20 06:47:29 +03:00
+Generated: 2026-06-20 06:52:13 +03:00
 
 This audit is a local verification snapshot for the private staging repo. A `blocker` status means the repo must not be made public yet.
 
@@ -17,5 +17,6 @@ This audit is a local verification snapshot for the private staging repo. A `blo
 | Unity third-party asset release decisions | blocker | 18 asset folders audited; 9 folders still need rights/replacement decisions; 9 risky folders have serialized references; 57 scene/prefab/material replacement worklist rows are tracked; 9 asset disposition rows are pending; 9 pending folders have external import/removal handoff rows. | Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps. |
 | NAS review | blocker | NAS access log records: Get-SmbMapping: no active mapping for Youssef Storage/WDMyCloudEX4100; net use: no active connection; ICMP ping: 192.168.0.104 reachable; NetBIOS: WDMYCLOUDEX4100<00> UNIQUE Registered; WDMYCLOUDEX4100<03> UNIQUE Registered; WDMYCLOUDEX4100<20> UNIQUE Registered; WORKGROUP <00> GROUP Registered; Open TCP ports: 22 SSH; 80 HTTP; 139 NetBIOS session; 445 SMB; Closed TCP ports: 443 HTTPS; 548 AFP; 2049 NFS; UNC root \\192.168.0.104: not listable: Cannot find path '\\192.168.0.104' because it does not exist.; UNC root \\WDMyCloudEX4100: not listable: Cannot find path '\\WDMyCloudEX4100' because it does not exist.; net view \\192.168.0.104: System error 53 has occurred.; The network path was not found.; net view \\WDMyCloudEX4100: System error 53 has occurred.; The network path was not found.; WD web UI: HTTP 200 at root; 5 NAS review status rows are not complete. | Mount/authenticate to Youssef Storage / WDMyCloudEX4100 and inventory 21Verse files. |
 | Google Drive inventory | pass | 35 Google Drive rows inventoried. | Only export public-safe, redacted docs/decks when selected. |
+| GitHub branch protection | blocker | main_protection_endpoint: blocked; pull_request_required: pending_admin_verification; repo_hygiene_required: pending_admin_verification; force_pushes_disabled: pending_admin_verification; branch_deletions_disabled: pending_admin_verification | Verify branch protection from a GitHub admin session before public release. |
 
-Summary: pass: 7; blocker: 4
+Summary: pass: 7; blocker: 5
