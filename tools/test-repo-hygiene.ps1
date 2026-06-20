@@ -58,6 +58,7 @@ try {
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
         "tools/test-github-release-state.ps1",
+        "tools/test-nas-access.ps1",
         "tools/run-release-audit.ps1",
         "tools/export-nas-inventory.ps1",
         "tools/run-unity-scene-validation.ps1"

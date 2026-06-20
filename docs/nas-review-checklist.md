@@ -8,10 +8,11 @@ Source evidence:
 - `docs/nas-review-runbook.md`
 - `docs/inventory/nas-access-log.csv`
 - `docs/inventory/nas-review-status.csv`
+- `tools/test-nas-access.ps1`
 
 ## Current State
 
-The NAS is reachable on the local network as `WDMyCloudEX4100` / `192.168.0.104`, but shares were not accessible from this repo-prep session. The current blocker is authenticated share access, not network discovery.
+The NAS is reachable on the local network as `WDMyCloudEX4100` / `192.168.0.104`, but shares were not accessible from this repo-prep session. The current blocker is authenticated share access or an exact listable share path, not network discovery.
 
 ## Completion Checklist
 
