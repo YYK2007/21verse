@@ -18,3 +18,11 @@ Desired state before public release:
 - Admin bypass is reviewed intentionally.
 
 Record final admin-side verification in `docs/inventory/github-branch-protection-status.csv`.
+
+To refresh the local handoff evidence, run:
+
+```powershell
+.\tools\test-github-branch-protection.ps1
+```
+
+The script probes `GET /repos/YYK2007/21verse_opensource/branches/main/protection` and rewrites `docs/inventory/github-branch-protection-status.csv`. If the current credential still lacks admin access, the CSV remains an explicit admin-verification handoff instead of silently claiming protection is configured.

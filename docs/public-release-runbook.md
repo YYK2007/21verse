@@ -62,6 +62,7 @@ Run:
 .\tools\test-repo-hygiene.ps1
 .\tools\run-release-audit.ps1
 .\tools\test-github-release-state.ps1
+.\tools\test-github-branch-protection.ps1
 git status --short --branch
 ```
 
@@ -76,6 +77,7 @@ Only after all release blockers are resolved:
 3. Confirm `docs/inventory/release-audit.md` reports no blockers.
 4. Confirm the `Public release readiness` milestone has no open blocker issues.
 5. Confirm `docs/github-branch-protection.md` has been reviewed by a GitHub admin.
-6. Remove or update the private-visibility guard in `tools/test-repo-hygiene.ps1` as part of the same reviewed release change.
-7. Change GitHub repository visibility from private to public.
-8. Create a release announcement or tag only after visibility is public and verified.
+6. Run `tools/test-github-branch-protection.ps1` and confirm `docs/inventory/github-branch-protection-status.csv` has no `blocked`, `missing`, or `pending_admin_verification` rows.
+7. Remove or update the private-visibility guard in `tools/test-repo-hygiene.ps1` as part of the same reviewed release change.
+8. Change GitHub repository visibility from private to public.
+9. Create a release announcement or tag only after visibility is public and verified.

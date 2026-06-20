@@ -109,6 +109,7 @@ try {
         "docs/inventory/unity-asset-replacement-worklist.csv",
         "docs/inventory/unity-projects.csv",
         "tools/test-github-release-state.ps1",
+        "tools/test-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
         "tools/export-unity-pre-smoke-status.ps1",
         "tools/export-unity-asset-replacement-worklist.ps1",
@@ -159,6 +160,16 @@ try {
 
     $driveRows = @(Import-Csv -LiteralPath "docs/inventory/google-drive-21verse.csv")
     Add-Gate $gates "Google Drive inventory" ($(if ($driveRows.Count -gt 0) { "pass" } else { "blocker" })) "$($driveRows.Count) Google Drive rows inventoried." "Only export public-safe, redacted docs/decks when selected."
+
+    $branchProtectionRows = @(Import-Csv -LiteralPath "docs/inventory/github-branch-protection-status.csv")
+    $openBranchProtectionRows = @($branchProtectionRows | Where-Object { $_.status -ne "complete" })
+    $branchProtectionEvidence = if ($openBranchProtectionRows.Count -eq 0) {
+        "$($branchProtectionRows.Count) branch protection rows verified complete."
+    }
+    else {
+        ($openBranchProtectionRows | ForEach-Object { "$($_.setting): $($_.status)" }) -join "; "
+    }
+    Add-Gate $gates "GitHub branch protection" ($(if ($openBranchProtectionRows.Count -eq 0) { "pass" } else { "blocker" })) $branchProtectionEvidence "Verify branch protection from a GitHub admin session before public release."
 
     $lines = [System.Collections.Generic.List[string]]::new()
     $lines.Add("# Release Audit") | Out-Null

@@ -1,5 +1,5 @@
 "setting","status","evidence","next_action"
-"main_protection_endpoint","blocked","GitHub API returned 403 Forbidden for GET /repos/YYK2007/21verse_opensource/branches/main/protection with the available credential.","Verify branch protection from a GitHub admin session."
+"main_protection_endpoint","blocked","GitHub API returned 403 for GET /repos/YYK2007/21verse_opensource/branches/main/protection: The remote server returned an error: (403) Forbidden.","Verify branch protection from a GitHub admin session."
 "pull_request_required","pending_admin_verification","Not inspected from this session.","Require pull requests before merging to main."
 "repo_hygiene_required","pending_admin_verification","Not inspected from this session.","Require the Repo Hygiene status check before merge."
 "force_pushes_disabled","pending_admin_verification","Not inspected from this session.","Confirm force pushes are disabled on main."

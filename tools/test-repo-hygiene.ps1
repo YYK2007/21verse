@@ -60,6 +60,7 @@ try {
         "docs/inventory/unity-risky-asset-references.csv",
         "docs/inventory/unity-asset-replacement-worklist.csv",
         "tools/test-github-release-state.ps1",
+        "tools/test-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
         "tools/export-unity-pre-smoke-status.ps1",
         "tools/run-release-audit.ps1",
@@ -139,6 +140,22 @@ try {
     foreach ($row in $preSmokeRows) {
         if ($row.status -ne "ready_for_interactive_smoke") {
             Add-Failure "Unity pre-smoke row '$($row.scene)' is not ready: $($row.notes)"
+        }
+    }
+
+    $branchProtectionRows = @(Import-Csv -LiteralPath "docs/inventory/github-branch-protection-status.csv")
+    $allowedBranchProtectionStatuses = @(
+        "complete",
+        "blocked",
+        "missing",
+        "pending_admin_verification"
+    )
+    foreach ($row in $branchProtectionRows) {
+        if ([string]::IsNullOrWhiteSpace($row.setting) -or
+            $allowedBranchProtectionStatuses -notcontains $row.status -or
+            [string]::IsNullOrWhiteSpace($row.evidence) -or
+            [string]::IsNullOrWhiteSpace($row.next_action)) {
+            Add-Failure "GitHub branch protection status row '$($row.setting)' is missing required handoff detail or has unexpected status '$($row.status)'."
         }
     }
 

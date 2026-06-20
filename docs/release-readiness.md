@@ -27,6 +27,7 @@ This repository is private and staged for a future open-source release. Do not m
 - GitHub tracker milestone and labels are documented in `docs/github-tracker.md`.
 - GitHub repository metadata is documented in `docs/github-metadata.md`.
 - GitHub branch protection handoff is documented in `docs/github-branch-protection.md`.
+- GitHub branch protection admin-verification status is tracked in `docs/inventory/github-branch-protection-status.csv`.
 - NAS device has been identified but not reviewed because share access is blocked.
 - NAS review instructions are staged in `docs/nas-review-runbook.md`.
 - NAS review completion status is tracked in `docs/nas-review-checklist.md` and `docs/inventory/nas-review-status.csv`.
