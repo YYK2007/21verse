@@ -223,6 +223,14 @@ try {
         Add-Failure "Release audit snapshot does not mention the known remaining release blockers."
     }
 
+    $unityValidation = Get-Content -LiteralPath "docs/unity-validation.md" -Raw
+    if ($unityValidation -notmatch "Status as of 2026-06-20" -or
+        $unityValidation -notmatch "Cashier.*build-settings update" -or
+        $unityValidation -notmatch "Root objects" -or
+        $unityValidation -notmatch "GameObjects") {
+        Add-Failure "Unity validation summary is missing the latest 2026-06-20 scene-validation evidence."
+    }
+
     if ($failures.Count -gt 0) {
         $failures | ForEach-Object { Write-Error $_ }
         exit 1

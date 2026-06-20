@@ -1,6 +1,6 @@
 # Unity Validation
 
-Status as of 2026-06-19: batchmode project open/import passed, and the listed project scenes open in batchmode with zero missing script references. Interactive gameplay/VR smoke testing is still pending.
+Status as of 2026-06-20: batchmode scene-open validation passed after the `Cashier` build-settings update, and the listed project scenes open in batchmode with zero missing script references. Interactive gameplay/VR smoke testing is still pending.
 
 ## Environment
 
@@ -22,15 +22,15 @@ Automated pre-smoke structural checks are tracked in `docs/inventory/unity-pre-s
 
 `SceneValidation.ValidateConfiguredScenes` opened each listed scene in Unity batchmode and checked for missing script components.
 
-| Scene | Result |
-| --- | --- |
-| `Assets/Scenes/MainMenu.unity` | Opened successfully; 0 missing scripts |
-| `Assets/Scenes/WordLevel01.unity` | Opened successfully; 0 missing scripts |
-| `Assets/Scenes/AdjectiveLevel01.unity` | Opened successfully; 0 missing scripts |
-| `Assets/Scenes/IdentifyingColors.unity` | Opened successfully; 0 missing scripts |
-| `Assets/Scenes/NumberLevelUI01.unity` | Opened successfully; 0 missing scripts |
-| `Assets/Scenes/NumberInequalitiesLevel.unity` | Opened successfully; 0 missing scripts |
-| `Assets/Scenes/Cashier.unity` | Opened successfully; 0 missing scripts |
+| Scene | Result | Root objects | GameObjects |
+| --- | --- | ---: | ---: |
+| `Assets/Scenes/MainMenu.unity` | Opened successfully; 0 missing scripts | 11 | 377 |
+| `Assets/Scenes/WordLevel01.unity` | Opened successfully; 0 missing scripts | 9 | 377 |
+| `Assets/Scenes/AdjectiveLevel01.unity` | Opened successfully; 0 missing scripts | 9 | 373 |
+| `Assets/Scenes/IdentifyingColors.unity` | Opened successfully; 0 missing scripts | 9 | 368 |
+| `Assets/Scenes/NumberLevelUI01.unity` | Opened successfully; 0 missing scripts | 9 | 384 |
+| `Assets/Scenes/NumberInequalitiesLevel.unity` | Opened successfully; 0 missing scripts | 9 | 379 |
+| `Assets/Scenes/Cashier.unity` | Opened successfully; 0 missing scripts | 10 | 130 |
 
 A stale missing script component was removed from `Canvas/OptionsRow/OptionButton (2)` in `Assets/Scenes/NumberInequalitiesLevel.unity`; the rerun passed after that cleanup.
 
