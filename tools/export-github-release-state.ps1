@@ -76,16 +76,16 @@ try {
     $releaseMilestone = $milestones | Where-Object { $_.title -eq "Public release readiness" } | Select-Object -First 1
     Add-StateRow $rows "milestone" "public_release_readiness" ($(if ($releaseMilestone) { "open" } else { "missing" })) ($(if ($releaseMilestone) { "number=$($releaseMilestone.number); open_issues=$($releaseMilestone.open_issues)" } else { "not found" }))
 
-    $openIssuesResponse = Invoke-RestMethod -Method Get -Uri "https://api.github.com/repos/$Repository/issues?state=open&per_page=100" -Headers $headers
-    $openIssues = @(Expand-List $openIssuesResponse)
+    $issuesResponse = Invoke-RestMethod -Method Get -Uri "https://api.github.com/repos/$Repository/issues?state=all&per_page=100" -Headers $headers
+    $issues = @(Expand-List $issuesResponse)
     foreach ($issueNumber in @(1, 2, 3, 5)) {
-        $issue = $openIssues | Where-Object { $_.number -eq $issueNumber } | Select-Object -First 1
+        $issue = $issues | Where-Object { $_.number -eq $issueNumber } | Select-Object -First 1
         if ($issue) {
             $labels = @($issue.labels | ForEach-Object { $_.name } | Sort-Object) -join "; "
-            Add-StateRow $rows "issue" "#$issueNumber" "open" "title=$($issue.title); labels=$labels; milestone=$($issue.milestone.title)"
+            Add-StateRow $rows "issue" "#$issueNumber" $issue.state "title=$($issue.title); labels=$labels; milestone=$($issue.milestone.title); state_reason=$($issue.state_reason)"
         }
         else {
-            Add-StateRow $rows "issue" "#$issueNumber" "missing" "Required release tracker issue is not open."
+            Add-StateRow $rows "issue" "#$issueNumber" "missing" "Required release tracker issue was not found."
         }
     }
 

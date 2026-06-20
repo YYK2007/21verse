@@ -129,13 +129,18 @@ try {
     }
 
     $expectedIssueLabels = @{
-        1 = @("blocker", "nas", "open-source-readiness")
         2 = @("blocker", "licensing", "open-source-readiness")
-        3 = @("blocker", "open-source-readiness", "unity", "validation")
         5 = @("blocker", "open-source-readiness", "validation")
+    }
+    $expectedIssueStates = @{
+        1 = "closed"
+        2 = "open"
+        3 = "closed"
+        5 = "open"
     }
     $expectedIssueBodySnippets = @{
         1 = @(
+            "Excluded from the current release-prep scope by user request on 2026-06-20",
             "docs/design-and-nas-inventory.md",
             "docs/nas-review-checklist.md",
             "docs/inventory/nas-access-log.csv",
@@ -147,6 +152,7 @@ try {
             "docs/asset-disposition-tracker.md",
             "docs/inventory/unity-asset-disposition.csv",
             "docs/inventory/unity-asset-replacement-worklist.csv",
+            "docs/inventory/unity-third-party-removal-status.csv",
             "docs/unity-external-imports.md",
             "docs/inventory/unity-external-imports.csv",
             "docs/public-asset-manifest.md",
@@ -157,6 +163,7 @@ try {
             "docs/inventory/public-release-file-plan.csv"
         )
         3 = @(
+            "Deferred by user request on 2026-06-20",
             "docs/unity-validation.md",
             "docs/unity-smoke-test-checklist.md",
             "docs/inventory/unity-smoke-test-status.csv",
@@ -171,12 +178,16 @@ try {
             "tools/set-github-branch-protection.ps1"
         )
     }
-    $openIssues = @(Invoke-GitHubApi -Method Get -Uri "https://api.github.com/repos/$Repository/issues?state=open&per_page=50" -Headers $headers)
+    $issues = @(Invoke-GitHubApi -Method Get -Uri "https://api.github.com/repos/$Repository/issues?state=all&per_page=50" -Headers $headers)
     foreach ($issueNumber in @(1, 2, 3, 5)) {
-        $issue = $openIssues | Where-Object { $_.number -eq $issueNumber } | Select-Object -First 1
+        $issue = $issues | Where-Object { $_.number -eq $issueNumber } | Select-Object -First 1
         if (-not $issue) {
-            Add-Failure "Required release tracker issue #$issueNumber is not open."
+            Add-Failure "Required release tracker issue #$issueNumber was not found."
             continue
+        }
+
+        if ($issue.state -ne $expectedIssueStates[$issueNumber]) {
+            Add-Failure "Release tracker issue #$issueNumber state is '$($issue.state)', expected '$($expectedIssueStates[$issueNumber])'."
         }
 
         if ($issue.milestone.number -ne 1) {
@@ -184,10 +195,16 @@ try {
         }
 
         $actualIssueLabels = @($issue.labels | ForEach-Object { $_.name })
-        foreach ($expectedLabel in $expectedIssueLabels[$issueNumber]) {
-            if ($actualIssueLabels -notcontains $expectedLabel) {
-                Add-Failure "Release tracker issue #$issueNumber is missing label '$expectedLabel'."
+        if ($expectedIssueLabels.ContainsKey($issueNumber)) {
+            foreach ($expectedLabel in @($expectedIssueLabels[$issueNumber])) {
+                if ($actualIssueLabels -notcontains $expectedLabel) {
+                    Add-Failure "Release tracker issue #$issueNumber is missing label '$expectedLabel'."
+                }
             }
+        }
+
+        if ($issue.state -eq "closed" -and $actualIssueLabels -contains "blocker") {
+            Add-Failure "Release tracker issue #$issueNumber is closed/deferred but still has the blocker label."
         }
 
         foreach ($snippet in $expectedIssueBodySnippets[$issueNumber]) {

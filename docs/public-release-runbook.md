@@ -4,7 +4,11 @@ This runbook describes the final path from private staging repo to public open-s
 
 Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements-status.csv` as the evidence map for the final review.
 
-## 1. Resolve NAS Review
+## 1. NAS Review Scope
+
+NAS files are excluded from the current release-prep scope by user request on 2026-06-20. Do not include NAS files unless the user reopens this scope.
+
+If NAS review is reopened later:
 
 1. Mount or authenticate to `Youssef Storage` / `WDMyCloudEX4100`.
 2. Search for 21Verse files across Unity projects, design files, documents, decks, and archives.
@@ -13,7 +17,7 @@ Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements
 5. Copy only repo-worthy public-safe files into this repository.
 6. Document exclusions and duplicates in `docs/design-and-nas-inventory.md`.
 7. Update `docs/inventory/nas-access-log.csv`.
-8. Close or update issue #1.
+8. Reopen or update issue #1.
 
 ## 2. Resolve Unity Asset Rights
 
@@ -22,15 +26,18 @@ Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements
 3. Review `docs/inventory/unity-asset-replacement-worklist.csv`.
 4. Review `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
 5. Review `docs/public-asset-manifest.md`, `docs/inventory/unity-public-asset-manifest.csv`, `docs/unity-attribution-gap-report.md`, `docs/inventory/unity-attribution-gap-report.csv`, `docs/public-release-file-plan.md`, and `docs/inventory/public-release-file-plan.csv`.
-6. Follow `docs/asset-removal-plan.md`.
-7. For every high-risk asset folder, choose one final action:
+6. Review `docs/inventory/unity-third-party-removal-status.csv`; remove only folders marked `safe_to_delete_now=yes`, otherwise replace or clear serialized references before deleting downloaded assets.
+7. Follow `docs/asset-removal-plan.md`.
+8. For every high-risk asset folder, choose one final action:
    - confirm public source redistribution rights,
    - replace with original or verified redistributable assets,
    - remove and document import/acquisition steps.
-8. Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-disposition-tracker.md`.
-9. Close or update issue #2.
+9. Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-disposition-tracker.md`.
+10. Close or update issue #2.
 
 ## 3. Final Unity Validation
+
+Interactive VR smoke testing is deferred by user request on 2026-06-20 and is optional before a VR gameplay release. Keep automated validation current before any visibility change.
 
 1. Open `unity/21verse-vr-game-hub` in Unity `2022.3.25f1`.
 2. Load and smoke-test the README scenes interactively.
@@ -61,6 +68,7 @@ Run:
 .\tools\export-unity-asset-replacement-worklist.ps1
 .\tools\export-public-asset-manifest.ps1
 .\tools\export-unity-attribution-gap-report.ps1
+.\tools\export-unity-third-party-removal-status.ps1
 .\tools\export-public-release-file-plan.ps1
 .\tools\export-google-drive-release-plan.ps1
 .\tools\export-google-drive-public-manifest.ps1

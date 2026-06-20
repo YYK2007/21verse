@@ -74,6 +74,7 @@ try {
         "docs/inventory/unity-asset-replacement-worklist.csv",
         "docs/inventory/unity-public-asset-manifest.csv",
         "docs/inventory/unity-attribution-gap-report.csv",
+        "docs/inventory/unity-third-party-removal-status.csv",
         "tools/test-github-release-state.ps1",
         "tools/export-github-release-state.ps1",
         "tools/test-github-branch-protection.ps1",
@@ -89,6 +90,7 @@ try {
         "tools/export-unity-asset-replacement-worklist.ps1",
         "tools/export-public-asset-manifest.ps1",
         "tools/export-unity-attribution-gap-report.ps1",
+        "tools/export-unity-third-party-removal-status.ps1",
         "tools/export-public-release-file-plan.ps1",
         "tools/run-unity-scene-validation.ps1"
     )
@@ -122,7 +124,7 @@ try {
         "docs/inventory/public-release-file-plan.csv" = 1
         "docs/inventory/github-branch-protection-status.csv" = 5
         "docs/inventory/github-release-state.csv" = 12
-        "docs/inventory/release-blocker-action-plan.csv" = 4
+        "docs/inventory/release-blocker-action-plan.csv" = 2
         "docs/inventory/release-requirements-status.csv" = 10
         "docs/inventory/local-drive-review-status.csv" = 2
         "docs/inventory/nas-review-status.csv" = 5
@@ -134,6 +136,7 @@ try {
         "docs/inventory/unity-external-imports.csv" = 9
         "docs/inventory/unity-public-asset-manifest.csv" = 18
         "docs/inventory/unity-attribution-gap-report.csv" = 18
+        "docs/inventory/unity-third-party-removal-status.csv" = 9
         "docs/inventory/unity-risky-asset-references.csv" = 9
         "docs/inventory/unity-asset-replacement-worklist.csv" = 47
         "docs/inventory/unity-projects.csv" = 1
@@ -311,6 +314,21 @@ try {
         }
     }
 
+    $removalStatusRows = @(Import-Csv -LiteralPath "docs/inventory/unity-third-party-removal-status.csv")
+    foreach ($row in $removalStatusRows) {
+        if ([string]::IsNullOrWhiteSpace($row.folder) -or
+            [string]::IsNullOrWhiteSpace($row.safe_to_delete_now) -or
+            [string]::IsNullOrWhiteSpace($row.removal_status) -or
+            [string]::IsNullOrWhiteSpace($row.next_action) -or
+            $row.issue -ne "#2") {
+            Add-Failure "Unity third-party removal status row '$($row.folder)' is missing required removal handoff detail."
+        }
+
+        if ($row.safe_to_delete_now -eq "yes" -and [int]$row.serialized_reference_count -ne 0) {
+            Add-Failure "Unity third-party removal status row '$($row.folder)' is marked safe to delete but has serialized references."
+        }
+    }
+
     $releaseFilePlanRows = @(Import-Csv -LiteralPath "docs/inventory/public-release-file-plan.csv")
     $trackedFilesForPlan = @(git ls-files)
     $plannedPaths = @($releaseFilePlanRows | ForEach-Object { $_.path })
@@ -363,7 +381,9 @@ try {
         "complete",
         "blocked",
         "complete_inventory_pending_exports",
-        "complete_ongoing"
+        "complete_ongoing",
+        "excluded_by_user",
+        "deferred_optional"
     )
 
     foreach ($row in $requirementRows) {

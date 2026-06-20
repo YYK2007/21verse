@@ -11,6 +11,7 @@ Source inventories:
 - `docs/inventory/unity-asset-replacement-worklist.csv`
 - `docs/inventory/unity-public-asset-manifest.csv`
 - `docs/inventory/unity-attribution-gap-report.csv`
+- `docs/inventory/unity-third-party-removal-status.csv`
 - `docs/public-asset-manifest.md`
 - `docs/unity-attribution-gap-report.md`
 
@@ -20,6 +21,7 @@ Source inventories:
 - Asset Store, Unity sample/template, publisher-style, downloaded-looking, or unknown-origin assets should be removed, replaced, or documented as external import steps unless redistribution rights are confirmed.
 - After each folder decision, regenerate the Unity asset inventories and rerun scene validation.
 - Update `NOTICE.md` only after final retained third-party assets are known.
+- Remove downloaded/third-party folders only after `docs/inventory/unity-third-party-removal-status.csv` shows they have no serialized references, or after the listed references have been replaced/removed.
 
 ## Folder Decisions
 

@@ -121,6 +121,7 @@ try {
         "docs/inventory/unity-asset-replacement-worklist.csv",
         "docs/inventory/unity-public-asset-manifest.csv",
         "docs/inventory/unity-attribution-gap-report.csv",
+        "docs/inventory/unity-third-party-removal-status.csv",
         "docs/inventory/unity-projects.csv",
         "tools/test-github-release-state.ps1",
         "tools/export-github-release-state.ps1",
@@ -133,6 +134,7 @@ try {
         "tools/export-unity-asset-replacement-worklist.ps1",
         "tools/export-public-asset-manifest.ps1",
         "tools/export-unity-attribution-gap-report.ps1",
+        "tools/export-unity-third-party-removal-status.ps1",
         "tools/export-public-release-file-plan.ps1",
         "tools/export-google-drive-public-manifest.ps1",
         "tools/export-nas-inventory.ps1"
@@ -156,6 +158,7 @@ try {
     Add-Gate $gates "Unity batchmode scene validation" ($(if ($sceneValidator -and $unityValidation) { "pass" } else { "blocker" })) "Scene validator script present: $sceneValidator; docs record zero missing script references: $unityValidation." "Run tools/run-unity-scene-validation.ps1 and update docs/unity-validation.md."
 
     $unitySmokeRows = @(Import-Csv -LiteralPath "docs/inventory/unity-smoke-test-status.csv")
+    $smokeRequirement = $requirementRows | Where-Object { $_.requirement -eq "Complete interactive Unity/VR smoke testing" } | Select-Object -First 1
     $openUnitySmokeSteps = @($unitySmokeRows | Where-Object { $_.status -ne "complete" })
     $preSmokeRows = @(Import-Csv -LiteralPath "docs/inventory/unity-pre-smoke-status.csv")
     $readyPreSmokeRows = @($preSmokeRows | Where-Object { $_.status -eq "ready_for_interactive_smoke" })
@@ -164,13 +167,16 @@ try {
     foreach ($row in $interactiveSmokePlanRows) {
         $interactiveSmokeRiskRefs += [int]$row.risky_asset_reference_count
     }
-    Add-Gate $gates "Unity interactive smoke testing" ($(if ($openUnitySmokeSteps.Count -eq 0) { "pass" } else { "blocker" })) "$($openUnitySmokeSteps.Count) Unity smoke-test status rows are not complete; $($readyPreSmokeRows.Count) of $($preSmokeRows.Count) README scenes pass automated pre-smoke structural checks; $($interactiveSmokePlanRows.Count) scene-level interactive smoke plan rows track $interactiveSmokeRiskRefs risky asset references to inspect visually." "Open the project interactively, smoke-test README scenes, and update issue #3."
+    $smokeGateStatus = if ($openUnitySmokeSteps.Count -eq 0) { "pass" } elseif ($smokeRequirement -and $smokeRequirement.status -eq "deferred_optional") { "deferred" } else { "blocker" }
+    $smokeNextStep = if ($smokeGateStatus -eq "deferred") { "Optional before a VR gameplay release; not required for the current private source-prep scope." } else { "Open the project interactively, smoke-test README scenes, and update issue #3." }
+    Add-Gate $gates "Unity interactive smoke testing" $smokeGateStatus "$($openUnitySmokeSteps.Count) Unity smoke-test status rows are not complete; $($readyPreSmokeRows.Count) of $($preSmokeRows.Count) README scenes pass automated pre-smoke structural checks; $($interactiveSmokePlanRows.Count) scene-level interactive smoke plan rows track $interactiveSmokeRiskRefs risky asset references to inspect visually; current requirement status: $($smokeRequirement.status)." $smokeNextStep
 
     $assetAuditRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-audit.csv")
     $assetReferenceRows = @(Import-Csv -LiteralPath "docs/inventory/unity-risky-asset-references.csv")
     $assetReplacementWorkRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-replacement-worklist.csv")
     $publicAssetManifestRows = @(Import-Csv -LiteralPath "docs/inventory/unity-public-asset-manifest.csv")
     $attributionGapRows = @(Import-Csv -LiteralPath "docs/inventory/unity-attribution-gap-report.csv")
+    $removalStatusRows = @(Import-Csv -LiteralPath "docs/inventory/unity-third-party-removal-status.csv")
     $publicReleaseFilePlanRows = @(Import-Csv -LiteralPath "docs/inventory/public-release-file-plan.csv")
     $assetDispositionRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-disposition.csv")
     $externalImportRows = @(Import-Csv -LiteralPath "docs/inventory/unity-external-imports.csv")
@@ -182,15 +188,19 @@ try {
     $coveredExternalImportRows = @($externalImportRows | Where-Object { ($pendingDispositions.folder) -contains $_.folder })
     $publicAssetExclusions = @($publicAssetManifestRows | Where-Object { $_.public_repo_treatment -match "exclude|replace" })
     $attributionPendingRows = @($attributionGapRows | Where-Object { $_.notice_status -match "defer|pending|owner_review_required" })
+    $safeDeletionRows = @($removalStatusRows | Where-Object { $_.safe_to_delete_now -eq "yes" })
     $publicFileExclusions = @($publicReleaseFilePlanRows | Where-Object { $_.action -eq "exclude_until_resolved" })
-    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references; $($assetReplacementWorkRows.Count) scene/prefab/material replacement worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($coveredExternalImportRows.Count) pending folders have external import/removal handoff rows; $($publicAssetExclusions.Count) public asset manifest rows and $($publicFileExclusions.Count) tracked files require exclusion/replacement/import before public release; $($attributionPendingRows.Count) attribution/NOTICE rows still require owner, package, or final asset-decision review." "Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, documenting import steps, and updating NOTICE for retained third-party material."
+    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references; $($assetReplacementWorkRows.Count) scene/prefab/material replacement worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($coveredExternalImportRows.Count) pending folders have external import/removal handoff rows; $($safeDeletionRows.Count) high-risk folders are currently safe to delete without replacing references; $($publicAssetExclusions.Count) public asset manifest rows and $($publicFileExclusions.Count) tracked files require exclusion/replacement/import before public release; $($attributionPendingRows.Count) attribution/NOTICE rows still require owner, package, or final asset-decision review." "Resolve issue #2 by replacing referenced downloaded assets, removing assets after references are cleared, documenting import steps, and updating NOTICE for retained third-party material."
 
     $nasRows = @(Import-Csv -LiteralPath "docs/inventory/nas-access-log.csv")
+    $nasRequirement = $requirementRows | Where-Object { $_.requirement -eq "Review attached NAS Youssef Storage" } | Select-Object -First 1
     $nasStatusRows = @(Import-Csv -LiteralPath "docs/inventory/nas-review-status.csv")
     $nasEvidence = ($nasRows | ForEach-Object { "$($_.check): $($_.result)" }) -join "; "
     $openNasSteps = @($nasStatusRows | Where-Object { $_.status -ne "complete" })
     $nasBlocked = $nasEvidence -match "blocked|password required|no active" -or $openNasSteps.Count -gt 0
-    Add-Gate $gates "NAS review" ($(if ($nasBlocked) { "blocker" } else { "pass" })) "NAS access log records: $nasEvidence; $($openNasSteps.Count) NAS review status rows are not complete." "Mount/authenticate to Youssef Storage / WDMyCloudEX4100 and inventory 21Verse files."
+    $nasGateStatus = if (-not $nasBlocked) { "pass" } elseif ($nasRequirement -and $nasRequirement.status -eq "excluded_by_user") { "deferred" } else { "blocker" }
+    $nasNextStep = if ($nasGateStatus -eq "deferred") { "No action for the current scope; user removed NAS files from the release-prep requirement." } else { "Mount/authenticate to Youssef Storage / WDMyCloudEX4100 and inventory 21Verse files." }
+    Add-Gate $gates "NAS review" $nasGateStatus "NAS access log records: $nasEvidence; $($openNasSteps.Count) NAS review status rows are not complete; current requirement status: $($nasRequirement.status)." $nasNextStep
 
     $driveRows = @(Import-Csv -LiteralPath "docs/inventory/google-drive-21verse.csv")
     $driveManifestRows = @(Import-Csv -LiteralPath "docs/inventory/google-drive-public-manifest.csv")
