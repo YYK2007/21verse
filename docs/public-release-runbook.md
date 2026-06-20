@@ -21,13 +21,14 @@ Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements
 2. Review `docs/inventory/unity-risky-asset-references.csv`.
 3. Review `docs/inventory/unity-asset-replacement-worklist.csv`.
 4. Review `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
-5. Follow `docs/asset-removal-plan.md`.
-6. For every high-risk asset folder, choose one final action:
+5. Review `docs/public-asset-manifest.md`, `docs/inventory/unity-public-asset-manifest.csv`, `docs/public-release-file-plan.md`, and `docs/inventory/public-release-file-plan.csv`.
+6. Follow `docs/asset-removal-plan.md`.
+7. For every high-risk asset folder, choose one final action:
    - confirm public source redistribution rights,
    - replace with original or verified redistributable assets,
    - remove and document import/acquisition steps.
-7. Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-disposition-tracker.md`.
-8. Close or update issue #2.
+8. Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-disposition-tracker.md`.
+9. Close or update issue #2.
 
 ## 3. Final Unity Validation
 
@@ -58,6 +59,8 @@ Run:
 .\tools\export-unity-asset-audit.ps1
 .\tools\export-unity-risky-asset-references.ps1
 .\tools\export-unity-asset-replacement-worklist.ps1
+.\tools\export-public-asset-manifest.ps1
+.\tools\export-public-release-file-plan.ps1
 .\tools\export-google-drive-release-plan.ps1
 .\tools\test-repo-hygiene.ps1
 .\tools\run-release-audit.ps1

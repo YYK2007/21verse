@@ -86,6 +86,7 @@ try {
         "docs/release-readiness.md",
         "docs/release-evidence-manifest.md",
         "docs/public-release-runbook.md",
+        "docs/public-release-file-plan.md",
         "docs/nas-review-runbook.md",
         "docs/nas-review-checklist.md",
         "docs/unity-smoke-test-checklist.md",
@@ -96,6 +97,7 @@ try {
         "docs/github-tracker.md",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",
+        "docs/inventory/public-release-file-plan.csv",
         "docs/inventory/github-branch-protection-status.csv",
         "docs/inventory/release-requirements-status.csv",
         "docs/inventory/local-design-summary.csv",
@@ -117,6 +119,7 @@ try {
         "tools/export-unity-pre-smoke-status.ps1",
         "tools/export-unity-asset-replacement-worklist.ps1",
         "tools/export-public-asset-manifest.ps1",
+        "tools/export-public-release-file-plan.ps1",
         "tools/export-nas-inventory.ps1"
     )
     $missingFiles = @($requiredFiles | Where-Object { -not (Test-Path -LiteralPath $_) })
@@ -146,6 +149,7 @@ try {
     $assetReferenceRows = @(Import-Csv -LiteralPath "docs/inventory/unity-risky-asset-references.csv")
     $assetReplacementWorkRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-replacement-worklist.csv")
     $publicAssetManifestRows = @(Import-Csv -LiteralPath "docs/inventory/unity-public-asset-manifest.csv")
+    $publicReleaseFilePlanRows = @(Import-Csv -LiteralPath "docs/inventory/public-release-file-plan.csv")
     $assetDispositionRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-disposition.csv")
     $externalImportRows = @(Import-Csv -LiteralPath "docs/inventory/unity-external-imports.csv")
     $assetBlockers = @($assetAuditRows | Where-Object {
@@ -155,7 +159,8 @@ try {
     $pendingDispositions = @($assetDispositionRows | Where-Object { $_.release_decision -eq "pending" })
     $coveredExternalImportRows = @($externalImportRows | Where-Object { ($pendingDispositions.folder) -contains $_.folder })
     $publicAssetExclusions = @($publicAssetManifestRows | Where-Object { $_.public_repo_treatment -match "exclude|replace" })
-    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references; $($assetReplacementWorkRows.Count) scene/prefab/material replacement worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($coveredExternalImportRows.Count) pending folders have external import/removal handoff rows; $($publicAssetExclusions.Count) public asset manifest rows require exclusion/replacement/import before public release." "Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps."
+    $publicFileExclusions = @($publicReleaseFilePlanRows | Where-Object { $_.action -eq "exclude_until_resolved" })
+    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references; $($assetReplacementWorkRows.Count) scene/prefab/material replacement worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($coveredExternalImportRows.Count) pending folders have external import/removal handoff rows; $($publicAssetExclusions.Count) public asset manifest rows and $($publicFileExclusions.Count) tracked files require exclusion/replacement/import before public release." "Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps."
 
     $nasRows = @(Import-Csv -LiteralPath "docs/inventory/nas-access-log.csv")
     $nasStatusRows = @(Import-Csv -LiteralPath "docs/inventory/nas-review-status.csv")

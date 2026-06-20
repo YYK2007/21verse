@@ -37,6 +37,7 @@ try {
         "docs/release-readiness.md",
         "docs/release-evidence-manifest.md",
         "docs/public-release-runbook.md",
+        "docs/public-release-file-plan.md",
         "docs/nas-review-runbook.md",
         "docs/nas-review-checklist.md",
         "docs/unity-smoke-test-checklist.md",
@@ -52,6 +53,7 @@ try {
         "docs/inventory/release-requirements-status.csv",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",
+        "docs/inventory/public-release-file-plan.csv",
         "docs/inventory/nas-review-status.csv",
         "docs/inventory/unity-smoke-test-status.csv",
         "docs/inventory/unity-pre-smoke-status.csv",
@@ -70,6 +72,7 @@ try {
         "tools/export-nas-inventory.ps1",
         "tools/export-unity-asset-replacement-worklist.ps1",
         "tools/export-public-asset-manifest.ps1",
+        "tools/export-public-release-file-plan.ps1",
         "tools/run-unity-scene-validation.ps1"
     )
 
@@ -98,6 +101,7 @@ try {
     $csvExpectations = @{
         "docs/inventory/google-drive-21verse.csv" = 1
         "docs/inventory/google-drive-release-plan.csv" = 1
+        "docs/inventory/public-release-file-plan.csv" = 1
         "docs/inventory/github-branch-protection-status.csv" = 5
         "docs/inventory/release-requirements-status.csv" = 10
         "docs/inventory/nas-review-status.csv" = 5
@@ -208,6 +212,23 @@ try {
             [string]::IsNullOrWhiteSpace($row.public_release_resolution) -or
             [string]::IsNullOrWhiteSpace($row.validation_required)) {
             Add-Failure "Unity public asset manifest row '$($row.folder)' is missing release handoff detail."
+        }
+    }
+
+    $releaseFilePlanRows = @(Import-Csv -LiteralPath "docs/inventory/public-release-file-plan.csv")
+    $trackedFilesForPlan = @(git ls-files)
+    $plannedPaths = @($releaseFilePlanRows | ForEach-Object { $_.path })
+    foreach ($path in $trackedFilesForPlan) {
+        if ($plannedPaths -notcontains $path) {
+            Add-Failure "Public release file plan is missing tracked path '$path'."
+        }
+    }
+
+    foreach ($row in $releaseFilePlanRows) {
+        if ([string]::IsNullOrWhiteSpace($row.path) -or
+            [string]::IsNullOrWhiteSpace($row.action) -or
+            [string]::IsNullOrWhiteSpace($row.reason)) {
+            Add-Failure "Public release file plan row '$($row.path)' is missing path, action, or reason."
         }
     }
 
