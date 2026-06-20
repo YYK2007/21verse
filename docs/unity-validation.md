@@ -22,6 +22,8 @@ Automated pre-smoke structural checks are tracked in `docs/inventory/unity-pre-s
 
 `SceneValidation.ValidateConfiguredScenes` opened each listed scene in Unity batchmode and checked for missing script components.
 
+These scene files are treated as 21Verse-developed learning/gameplay scene compositions for release-prep purposes. The validation below proves the scene files open structurally; it does not clear the redistribution rights for every visual, package, sample, template, or downloaded asset referenced by those scenes.
+
 | Scene | Result | Root objects | GameObjects |
 | --- | --- | ---: | ---: |
 | `Assets/Scenes/MainMenu.unity` | Opened successfully; 0 missing scripts | 11 | 377 |

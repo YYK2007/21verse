@@ -5,6 +5,7 @@ Status: private staging repository prepared on 2026-06-19.
 ## Included
 
 - Main Unity project copied from `C:\Users\youss\Desktop\21Verse\21VerseVRGameHub-adjectives-game\21VerseVRGameHub-with-more`.
+- 21Verse-developed Unity scene compositions, including the main learning/gameplay scenes listed in `README.md`.
 - Selected brand assets copied from `C:\Users\youss\Desktop\21Verse`.
 - Public-facing poster PDF copied as `docs/poster-2.pdf`.
 - Repository docs, ignore rules, Git LFS patterns, license, and notices.
@@ -20,6 +21,7 @@ Status: private staging repository prepared on 2026-06-19.
 ## Publication Blockers
 
 - Third-party Unity assets need license review before public release. See `docs/third-party-assets.md`.
+- The main scenes are 21Verse-developed compositions, but some referenced assets inside those scenes are downloaded/third-party/sample/template content and must be replaced, removed after references are cleared, or confirmed redistributable.
 - Brand assets are included for private staging, but public reuse terms should be stated before release.
 - The Google Drive materials contain business, research, testing, and financial files. Keep them out of the public repo unless redacted.
 - Confirm whether MIT is the desired code license before making the repo public.
@@ -34,7 +36,7 @@ Status: private staging repository prepared on 2026-06-19.
 
 1. Open `unity/21verse-vr-game-hub` interactively in Unity `2022.3.25f1`.
 2. Run through the main scenes listed in `README.md` and review shader fallback warnings.
-3. Replace any non-redistributable third-party assets with package dependencies, placeholders, or links.
+3. Replace any non-redistributable third-party assets referenced by the 21Verse-developed scenes with package dependencies, placeholders, original assets, or links.
 4. Confirm final code and asset licensing.
 5. Push to a private GitHub repository.
 6. Only after review, change GitHub visibility from private to public.

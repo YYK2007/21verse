@@ -25,6 +25,8 @@ Important scenes live under:
 - `Assets/Scenes/NumberInequalitiesLevel.unity`
 - `Assets/Scenes/Cashier.unity`
 
+These listed scenes are 21Verse-developed learning/gameplay scene compositions from the curated project. The scene files, scripts, layout work, and educational interaction structure are treated as 21Verse project work in this private staging repo. Some visual/audio/template assets referenced by those scenes may still come from Unity packages, samples, Asset Store downloads, or other uncertain-rights folders, so those referenced assets remain blocked from public release until replaced, removed after references are cleared, or confirmed redistributable.
+
 Unity-generated folders such as `Library`, `Logs`, `Temp`, `Obj`, `Build`, `Builds`, and `UserSettings` are intentionally excluded.
 
 To rerun the batchmode scene-open validation:
@@ -113,4 +115,4 @@ Private GitHub tracker issues:
 
 ## License
 
-Code is staged under the MIT License in `LICENSE`. Brand assets, screenshots, presentations, and third-party Unity assets may have separate ownership or license terms; see `NOTICE.md` and `docs/open-source-review.md`.
+Code and 21Verse-developed scene compositions are staged under the MIT License in `LICENSE` unless another file-level notice says otherwise. Brand assets, screenshots, presentations, and third-party Unity assets may have separate ownership or license terms; see `NOTICE.md` and `docs/open-source-review.md`.

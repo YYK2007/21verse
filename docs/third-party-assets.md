@@ -4,6 +4,8 @@ This register is based on files currently included under `unity/21verse-vr-game-
 
 It is not legal advice. Treat every item below as needing owner/license confirmation before the repository is made public.
 
+The main learning/gameplay scene compositions under `Assets/Scenes` are 21Verse-developed project work. This register focuses on referenced visual, template, package, sample, and downloaded assets that may be embedded in or linked from those scenes.
+
 For Unity Package Manager dependencies and a public-release handoff plan, see `docs/unity-dependencies.md`.
 For the external import/removal handoff, see `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
 For the machine-readable folder audit, see `docs/inventory/unity-asset-audit.csv`.
@@ -41,7 +43,7 @@ These appear more project-specific but still deserve review:
 
 ## Recommended Public-Release Policy
 
-1. Keep source code, scenes, prefabs, and original 21Verse assets in the repo.
+1. Keep source code, 21Verse-developed scene compositions, project prefabs, and original 21Verse assets in the repo.
 2. Remove asset-store/downloaded packs unless their license explicitly permits public source redistribution.
 3. For removed packs, document exact acquisition/import steps in `README.md` or a future `docs/dependencies.md`.
 4. Keep generated Unity folders excluded through `.gitignore`.
