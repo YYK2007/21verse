@@ -31,6 +31,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Repository ownership and dependency-maintenance config are staged in `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
 - GitHub tracker milestone and labels are documented in `docs/github-tracker.md`.
 - GitHub repository metadata is documented in `docs/github-metadata.md`.
+- GitHub release-state snapshot is tracked in `docs/github-release-state.md` and `docs/inventory/github-release-state.csv`.
 - GitHub branch protection handoff is documented in `docs/github-branch-protection.md`.
 - GitHub branch protection admin-verification status is tracked in `docs/inventory/github-branch-protection-status.csv`.
 - NAS device has been identified but not reviewed because share access is blocked.
@@ -88,6 +89,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Run `tools/test-repo-hygiene.ps1`.
    - Run `tools/run-release-audit.ps1`.
    - Run `tools/test-github-release-state.ps1`.
+   - Regenerate `docs/inventory/github-release-state.csv` with `tools/export-github-release-state.ps1`.
    - Review `CONTRIBUTING.md`, `SECURITY.md`, and `.github/` templates.
    - Review `CODE_OF_CONDUCT.md`, `SUPPORT.md`, and `CHANGELOG.md`.
    - Review `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.

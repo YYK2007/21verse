@@ -46,12 +46,14 @@ try {
         "docs/unity-interactive-smoke-plan.md",
         "docs/repository-maintenance.md",
         "docs/github-branch-protection.md",
+        "docs/github-release-state.md",
         "docs/asset-disposition-tracker.md",
         "docs/unity-external-imports.md",
         "docs/public-asset-manifest.md",
         "docs/github-metadata.md",
         "docs/github-tracker.md",
         "docs/inventory/release-audit.md",
+        "docs/inventory/github-release-state.csv",
         "docs/inventory/release-blocker-action-plan.csv",
         "docs/inventory/github-branch-protection-status.csv",
         "docs/inventory/release-requirements-status.csv",
@@ -70,6 +72,7 @@ try {
         "docs/inventory/unity-asset-replacement-worklist.csv",
         "docs/inventory/unity-public-asset-manifest.csv",
         "tools/test-github-release-state.ps1",
+        "tools/export-github-release-state.ps1",
         "tools/test-github-branch-protection.ps1",
         "tools/set-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
@@ -113,6 +116,7 @@ try {
         "docs/inventory/google-drive-public-manifest.csv" = 1
         "docs/inventory/public-release-file-plan.csv" = 1
         "docs/inventory/github-branch-protection-status.csv" = 5
+        "docs/inventory/github-release-state.csv" = 12
         "docs/inventory/release-blocker-action-plan.csv" = 4
         "docs/inventory/release-requirements-status.csv" = 10
         "docs/inventory/nas-review-status.csv" = 5
@@ -275,6 +279,18 @@ try {
             [string]::IsNullOrWhiteSpace($row.reason)) {
             Add-Failure "Public release file plan row '$($row.path)' is missing path, action, or reason."
         }
+    }
+
+    $githubReleaseRows = @(Import-Csv -LiteralPath "docs/inventory/github-release-state.csv")
+    foreach ($expectedSetting in @("visibility", "default_branch", "public_release_readiness", "#1", "#2", "#3", "#5", "repo_hygiene_head")) {
+        if (@($githubReleaseRows | Where-Object { $_.setting -eq $expectedSetting }).Count -eq 0) {
+            Add-Failure "GitHub release state snapshot is missing setting '$expectedSetting'."
+        }
+    }
+
+    $visibilityRow = $githubReleaseRows | Where-Object { $_.setting -eq "visibility" } | Select-Object -First 1
+    if ($visibilityRow.status -ne "private") {
+        Add-Failure "GitHub release state snapshot visibility is '$($visibilityRow.status)', expected private."
     }
 
     $requirementRows = @(Import-Csv -LiteralPath "docs/inventory/release-requirements-status.csv")

@@ -45,7 +45,7 @@ try {
         })
     Add-Gate $gates "Non-LFS >100 MB file check" ($(if ($largeFiles.Count -eq 0) { "pass" } else { "blocker" })) ($(if ($largeFiles.Count -eq 0) { "No non-generated files over 100 MB found." } else { ($largeFiles | ForEach-Object { "$($_.FullName) ($($_.Length) bytes)" }) -join "; " })) "Move oversized files to Git LFS or remove them."
 
-    $secretMatches = @(rg -n --hidden -S "(api[_-]?key|secret|password|passwd|token|client_secret|private_key|BEGIN RSA|BEGIN PRIVATE|ghp_|AIza|sk-[A-Za-z0-9])" --glob "!.git/**" --glob "!docs/inventory/generated/**" --glob "!docs/inventory/release-audit.md" --glob "!tools/run-release-audit.ps1" --glob "!tools/test-repo-hygiene.ps1" --glob "!tools/test-github-release-state.ps1" --glob "!tools/test-github-branch-protection.ps1" --glob "!tools/set-github-branch-protection.ps1" --glob "!tools/test-nas-access.ps1" . 2>$null)
+    $secretMatches = @(rg -n --hidden -S "(api[_-]?key|secret|password|passwd|token|client_secret|private_key|BEGIN RSA|BEGIN PRIVATE|ghp_|AIza|sk-[A-Za-z0-9])" --glob "!.git/**" --glob "!docs/inventory/generated/**" --glob "!docs/inventory/release-audit.md" --glob "!tools/run-release-audit.ps1" --glob "!tools/test-repo-hygiene.ps1" --glob "!tools/test-github-release-state.ps1" --glob "!tools/export-github-release-state.ps1" --glob "!tools/test-github-branch-protection.ps1" --glob "!tools/set-github-branch-protection.ps1" --glob "!tools/test-nas-access.ps1" . 2>$null)
     $unexpectedSecrets = @($secretMatches | Where-Object {
         $_ -notmatch '^\.\\\.gitignore:' -and
         $_ -notmatch '^\.\\SECURITY\.md:' -and
@@ -95,6 +95,7 @@ try {
         "docs/unity-interactive-smoke-plan.md",
         "docs/repository-maintenance.md",
         "docs/github-branch-protection.md",
+        "docs/github-release-state.md",
         "docs/github-private-repo.md",
         "docs/github-metadata.md",
         "docs/github-tracker.md",
@@ -102,6 +103,7 @@ try {
         "docs/inventory/google-drive-release-plan.csv",
         "docs/inventory/google-drive-public-manifest.csv",
         "docs/inventory/public-release-file-plan.csv",
+        "docs/inventory/github-release-state.csv",
         "docs/inventory/github-branch-protection-status.csv",
         "docs/inventory/release-blocker-action-plan.csv",
         "docs/inventory/release-requirements-status.csv",
@@ -119,6 +121,7 @@ try {
         "docs/inventory/unity-public-asset-manifest.csv",
         "docs/inventory/unity-projects.csv",
         "tools/test-github-release-state.ps1",
+        "tools/export-github-release-state.ps1",
         "tools/test-github-branch-protection.ps1",
         "tools/set-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
@@ -193,13 +196,15 @@ try {
 
     $branchProtectionRows = @(Import-Csv -LiteralPath "docs/inventory/github-branch-protection-status.csv")
     $openBranchProtectionRows = @($branchProtectionRows | Where-Object { $_.status -ne "complete" })
+    $githubReleaseStateRows = @(Import-Csv -LiteralPath "docs/inventory/github-release-state.csv")
+    $githubVisibilityRow = $githubReleaseStateRows | Where-Object { $_.setting -eq "visibility" } | Select-Object -First 1
     $branchProtectionEvidence = if ($openBranchProtectionRows.Count -eq 0) {
         "$($branchProtectionRows.Count) branch protection rows verified complete."
     }
     else {
         ($openBranchProtectionRows | ForEach-Object { "$($_.setting): $($_.status)" }) -join "; "
     }
-    Add-Gate $gates "GitHub branch protection" ($(if ($openBranchProtectionRows.Count -eq 0) { "pass" } else { "blocker" })) $branchProtectionEvidence "Verify branch protection from a GitHub admin session before public release."
+    Add-Gate $gates "GitHub branch protection" ($(if ($openBranchProtectionRows.Count -eq 0) { "pass" } else { "blocker" })) "$branchProtectionEvidence; github_visibility_snapshot: $($githubVisibilityRow.status)" "Verify branch protection from a GitHub admin session before public release."
 
     $lines = [System.Collections.Generic.List[string]]::new()
     $lines.Add("# Release Audit") | Out-Null

@@ -64,6 +64,7 @@ Run:
 .\tools\export-google-drive-release-plan.ps1
 .\tools\export-google-drive-public-manifest.ps1
 .\tools\export-release-blocker-action-plan.ps1
+.\tools\export-github-release-state.ps1
 .\tools\test-repo-hygiene.ps1
 .\tools\run-release-audit.ps1
 .\tools\test-github-release-state.ps1
