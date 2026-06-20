@@ -35,7 +35,15 @@ try {
             [hashtable] $Headers
         )
 
-        return Invoke-RestMethod -Method $Method -Uri $Uri -Headers $Headers
+        $response = Invoke-RestMethod -Method $Method -Uri $Uri -Headers $Headers
+        if ($response -is [System.Array]) {
+            foreach ($item in $response) {
+                $item
+            }
+            return
+        }
+
+        return $response
     }
 
     $token = Get-GitHubToken
