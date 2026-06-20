@@ -151,6 +151,8 @@ try {
             "docs/inventory/unity-external-imports.csv",
             "docs/public-asset-manifest.md",
             "docs/inventory/unity-public-asset-manifest.csv",
+            "docs/unity-attribution-gap-report.md",
+            "docs/inventory/unity-attribution-gap-report.csv",
             "docs/public-release-file-plan.md",
             "docs/inventory/public-release-file-plan.csv"
         )

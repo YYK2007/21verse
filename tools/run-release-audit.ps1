@@ -80,6 +80,7 @@ try {
         "docs/asset-disposition-tracker.md",
         "docs/unity-external-imports.md",
         "docs/public-asset-manifest.md",
+        "docs/unity-attribution-gap-report.md",
         "docs/third-party-assets.md",
         "docs/unity-dependencies.md",
         "docs/unity-validation.md",
@@ -119,6 +120,7 @@ try {
         "docs/inventory/unity-risky-asset-references.csv",
         "docs/inventory/unity-asset-replacement-worklist.csv",
         "docs/inventory/unity-public-asset-manifest.csv",
+        "docs/inventory/unity-attribution-gap-report.csv",
         "docs/inventory/unity-projects.csv",
         "tools/test-github-release-state.ps1",
         "tools/export-github-release-state.ps1",
@@ -130,6 +132,7 @@ try {
         "tools/export-unity-interactive-smoke-plan.ps1",
         "tools/export-unity-asset-replacement-worklist.ps1",
         "tools/export-public-asset-manifest.ps1",
+        "tools/export-unity-attribution-gap-report.ps1",
         "tools/export-public-release-file-plan.ps1",
         "tools/export-google-drive-public-manifest.ps1",
         "tools/export-nas-inventory.ps1"
@@ -167,6 +170,7 @@ try {
     $assetReferenceRows = @(Import-Csv -LiteralPath "docs/inventory/unity-risky-asset-references.csv")
     $assetReplacementWorkRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-replacement-worklist.csv")
     $publicAssetManifestRows = @(Import-Csv -LiteralPath "docs/inventory/unity-public-asset-manifest.csv")
+    $attributionGapRows = @(Import-Csv -LiteralPath "docs/inventory/unity-attribution-gap-report.csv")
     $publicReleaseFilePlanRows = @(Import-Csv -LiteralPath "docs/inventory/public-release-file-plan.csv")
     $assetDispositionRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-disposition.csv")
     $externalImportRows = @(Import-Csv -LiteralPath "docs/inventory/unity-external-imports.csv")
@@ -177,8 +181,9 @@ try {
     $pendingDispositions = @($assetDispositionRows | Where-Object { $_.release_decision -eq "pending" })
     $coveredExternalImportRows = @($externalImportRows | Where-Object { ($pendingDispositions.folder) -contains $_.folder })
     $publicAssetExclusions = @($publicAssetManifestRows | Where-Object { $_.public_repo_treatment -match "exclude|replace" })
+    $attributionPendingRows = @($attributionGapRows | Where-Object { $_.notice_status -match "defer|pending|owner_review_required" })
     $publicFileExclusions = @($publicReleaseFilePlanRows | Where-Object { $_.action -eq "exclude_until_resolved" })
-    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references; $($assetReplacementWorkRows.Count) scene/prefab/material replacement worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($coveredExternalImportRows.Count) pending folders have external import/removal handoff rows; $($publicAssetExclusions.Count) public asset manifest rows and $($publicFileExclusions.Count) tracked files require exclusion/replacement/import before public release." "Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps."
+    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references; $($assetReplacementWorkRows.Count) scene/prefab/material replacement worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($coveredExternalImportRows.Count) pending folders have external import/removal handoff rows; $($publicAssetExclusions.Count) public asset manifest rows and $($publicFileExclusions.Count) tracked files require exclusion/replacement/import before public release; $($attributionPendingRows.Count) attribution/NOTICE rows still require owner, package, or final asset-decision review." "Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, documenting import steps, and updating NOTICE for retained third-party material."
 
     $nasRows = @(Import-Csv -LiteralPath "docs/inventory/nas-access-log.csv")
     $nasStatusRows = @(Import-Csv -LiteralPath "docs/inventory/nas-review-status.csv")

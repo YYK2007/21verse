@@ -10,7 +10,9 @@ Source inventories:
 - `docs/inventory/unity-external-imports.csv`
 - `docs/inventory/unity-asset-replacement-worklist.csv`
 - `docs/inventory/unity-public-asset-manifest.csv`
+- `docs/inventory/unity-attribution-gap-report.csv`
 - `docs/public-asset-manifest.md`
+- `docs/unity-attribution-gap-report.md`
 
 ## Policy
 

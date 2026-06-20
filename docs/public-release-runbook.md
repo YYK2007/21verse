@@ -21,7 +21,7 @@ Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements
 2. Review `docs/inventory/unity-risky-asset-references.csv`.
 3. Review `docs/inventory/unity-asset-replacement-worklist.csv`.
 4. Review `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
-5. Review `docs/public-asset-manifest.md`, `docs/inventory/unity-public-asset-manifest.csv`, `docs/public-release-file-plan.md`, and `docs/inventory/public-release-file-plan.csv`.
+5. Review `docs/public-asset-manifest.md`, `docs/inventory/unity-public-asset-manifest.csv`, `docs/unity-attribution-gap-report.md`, `docs/inventory/unity-attribution-gap-report.csv`, `docs/public-release-file-plan.md`, and `docs/inventory/public-release-file-plan.csv`.
 6. Follow `docs/asset-removal-plan.md`.
 7. For every high-risk asset folder, choose one final action:
    - confirm public source redistribution rights,
@@ -60,6 +60,7 @@ Run:
 .\tools\export-unity-risky-asset-references.ps1
 .\tools\export-unity-asset-replacement-worklist.ps1
 .\tools\export-public-asset-manifest.ps1
+.\tools\export-unity-attribution-gap-report.ps1
 .\tools\export-public-release-file-plan.ps1
 .\tools\export-google-drive-release-plan.ps1
 .\tools\export-google-drive-public-manifest.ps1

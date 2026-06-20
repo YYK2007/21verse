@@ -9,6 +9,7 @@ For the external import/removal handoff, see `docs/unity-external-imports.md` an
 For the machine-readable folder audit, see `docs/inventory/unity-asset-audit.csv`.
 For serialized scene/prefab reference impact and removal sequencing, see `docs/asset-removal-plan.md`, `docs/inventory/unity-risky-asset-references.csv`, and `docs/inventory/unity-asset-replacement-worklist.csv`.
 For folder-level release decisions, see `docs/asset-disposition-tracker.md` and `docs/inventory/unity-asset-disposition.csv`.
+For NOTICE and attribution gaps, see `docs/unity-attribution-gap-report.md` and `docs/inventory/unity-attribution-gap-report.csv`.
 
 ## High-Priority Review Items
 

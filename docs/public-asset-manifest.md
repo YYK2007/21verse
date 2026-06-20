@@ -6,10 +6,13 @@ Authoritative generated file:
 
 - `docs/inventory/unity-public-asset-manifest.csv`
 
+NOTICE/attribution gaps for the same folders are tracked in `docs/unity-attribution-gap-report.md` and `docs/inventory/unity-attribution-gap-report.csv`.
+
 Refresh it after any Unity asset change:
 
 ```powershell
 .\tools\export-public-asset-manifest.ps1
+.\tools\export-unity-attribution-gap-report.ps1
 ```
 
 ## Treatment Values
@@ -20,4 +23,4 @@ Refresh it after any Unity asset change:
 - `exclude_until_rights_confirmed`: Keep private until written rights evidence exists.
 - `needs_manual_review`: No final public decision has been made.
 
-The manifest does not clear issue #2 by itself. Issue #2 can close only after every pending folder has a non-pending disposition, retained third-party assets have rights and attribution evidence, replacement/import work has been validated in Unity, and the release audit no longer reports the Unity asset gate as a blocker.
+The manifest does not clear issue #2 by itself. Issue #2 can close only after every pending folder has a non-pending disposition, retained third-party assets have rights and attribution evidence, `NOTICE.md` reflects retained third-party material, replacement/import work has been validated in Unity, and the release audit no longer reports the Unity asset gate as a blocker.
