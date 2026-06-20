@@ -64,6 +64,7 @@ See `docs/design-and-nas-inventory.md` for aggregate counts of local design/docu
 ## Machine-Readable Inventories
 
 - `docs/inventory/unity-projects.csv`
+- `docs/inventory/local-drive-review-status.csv`
 - `docs/inventory/local-design-summary.csv`
 - `docs/inventory/google-drive-21verse.csv`
 - `docs/inventory/nas-access-log.csv`

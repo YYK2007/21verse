@@ -58,6 +58,7 @@ try {
         "docs/inventory/release-blocker-action-plan.csv",
         "docs/inventory/github-branch-protection-status.csv",
         "docs/inventory/release-requirements-status.csv",
+        "docs/inventory/local-drive-review-status.csv",
         "docs/inventory/google-drive-21verse.csv",
         "docs/inventory/google-drive-release-plan.csv",
         "docs/inventory/google-drive-public-manifest.csv",
@@ -78,6 +79,7 @@ try {
         "tools/test-github-branch-protection.ps1",
         "tools/set-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
+        "tools/export-local-drive-review-status.ps1",
         "tools/export-unity-pre-smoke-status.ps1",
         "tools/export-release-blocker-action-plan.ps1",
         "tools/export-unity-interactive-smoke-plan.ps1",
@@ -122,6 +124,7 @@ try {
         "docs/inventory/github-release-state.csv" = 12
         "docs/inventory/release-blocker-action-plan.csv" = 4
         "docs/inventory/release-requirements-status.csv" = 10
+        "docs/inventory/local-drive-review-status.csv" = 2
         "docs/inventory/nas-review-status.csv" = 5
         "docs/inventory/unity-smoke-test-status.csv" = 5
         "docs/inventory/unity-pre-smoke-status.csv" = 7
@@ -149,6 +152,25 @@ try {
     $driveManifestRows = @(Import-Csv -LiteralPath "docs/inventory/google-drive-public-manifest.csv")
     if ($driveManifestRows.Count -ne $driveReleaseRows.Count) {
         Add-Failure "Google Drive public manifest has $($driveManifestRows.Count) rows; expected $($driveReleaseRows.Count) from google-drive-release-plan.csv."
+    }
+
+    $localDriveRows = @(Import-Csv -LiteralPath "docs/inventory/local-drive-review-status.csv")
+    foreach ($expectedRoot in @("D:\Unity", "E:\Users\Yasser\Documents")) {
+        if (@($localDriveRows | Where-Object { $_.root -eq $expectedRoot }).Count -eq 0) {
+            Add-Failure "Local drive review status is missing root '$expectedRoot'."
+        }
+    }
+
+    foreach ($row in $localDriveRows) {
+        if ([string]::IsNullOrWhiteSpace($row.root) -or
+            [string]::IsNullOrWhiteSpace($row.status) -or
+            [string]::IsNullOrWhiteSpace($row.notes)) {
+            Add-Failure "Local drive review status row '$($row.root)' is missing required detail."
+        }
+
+        if (@("reviewed", "blocked", "missing") -notcontains $row.status) {
+            Add-Failure "Local drive review status row '$($row.root)' has unexpected status '$($row.status)'."
+        }
     }
 
     foreach ($row in $driveManifestRows) {
