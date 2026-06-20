@@ -138,6 +138,7 @@ try {
         1 = @(
             "docs/design-and-nas-inventory.md",
             "docs/nas-review-checklist.md",
+            "docs/inventory/nas-access-log.csv",
             "docs/inventory/nas-review-status.csv",
             "tools/test-nas-access.ps1"
         )
