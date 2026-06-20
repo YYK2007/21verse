@@ -180,17 +180,25 @@ try {
     $publicReleaseFilePlanRows = @(Import-Csv -LiteralPath "docs/inventory/public-release-file-plan.csv")
     $assetDispositionRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-disposition.csv")
     $externalImportRows = @(Import-Csv -LiteralPath "docs/inventory/unity-external-imports.csv")
-    $assetBlockers = @($assetAuditRows | Where-Object {
-        $_.public_release_action -match 'remove|replace|Confirm|Treat as Unity Asset Store|Review sprite ownership|Prefer documenting'
+    $assetBlockers = @($publicAssetManifestRows | Where-Object {
+        $_.public_repo_treatment -ne "retain_candidate_reviewed"
     })
     $referencedRiskyFolders = @($assetReferenceRows | Where-Object { [int]$_.external_reference_count -gt 0 })
     $pendingDispositions = @($assetDispositionRows | Where-Object { $_.release_decision -eq "pending" })
     $coveredExternalImportRows = @($externalImportRows | Where-Object { ($pendingDispositions.folder) -contains $_.folder })
     $publicAssetExclusions = @($publicAssetManifestRows | Where-Object { $_.public_repo_treatment -match "exclude|replace" })
     $attributionPendingRows = @($attributionGapRows | Where-Object { $_.notice_status -match "defer|pending|owner_review_required" })
+    $removedRows = @($removalStatusRows | Where-Object { $_.removal_status -eq "removed_from_repo" })
     $safeDeletionRows = @($removalStatusRows | Where-Object { $_.safe_to_delete_now -eq "yes" })
     $publicFileExclusions = @($publicReleaseFilePlanRows | Where-Object { $_.action -eq "exclude_until_resolved" })
-    Add-Gate $gates "Unity third-party asset release decisions" "blocker" "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references; $($assetReplacementWorkRows.Count) scene/prefab/material replacement worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($coveredExternalImportRows.Count) pending folders have external import/removal handoff rows; $($safeDeletionRows.Count) high-risk folders are currently safe to delete without replacing references; $($publicAssetExclusions.Count) public asset manifest rows and $($publicFileExclusions.Count) tracked files require exclusion/replacement/import before public release; $($attributionPendingRows.Count) attribution/NOTICE rows still require owner, package, or final asset-decision review." "Resolve issue #2 by replacing referenced downloaded assets, removing assets after references are cleared, documenting import steps, and updating NOTICE for retained third-party material."
+    $unityAssetGatePass = (
+        $assetBlockers.Count -eq 0 -and
+        $pendingDispositions.Count -eq 0 -and
+        $publicAssetExclusions.Count -eq 0 -and
+        $publicFileExclusions.Count -eq 0 -and
+        $attributionPendingRows.Count -eq 0
+    )
+    Add-Gate $gates "Unity third-party asset release decisions" ($(if ($unityAssetGatePass) { "pass" } else { "blocker" })) "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) audited folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references to bundled high-risk folders; $($assetReplacementWorkRows.Count) removal/reconstruction worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($removedRows.Count) high-risk folders are removed from the repo; $($coveredExternalImportRows.Count) pending/removed folders have external import/removal handoff rows; $($safeDeletionRows.Count) high-risk folders are currently safe to delete without replacing references; $($publicAssetExclusions.Count) public asset manifest rows and $($publicFileExclusions.Count) tracked files require exclusion/replacement/import before public release; $($attributionPendingRows.Count) attribution/NOTICE rows still require owner, package, or final asset-decision review." "If this gate is not passing, resolve issue #2 by replacing referenced downloaded assets, removing assets after references are cleared, documenting import steps, and updating NOTICE for retained third-party material."
 
     $nasRows = @(Import-Csv -LiteralPath "docs/inventory/nas-access-log.csv")
     $nasRequirement = $requirementRows | Where-Object { $_.requirement -eq "Review attached NAS Youssef Storage" } | Select-Object -First 1
@@ -210,6 +218,7 @@ try {
     Add-Gate $gates "Google Drive inventory" ($(if ($driveRows.Count -gt 0 -and $driveManifestRows.Count -eq $driveRows.Count) { "pass" } else { "blocker" })) "$($driveRows.Count) Google Drive rows inventoried; $($driveManifestRows.Count) Drive public manifest rows tracked; $($privateDriveRows.Count) rows gated private; $($reviewDriveRows.Count) rows require sanitization/redaction/manual review; $($stagedDriveRows.Count) rows have staged local derivatives." "Only export public-safe, redacted docs/decks when selected."
 
     $branchProtectionRows = @(Import-Csv -LiteralPath "docs/inventory/github-branch-protection-status.csv")
+    $branchProtectionRequirement = $requirementRows | Where-Object { $_.requirement -eq "Verify GitHub branch protection before public release" } | Select-Object -First 1
     $openBranchProtectionRows = @($branchProtectionRows | Where-Object { $_.status -ne "complete" })
     $githubReleaseStateRows = @(Import-Csv -LiteralPath "docs/inventory/github-release-state.csv")
     $githubVisibilityRow = $githubReleaseStateRows | Where-Object { $_.setting -eq "visibility" } | Select-Object -First 1
@@ -219,7 +228,22 @@ try {
     else {
         ($openBranchProtectionRows | ForEach-Object { "$($_.setting): $($_.status)" }) -join "; "
     }
-    Add-Gate $gates "GitHub branch protection" ($(if ($openBranchProtectionRows.Count -eq 0) { "pass" } else { "blocker" })) "$branchProtectionEvidence; github_visibility_snapshot: $($githubVisibilityRow.status)" "Verify branch protection from a GitHub admin session before public release."
+    $branchProtectionGateStatus = if ($openBranchProtectionRows.Count -eq 0) {
+        "pass"
+    }
+    elseif ($branchProtectionRequirement -and $branchProtectionRequirement.status -eq "deferred_platform_limit") {
+        "deferred"
+    }
+    else {
+        "blocker"
+    }
+    $branchProtectionNextStep = if ($branchProtectionGateStatus -eq "deferred") {
+        "Enable branch protection immediately after the repo is made public, or upgrade GitHub Pro while keeping it private."
+    }
+    else {
+        "Verify branch protection from a GitHub admin session before public release."
+    }
+    Add-Gate $gates "GitHub branch protection" $branchProtectionGateStatus "$branchProtectionEvidence; github_visibility_snapshot: $($githubVisibilityRow.status); current requirement status: $($branchProtectionRequirement.status)" $branchProtectionNextStep
 
     $lines = [System.Collections.Generic.List[string]]::new()
     $lines.Add("# Release Audit") | Out-Null

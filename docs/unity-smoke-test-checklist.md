@@ -14,9 +14,9 @@ Source evidence:
 
 ## Current State
 
-Unity `2022.3.25f1` batchmode project open/import and scene-open validation passed for the curated project. Interactive Unity/VR smoke testing is still pending and must happen before the repository is made public.
+Unity `2022.3.25f1` batchmode project open/import and scene-open validation passed for the curated project. Interactive Unity/VR smoke testing is still pending, but it is deferred from the current release-prep scope by user request on 2026-06-20 and should be reopened before a VR gameplay release.
 
-Automated pre-smoke structural checks are tracked in `docs/inventory/unity-pre-smoke-status.csv`. These checks confirm scene files, enabled build-settings entries, and XR scene markers, but they do not replace interactive Unity/VR smoke testing.
+Automated pre-smoke structural checks are tracked in `docs/inventory/unity-pre-smoke-status.csv`. These checks confirm scene files, enabled build-settings entries, and XR scene markers, but they do not replace interactive Unity/VR smoke testing when gameplay validation returns to scope.
 
 The scene-by-scene manual smoke plan is tracked in `docs/inventory/unity-interactive-smoke-plan.csv` and summarized in `docs/unity-interactive-smoke-plan.md`.
 
@@ -30,4 +30,4 @@ The scene-by-scene manual smoke plan is tracked in `docs/inventory/unity-interac
 | Review rendering warnings | `pending` | Shader fallback/material warnings from batchmode import are checked visually or documented. |
 | Refresh validation evidence | `pending` | `docs/unity-validation.md`, this checklist, issue #3, and `docs/inventory/release-audit.md` reflect the final smoke-test result. |
 
-Issue #3 can close only when every row in `docs/inventory/unity-smoke-test-status.csv` is `complete` and the release audit no longer treats interactive Unity validation as pending.
+Issue #3 is closed as deferred for the current scope. Reopen it when interactive Unity/VR smoke testing becomes required, then complete every row in `docs/inventory/unity-smoke-test-status.csv` and refresh the release audit.

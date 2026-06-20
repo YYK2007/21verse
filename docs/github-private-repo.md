@@ -47,6 +47,7 @@ Expected state:
 - [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)
 - [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2)
 - [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3)
+- [#5 Verify GitHub branch protection before public release](https://github.com/YYK2007/21verse_opensource/issues/5)
 
 See `docs/github-tracker.md` for label and milestone details.
 See `docs/github-branch-protection.md` for the branch protection handoff.
@@ -54,10 +55,11 @@ See `docs/github-branch-protection.md` for the branch protection handoff.
 ## Do Not Publish Until
 
 - NAS review is complete or explicitly documented as intentionally excluded.
-- Third-party Unity assets are confirmed redistributable, replaced, or removed with import instructions.
-- Interactive Unity/VR smoke testing is complete.
+- Third-party Unity assets are confirmed redistributable, replaced, or removed with import/reconstruction instructions.
+- Interactive Unity/VR smoke testing is complete or explicitly deferred from the current release-prep scope.
 - Google Drive public candidates are redacted before export.
 - `docs/release-evidence-manifest.md` has no blocked requirements.
-- `docs/inventory/release-audit.md` reports no blockers.
+- `docs/inventory/release-audit.md` reports no content blockers.
+- Branch protection is enabled through GitHub Pro while private, or applied immediately after the explicitly approved public visibility change.
 
 Changing repository visibility from private to public is the final step, not a staging step.

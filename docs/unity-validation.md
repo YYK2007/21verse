@@ -1,6 +1,6 @@
 # Unity Validation
 
-Status as of 2026-06-20: batchmode scene-open validation passed after the `Cashier` build-settings update, and the listed project scenes open in batchmode with zero missing script references. Interactive gameplay/VR smoke testing is still pending.
+Status as of 2026-06-20: batchmode scene-open validation passed after the `Cashier` build-settings update and after removing uncleared bundled third-party/downloaded asset folders, and the listed project scenes open in batchmode with zero missing script references. Interactive gameplay/VR smoke testing is deferred by current project scope.
 
 ## Environment
 
@@ -14,7 +14,7 @@ Status as of 2026-06-20: batchmode scene-open validation passed after the `Cashi
 
 Unity opened the curated project, rebuilt the local `Library` cache, imported assets, and exited successfully with return code `0`.
 
-The raw Unity batchmode log was not committed because it contains local machine and Unity licensing metadata. The local log also reported shader fallback warnings for several URP and Shader Graph materials; these should be reviewed during the interactive scene smoke test, but they did not prevent the batchmode import from completing.
+The raw Unity batchmode log was not committed because it contains local machine and Unity licensing metadata. Earlier validation logs reported shader fallback warnings for several URP and Shader Graph materials; after the asset removal pass, the validation target is structural scene-open health rather than final gameplay visuals.
 
 Automated pre-smoke structural checks are tracked in `docs/inventory/unity-pre-smoke-status.csv` and regenerated with `tools/export-unity-pre-smoke-status.ps1`. They confirm scene presence, build-settings inclusion, and XR scene markers before interactive testing.
 
@@ -26,19 +26,19 @@ These scene files are treated as 21Verse-developed learning/gameplay scene compo
 
 | Scene | Result | Root objects | GameObjects |
 | --- | --- | ---: | ---: |
-| `Assets/Scenes/MainMenu.unity` | Opened successfully; 0 missing scripts | 11 | 377 |
-| `Assets/Scenes/WordLevel01.unity` | Opened successfully; 0 missing scripts | 9 | 377 |
-| `Assets/Scenes/AdjectiveLevel01.unity` | Opened successfully; 0 missing scripts | 9 | 373 |
-| `Assets/Scenes/IdentifyingColors.unity` | Opened successfully; 0 missing scripts | 9 | 368 |
-| `Assets/Scenes/NumberLevelUI01.unity` | Opened successfully; 0 missing scripts | 9 | 384 |
-| `Assets/Scenes/NumberInequalitiesLevel.unity` | Opened successfully; 0 missing scripts | 9 | 379 |
-| `Assets/Scenes/Cashier.unity` | Opened successfully; 0 missing scripts | 10 | 130 |
+| `Assets/Scenes/MainMenu.unity` | Opened successfully; 0 missing scripts | 11 | 30 |
+| `Assets/Scenes/WordLevel01.unity` | Opened successfully; 0 missing scripts | 9 | 30 |
+| `Assets/Scenes/AdjectiveLevel01.unity` | Opened successfully; 0 missing scripts | 9 | 26 |
+| `Assets/Scenes/IdentifyingColors.unity` | Opened successfully; 0 missing scripts | 9 | 21 |
+| `Assets/Scenes/NumberLevelUI01.unity` | Opened successfully; 0 missing scripts | 9 | 37 |
+| `Assets/Scenes/NumberInequalitiesLevel.unity` | Opened successfully; 0 missing scripts | 9 | 32 |
+| `Assets/Scenes/Cashier.unity` | Opened successfully; 0 missing scripts | 10 | 32 |
 
-A stale missing script component was removed from `Canvas/OptionsRow/OptionButton (2)` in `Assets/Scenes/NumberInequalitiesLevel.unity`; the rerun passed after that cleanup.
+A stale missing script component was removed from `Canvas/OptionsRow/OptionButton (2)` in `Assets/Scenes/NumberInequalitiesLevel.unity`; the rerun passed after that cleanup. The latest rerun also passed after removing uncleared bundled asset folders, with lower GameObject counts because third-party visual/sample/template content is no longer bundled.
 
 ## Remaining Validation
 
-Open the project interactively in Unity `2022.3.25f1` and smoke-test these project scenes:
+Interactive VR smoke testing is deferred by the current project scope. For a future gameplay release, open the project interactively in Unity `2022.3.25f1` and smoke-test these project scenes:
 
 - `Assets/Scenes/MainMenu.unity`
 - `Assets/Scenes/WordLevel01.unity`
@@ -48,6 +48,6 @@ Open the project interactively in Unity `2022.3.25f1` and smoke-test these proje
 - `Assets/Scenes/NumberInequalitiesLevel.unity`
 - `Assets/Scenes/Cashier.unity`
 
-Track remaining work in GitHub issue #3.
+Optional future interactive smoke-test work is tracked in GitHub issue #3.
 Detailed interactive smoke-test status is tracked in `docs/unity-smoke-test-checklist.md` and `docs/inventory/unity-smoke-test-status.csv`.
 Pre-smoke structural status is tracked in `docs/inventory/unity-pre-smoke-status.csv`.

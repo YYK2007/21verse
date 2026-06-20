@@ -14,7 +14,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Interactive Unity/VR smoke-test status is tracked in `docs/unity-smoke-test-checklist.md` and `docs/inventory/unity-smoke-test-status.csv`.
 - Unity pre-smoke structural status is tracked in `docs/inventory/unity-pre-smoke-status.csv`.
 - Scene-level interactive Unity smoke-test planning is tracked in `docs/unity-interactive-smoke-plan.md` and `docs/inventory/unity-interactive-smoke-plan.csv`.
-- Unity bundled asset folders have a machine-readable audit in `docs/inventory/unity-asset-audit.csv`.
+- Unity retained asset folders and removed high-risk folders have machine-readable audits in `docs/inventory/`.
 - Risky Unity asset references are mapped in `docs/inventory/unity-risky-asset-references.csv` and summarized in `docs/asset-removal-plan.md`.
 - Scene/prefab/material replacement work for risky Unity assets is tracked in `docs/inventory/unity-asset-replacement-worklist.csv`.
 - Unity asset release decisions are tracked in `docs/asset-disposition-tracker.md` and `docs/inventory/unity-asset-disposition.csv`.
@@ -34,44 +34,36 @@ This repository is private and staged for a future open-source release. Do not m
 - GitHub release-state snapshot is tracked in `docs/github-release-state.md` and `docs/inventory/github-release-state.csv`.
 - GitHub branch protection handoff is documented in `docs/github-branch-protection.md`.
 - GitHub branch protection admin-verification status is tracked in `docs/inventory/github-branch-protection-status.csv`.
-- NAS device has been identified but not reviewed because share access is blocked.
+- NAS device has been identified but excluded from the current release-prep scope by user request.
 - NAS review instructions are staged in `docs/nas-review-runbook.md`.
 - NAS review completion status is tracked in `docs/nas-review-checklist.md` and `docs/inventory/nas-review-status.csv`.
 
 ## Required Before Public Release
 
 1. NAS review
-   - Mount or authenticate to `Youssef Storage` / `WDMyCloudEX4100`.
-   - Run `tools/export-nas-inventory.ps1` against the mounted share.
-   - Search for 21Verse files on the NAS.
-   - Add any repo-worthy files or document exclusions.
-   - Mark every row in `docs/inventory/nas-review-status.csv` as `complete`.
-   - Close GitHub issue #1.
+   - Excluded from the current release-prep scope by user request on 2026-06-20.
+   - Do not include NAS files unless the user reopens this scope.
 
 2. Unity asset licensing
    - Regenerate `docs/inventory/unity-asset-audit.csv` with `tools/export-unity-asset-audit.ps1` after asset changes.
    - Regenerate `docs/inventory/unity-risky-asset-references.csv` with `tools/export-unity-risky-asset-references.ps1` after asset changes.
    - Regenerate `docs/inventory/unity-asset-replacement-worklist.csv` with `tools/export-unity-asset-replacement-worklist.ps1`.
-   - Review the UPM/package and bundled asset handoff in `docs/unity-dependencies.md`.
+   - Review the UPM/package and removed-asset handoff in `docs/unity-dependencies.md`.
    - Review the external import/removal handoff in `docs/unity-external-imports.md`.
-   - Follow `docs/asset-removal-plan.md` for replacement/removal sequencing.
-   - Use `docs/public-asset-manifest.md` and `docs/inventory/unity-public-asset-manifest.csv` as the keep/exclude/replacement map for the eventual public branch cut.
+   - Use `docs/public-asset-manifest.md` and `docs/inventory/unity-public-asset-manifest.csv` as the retained-folder map for the eventual public branch cut.
    - Regenerate `docs/inventory/public-release-file-plan.csv` with `tools/export-public-release-file-plan.ps1` to review tracked include/exclude effects before any public branch cut.
-   - Resolve all `pending` rows in `docs/inventory/unity-asset-disposition.csv`.
-   - Resolve all high-priority items in `docs/third-party-assets.md`.
-   - Remove or replace any asset that cannot be redistributed in a public source repo.
-   - Update `NOTICE.md`.
-   - Close GitHub issue #2.
+   - Confirm all rows in `docs/inventory/unity-asset-disposition.csv` are non-`pending`.
+   - Keep removed downloaded/third-party asset folders out of Git unless redistribution rights are later confirmed.
+   - Update `NOTICE.md` after any future third-party asset change.
+   - Keep GitHub issue #2 closed with the removal evidence.
 
 3. Unity validation
    - Batchmode open/import with Unity `2022.3.25f1` passed on 2026-06-19.
    - Batchmode scene-open validation passed for all main scenes with zero missing script references.
    - Regenerate `docs/inventory/unity-pre-smoke-status.csv` with `tools/export-unity-pre-smoke-status.ps1`.
    - Regenerate `docs/inventory/unity-interactive-smoke-plan.csv` with `tools/export-unity-interactive-smoke-plan.ps1`.
-   - Load and smoke-test the main scenes listed in `README.md`.
-   - Review shader fallback warnings seen during import.
-   - Mark every row in `docs/inventory/unity-smoke-test-status.csv` as `complete`.
-   - Close GitHub issue #3.
+   - Interactive Unity/VR smoke testing is deferred by user request on 2026-06-20 and is optional before a VR gameplay release.
+   - If that scope is reopened, load and smoke-test the main scenes listed in `README.md`, review shader/material warnings, and update issue #3 evidence.
 
 4. Google Drive/public docs
    - Review `docs/inventory/google-drive-21verse.csv`.
@@ -95,10 +87,11 @@ This repository is private and staged for a future open-source release. Do not m
    - Review `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
    - Review `docs/github-metadata.md`.
    - Review `docs/github-branch-protection.md`.
-   - Resolve GitHub issue #5 and confirm branch protection status rows are `complete`.
+   - Keep GitHub issue #5 documented as platform-deferred while the repo remains private without GitHub Pro branch protection.
    - Confirm the `Public release readiness` milestone has no open blocker issues.
    - Run a secret scan.
    - Confirm no non-LFS file exceeds GitHub's 100 MB limit.
+   - Enable branch protection through GitHub Pro while private, or immediately after an explicitly approved public visibility change.
    - Confirm `git status --short --branch` is clean.
    - Confirm GitHub visibility remains private until the final release decision.
 

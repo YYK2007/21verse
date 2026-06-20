@@ -12,6 +12,6 @@ Refresh it with:
 .\tools\export-github-release-state.ps1
 ```
 
-The snapshot records repository visibility, default branch, repository features, topics, the public-release milestone, required blocker issues, and the latest completed `Repo Hygiene` Actions run.
+The snapshot records repository visibility, default branch, repository features, topics, the public-release milestone, scoped/deferred release tracker issues, and the latest completed `Repo Hygiene` Actions run.
 
 This is evidence only. `tools/test-github-release-state.ps1` remains the pass/fail verifier.

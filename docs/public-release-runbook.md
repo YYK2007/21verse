@@ -19,21 +19,15 @@ If NAS review is reopened later:
 7. Update `docs/inventory/nas-access-log.csv`.
 8. Reopen or update issue #1.
 
-## 2. Resolve Unity Asset Rights
+## 2. Confirm Unity Asset Cleanup
 
-1. Review `docs/inventory/unity-asset-audit.csv`.
-2. Review `docs/inventory/unity-risky-asset-references.csv`.
-3. Review `docs/inventory/unity-asset-replacement-worklist.csv`.
-4. Review `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
-5. Review `docs/public-asset-manifest.md`, `docs/inventory/unity-public-asset-manifest.csv`, `docs/unity-attribution-gap-report.md`, `docs/inventory/unity-attribution-gap-report.csv`, `docs/public-release-file-plan.md`, and `docs/inventory/public-release-file-plan.csv`.
-6. Review `docs/inventory/unity-third-party-removal-status.csv`; remove only folders marked `safe_to_delete_now=yes`, otherwise replace or clear serialized references before deleting downloaded assets.
-7. Follow `docs/asset-removal-plan.md`.
-8. For every high-risk asset folder, choose one final action:
-   - confirm public source redistribution rights,
-   - replace with original or verified redistributable assets,
-   - remove and document import/acquisition steps.
-9. Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-disposition-tracker.md`.
-10. Close or update issue #2.
+1. Review `docs/inventory/unity-asset-audit.csv`; it should list only retained project folders.
+2. Review `docs/inventory/unity-risky-asset-references.csv` and `docs/inventory/unity-third-party-removal-status.csv`; uncleared downloaded/third-party folders should be absent from the repo and have zero serialized references.
+3. Review `docs/inventory/unity-asset-disposition.csv`; every high-risk folder should have `removed_from_repo`.
+4. Review `docs/public-asset-manifest.md`, `docs/inventory/unity-public-asset-manifest.csv`, `docs/unity-attribution-gap-report.md`, `docs/inventory/unity-attribution-gap-report.csv`, `docs/public-release-file-plan.md`, and `docs/inventory/public-release-file-plan.csv`.
+5. Keep removed third-party/downloaded assets out of the public repo unless written redistribution rights are added later.
+6. Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-disposition-tracker.md` after any future asset changes.
+7. Confirm issue #2 is closed with removal evidence.
 
 ## 3. Final Unity Validation
 
@@ -85,14 +79,15 @@ Commit any regenerated inventory or audit changes.
 
 ## 6. Visibility Change
 
-Only after all release blockers are resolved:
+Only after the release audit reports no content blockers:
 
 1. Confirm GitHub Actions are green on `main`.
 2. Confirm `docs/inventory/release-requirements-status.csv` has no `blocked` requirements.
-3. Confirm `docs/inventory/release-audit.md` reports no blockers.
+3. Confirm `docs/inventory/release-audit.md` reports no content blockers.
 4. Confirm the `Public release readiness` milestone has no open blocker issues.
-5. Confirm `docs/github-branch-protection.md` has been reviewed by a GitHub admin.
-6. Run `tools/test-github-branch-protection.ps1` and confirm `docs/inventory/github-branch-protection-status.csv` has no `blocked`, `missing`, or `pending_admin_verification` rows.
-7. Remove or update the private-visibility guard in `tools/test-repo-hygiene.ps1` as part of the same reviewed release change.
-8. Change GitHub repository visibility from private to public.
-9. Create a release announcement or tag only after visibility is public and verified.
+5. Confirm `docs/github-branch-protection.md` has been reviewed and the desired branch protection payload is ready.
+6. Remove or update the private-visibility guard in `tools/test-repo-hygiene.ps1` as part of the same reviewed release change.
+7. Change GitHub repository visibility from private to public only after explicit approval.
+8. Immediately run `tools\set-github-branch-protection.ps1 -Apply`.
+9. Run `tools\test-github-branch-protection.ps1` and confirm `docs/inventory/github-branch-protection-status.csv` has no `blocked`, `missing`, or `pending_admin_verification` rows.
+10. Create a release announcement or tag only after visibility is public, branch protection is verified, and Actions are green.

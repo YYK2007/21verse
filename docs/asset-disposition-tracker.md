@@ -1,6 +1,6 @@
 # Unity Asset Disposition Tracker
 
-This tracker turns the third-party asset audit into folder-level release decisions. It is the working checklist for GitHub issue #2.
+This tracker records the folder-level release decisions for the third-party/downloaded Unity asset cleanup. It is the closing evidence for GitHub issue #2.
 
 Source inventories:
 
@@ -18,28 +18,29 @@ Source inventories:
 ## Policy
 
 - `pending` means the folder must not be treated as public-release-ready.
+- `removed_from_repo` means the folder is intentionally absent from the public source tree.
 - Asset Store, Unity sample/template, publisher-style, downloaded-looking, or unknown-origin assets should be removed, replaced, or documented as external import steps unless redistribution rights are confirmed.
 - After each folder decision, regenerate the Unity asset inventories and rerun scene validation.
-- Update `NOTICE.md` only after final retained third-party assets are known.
-- Remove downloaded/third-party folders only after `docs/inventory/unity-third-party-removal-status.csv` shows they have no serialized references, or after the listed references have been replaced/removed.
+- Keep removed downloaded/third-party folders out of the repository unless redistribution rights are later confirmed in writing.
+- Update `NOTICE.md` if any third-party assets are added back later.
 
 ## Folder Decisions
 
 | Folder | Current default | Release decision | Replacement or import path |
 | --- | --- | --- | --- |
-| `Assets/Fantasy Skybox FREE` | Do not bundle unless redistribution rights are confirmed. | `pending` | Replace scene skybox/material references with original or verified redistributable sky assets, or document exact Asset Store import steps. |
-| `Assets/WOC` | Confirm source and redistribution rights; otherwise replace/remove. | `pending` | Replace referenced models/textures with original placeholders or verified redistributable environment assets. |
-| `Assets/Samples` | Prefer documenting package sample import instead of bundling. | `pending` | Document Unity Package Manager package/sample import steps, then rebind affected prefabs/scenes to imported package assets or local replacements. |
-| `Assets/Lana Studio` | Confirm source and redistribution rights; otherwise replace/remove. | `pending` | Replace visual effects/assets in affected learning scenes with original or verified redistributable assets. |
-| `Assets/Sprites` | Keep only original or verified redistributable sprites. | `pending` | Review sprite source/ownership, replace uncertain UI art with original project art, and retain only public-safe sprites. |
-| `Assets/BuildingMaterials` | Replace uncertain materials before public release. | `pending` | Replace textures/materials in Education Building prefab and Cashier scene with original or verified redistributable materials. |
-| `Assets/Fresh_Raystore` | Do not bundle unless redistribution rights are confirmed. | `pending` | Replace cashier shelving/store prop with original or verified redistributable prop, or document exact Asset Store import steps. |
-| `Assets/TextMesh Pro` | Prefer Unity package dependency and retain required font licenses. | `pending` | Move toward UPM-provided TextMesh Pro assets where practical; keep LiberationSans license if any bundled font remains. |
-| `Assets/VRTemplateAssets` | Confirm template/sample redistribution terms or document import steps. | `pending` | Document Unity template/sample import steps or replace template prefabs with project-owned XR setup assets. |
+| `Assets/Fantasy Skybox FREE` | Do not bundle unless redistribution rights are confirmed. | `removed_from_repo` | Old skybox visuals can be reconstructed privately by reacquiring/importing the package; keep the public repo free of bundled files. |
+| `Assets/WOC` | Unknown-origin model/texture pack. | `removed_from_repo` | Replace with original or verified redistributable environment assets if the visuals are rebuilt. |
+| `Assets/Samples` | Prefer Unity Package Manager sample import instead of bundling. | `removed_from_repo` | Reconstruct through Unity Package Manager samples only if needed privately. |
+| `Assets/Lana Studio` | Publisher-style folder with no license/readme evidence. | `removed_from_repo` | Replace with original or verified redistributable visual effects if needed. |
+| `Assets/Sprites` | Keep only original or verified redistributable sprites. | `removed_from_repo` | Add only original 21Verse or verified redistributable UI art going forward. |
+| `Assets/BuildingMaterials` | Downloaded-looking material/texture folder. | `removed_from_repo` | Add only original or verified redistributable materials going forward. |
+| `Assets/Fresh_Raystore` | Asset Store cashier/store prop package. | `removed_from_repo` | Reacquire/import privately if the old prop is needed; do not bundle public files without rights. |
+| `Assets/TextMesh Pro` | Prefer Unity package dependency. | `removed_from_repo` | Use the UPM TextMesh Pro package; keep font/license notices if bundled font files are ever reintroduced. |
+| `Assets/VRTemplateAssets` | Unity VR template/sample-style assets. | `removed_from_repo` | Reconstruct through Unity template/package setup only if needed privately. |
 
 ## Completion Rule
 
 Use `docs/unity-external-imports.md` to decide whether each unresolved folder is imported externally, replaced, removed, or retained with confirmed rights.
 Use `docs/public-asset-manifest.md` for the generated keep/exclude/replacement map that should guide the eventual public branch cut.
 
-Issue #2 can close only when every row in `docs/inventory/unity-asset-disposition.csv` has a non-`pending` `release_decision`, the resulting asset/reference inventories have been regenerated, `NOTICE.md` reflects retained third-party material, and Unity scene validation still passes.
+Issue #2 can stay closed while every row in `docs/inventory/unity-asset-disposition.csv` has a non-`pending` `release_decision`, removed folders stay out of the repo, regenerated inventories show no public asset exclusions, `NOTICE.md` reflects the retained scope, and Unity scene validation still passes.

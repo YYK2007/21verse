@@ -25,6 +25,14 @@ function Get-NoticeStatus {
         }
     }
 
+    if ($Row.public_repo_treatment -eq "retain_candidate_reviewed") {
+        return [PSCustomObject]@{
+            notice_status = "project_scope_notice_complete"
+            notice_required_before_public = "no_unless_non_original_material_is_added"
+            recommended_notice_action = "No additional third-party NOTICE entry is required by the current folder-level audit; keep the NOTICE scope statement for 21Verse-developed project work."
+        }
+    }
+
     if ($Row.public_repo_treatment -match "exclude|replace") {
         return [PSCustomObject]@{
             notice_status = "defer_until_final_asset_decision"
@@ -100,7 +108,7 @@ try {
     $lines.Add("") | Out-Null
     $lines.Add("Summary: $($rows.Count) asset folders reviewed; $($deferredRows.Count) defer NOTICE text until final asset decision; $($ownerReviewRows.Count) retain candidates need owner review before final NOTICE clearance; $($packageRows.Count) package/font rows need package-specific review.") | Out-Null
     $lines.Add("") | Out-Null
-    $lines.Add('This report does not grant redistribution rights. It makes the attribution gap explicit so issue #2 cannot be closed until retained third-party material has matching license and NOTICE evidence.') | Out-Null
+    $lines.Add('This report does not grant redistribution rights. It records that the retained Unity folders currently need no additional third-party NOTICE entry beyond the 21Verse project-scope notice; any newly added third-party material must be reviewed separately.') | Out-Null
     $lines.Add('') | Out-Null
     $lines.Add('| Folder | Public treatment | Notice status | Required action |') | Out-Null
     $lines.Add('| --- | --- | --- | --- |') | Out-Null

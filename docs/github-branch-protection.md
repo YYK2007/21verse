@@ -5,9 +5,11 @@ This handoff records the desired `main` branch protection state for the private 
 Current verification result:
 
 - The repo-prep session can verify repository metadata, labels, issues, milestone, and Actions runs.
-- The GitHub branch protection endpoint for `main` returned `403 Forbidden` to the available credential, so branch protection could not be inspected or changed from this session.
+- The GitHub branch protection endpoint for `main` returned `403 Forbidden`.
+- Applying the desired branch protection returned GitHub's plan/visibility message: `Upgrade to GitHub Pro or make this repository public to enable this feature.`
+- Because this repo must remain private, branch protection is a platform-deferred release handoff rather than a content blocker.
 
-Desired state before public release:
+Desired state before or immediately after public release:
 
 - `main` is protected.
 - Pull requests are required before merging.
@@ -25,9 +27,9 @@ To refresh the local handoff evidence, run:
 .\tools\test-github-branch-protection.ps1
 ```
 
-The script probes `GET /repos/YYK2007/21verse_opensource/branches/main/protection` and rewrites `docs/inventory/github-branch-protection-status.csv`. If the current credential still lacks admin access, the CSV remains an explicit admin-verification handoff instead of silently claiming protection is configured.
+The script probes `GET /repos/YYK2007/21verse_opensource/branches/main/protection` and rewrites `docs/inventory/github-branch-protection-status.csv`. If the current credential or private repository plan still cannot inspect protection, the CSV remains an explicit verification handoff instead of silently claiming protection is configured.
 
-To apply the desired settings from a GitHub admin session without changing repository visibility:
+To apply the desired settings from a GitHub admin session with GitHub Pro while the repository remains private, or immediately after the repository is intentionally made public:
 
 ```powershell
 .\tools\set-github-branch-protection.ps1
@@ -35,4 +37,4 @@ To apply the desired settings from a GitHub admin session without changing repos
 .\tools\test-github-branch-protection.ps1
 ```
 
-The first command is a dry run that prints the JSON payload. The `-Apply` command sends `PUT /repos/YYK2007/21verse_opensource/branches/main/protection` and requires an admin-capable GitHub credential.
+The first command is a dry run that prints the JSON payload. The `-Apply` command sends `PUT /repos/YYK2007/21verse_opensource/branches/main/protection` and requires both an admin-capable GitHub credential and branch protection availability for the current repository visibility/plan.

@@ -124,21 +124,21 @@ try {
         "docs/inventory/public-release-file-plan.csv" = 1
         "docs/inventory/github-branch-protection-status.csv" = 5
         "docs/inventory/github-release-state.csv" = 12
-        "docs/inventory/release-blocker-action-plan.csv" = 2
+        "docs/inventory/release-blocker-action-plan.csv" = 0
         "docs/inventory/release-requirements-status.csv" = 10
         "docs/inventory/local-drive-review-status.csv" = 2
         "docs/inventory/nas-review-status.csv" = 5
         "docs/inventory/unity-smoke-test-status.csv" = 5
         "docs/inventory/unity-pre-smoke-status.csv" = 7
         "docs/inventory/unity-interactive-smoke-plan.csv" = 7
-        "docs/inventory/unity-asset-audit.csv" = 18
+        "docs/inventory/unity-asset-audit.csv" = 9
         "docs/inventory/unity-asset-disposition.csv" = 9
         "docs/inventory/unity-external-imports.csv" = 9
-        "docs/inventory/unity-public-asset-manifest.csv" = 18
-        "docs/inventory/unity-attribution-gap-report.csv" = 18
+        "docs/inventory/unity-public-asset-manifest.csv" = 9
+        "docs/inventory/unity-attribution-gap-report.csv" = 9
         "docs/inventory/unity-third-party-removal-status.csv" = 9
         "docs/inventory/unity-risky-asset-references.csv" = 9
-        "docs/inventory/unity-asset-replacement-worklist.csv" = 47
+        "docs/inventory/unity-asset-replacement-worklist.csv" = 9
         "docs/inventory/unity-projects.csv" = 1
     }
 
@@ -197,7 +197,8 @@ try {
     $worklistRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-replacement-worklist.csv")
     $expectedWorklistCount = 0
     foreach ($row in $referenceRowsForWorklistCheck) {
-        $expectedWorklistCount += @($row.referenced_by -split ';' | Where-Object { -not [string]::IsNullOrWhiteSpace($_.Trim()) }).Count
+        $referencedFileCount = @($row.referenced_by -split ';' | Where-Object { -not [string]::IsNullOrWhiteSpace($_.Trim()) }).Count
+        $expectedWorklistCount += [Math]::Max(1, $referencedFileCount)
     }
 
     if ($worklistRows.Count -ne $expectedWorklistCount) {
@@ -205,8 +206,9 @@ try {
     }
 
     foreach ($row in $worklistRows) {
+        $isRemovedNoReferenceRow = $row.release_decision -eq "removed_from_repo" -and [string]::IsNullOrWhiteSpace($row.referenced_file)
         if ([string]::IsNullOrWhiteSpace($row.folder) -or
-            [string]::IsNullOrWhiteSpace($row.referenced_file) -or
+            ((-not $isRemovedNoReferenceRow) -and [string]::IsNullOrWhiteSpace($row.referenced_file)) -or
             [string]::IsNullOrWhiteSpace($row.recommended_action) -or
             $row.issue -ne "#2") {
             Add-Failure "Unity asset replacement worklist row for '$($row.folder)' / '$($row.referenced_file)' is missing required release handoff detail."
@@ -249,19 +251,19 @@ try {
     $assetDispositionRowsForImportCheck = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-disposition.csv")
     $externalImportRows = @(Import-Csv -LiteralPath "docs/inventory/unity-external-imports.csv")
     $externalImportFolders = @($externalImportRows | ForEach-Object { $_.folder })
-    $pendingDispositionFolders = @($assetDispositionRowsForImportCheck |
-        Where-Object { $_.release_decision -eq "pending" } |
+    $openDispositionFolders = @($assetDispositionRowsForImportCheck |
+        Where-Object { $_.release_decision -in @("pending", "removed_from_repo") } |
         ForEach-Object { $_.folder })
 
-    foreach ($folder in $pendingDispositionFolders) {
+    foreach ($folder in @($assetDispositionRowsForImportCheck | Where-Object { $_.release_decision -eq "pending" } | ForEach-Object { $_.folder })) {
         if ($externalImportFolders -notcontains $folder) {
             Add-Failure "Pending Unity asset disposition folder '$folder' is missing from docs/inventory/unity-external-imports.csv."
         }
     }
 
     foreach ($row in $externalImportRows) {
-        if ($pendingDispositionFolders -notcontains $row.folder) {
-            Add-Failure "Unity external import row '$($row.folder)' does not correspond to a pending asset disposition row."
+        if ($openDispositionFolders -notcontains $row.folder) {
+            Add-Failure "Unity external import row '$($row.folder)' does not correspond to a pending or removed asset disposition row."
         }
 
         if ([string]::IsNullOrWhiteSpace($row.source_type) -or
@@ -383,7 +385,8 @@ try {
         "complete_inventory_pending_exports",
         "complete_ongoing",
         "excluded_by_user",
-        "deferred_optional"
+        "deferred_optional",
+        "deferred_platform_limit"
     )
 
     foreach ($row in $requirementRows) {

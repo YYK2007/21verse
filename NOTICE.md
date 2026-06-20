@@ -7,9 +7,9 @@ The MIT License applies to original 21Verse source code and 21Verse-developed sc
 The MIT License does not automatically grant rights to:
 
 - Unity, Meta/Oculus, XR Interaction Toolkit, TextMesh Pro, or other package content.
-- Asset-store, marketplace, downloaded, template, or sample assets included under or referenced from `Assets`.
+- Asset-store, marketplace, downloaded, template, or sample assets that are reacquired, imported, or newly added outside the current reviewed source tree.
 - Brand marks, logos, banners, pitch decks, posters, research files, testing data, financial files, or partner materials.
 
-Before making the repository public, confirm that each bundled or referenced third-party asset can be redistributed in a public source repository. When in doubt, replace the asset with a documented dependency, clear the serialized scene/prefab references, or remove it.
+The uncleared downloaded/third-party Unity asset folders previously found in the private staging project were removed from this repository for public-release readiness. Before adding any such asset back, confirm that it can be redistributed in a public source repository; when in doubt, keep it as an external dependency, replace it with original/verified redistributable material, or leave it out.
 
 Unity Package Manager dependencies and bundled asset release decisions are tracked in `docs/unity-dependencies.md` and `docs/third-party-assets.md`.

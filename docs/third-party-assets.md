@@ -1,8 +1,8 @@
 # Third-Party Asset Register
 
-This register is based on files currently included under `unity/21verse-vr-game-hub/Assets`.
+This register is based on the Unity asset cleanup performed for `unity/21verse-vr-game-hub/Assets`.
 
-It is not legal advice. Treat every item below as needing owner/license confirmation before the repository is made public.
+It is not legal advice. Treat any future third-party asset addition as needing owner/license confirmation before the repository is made public.
 
 The main learning/gameplay scene compositions under `Assets/Scenes` are 21Verse-developed project work. This register focuses on referenced visual, template, package, sample, and downloaded assets that may be embedded in or linked from those scenes.
 
@@ -14,18 +14,20 @@ For folder-level release decisions, see `docs/asset-disposition-tracker.md` and 
 For NOTICE and attribution gaps, see `docs/unity-attribution-gap-report.md` and `docs/inventory/unity-attribution-gap-report.csv`.
 For deletion safety after the user's 2026-06-20 downloaded-asset cleanup request, see `docs/inventory/unity-third-party-removal-status.csv`.
 
-## High-Priority Review Items
+## Removed High-Risk Asset Folders
 
-| Asset folder | Approx. size | Evidence found | Public-release action |
-| --- | ---: | --- | --- |
-| `Assets/WOC` | 166.6 MB | Large model/texture pack, no license/readme found in repo scan | Confirm source and redistribution terms, or remove/replace before public release. |
-| `Assets/Fantasy Skybox FREE` | 133.5 MB | `Readme.txt`, `ReleaseNotes.txt`, Unity Asset Store metadata | Confirm Unity Asset Store redistribution terms. Consider documenting as an install dependency instead of bundling. |
-| `Assets/VRTemplateAssets` | 73.3 MB | Unity/VR template content, some `licenseType: Pro` metadata | Confirm whether content is original, Unity sample, or store content. |
-| `Assets/BuildingMaterials` | 39.1 MB | Material/texture filenames include downloaded texture names | Confirm texture source and redistribution terms. Replace with original placeholders if uncertain. |
-| `Assets/Lana Studio` | 11.6 MB | Publisher-style folder name, no license/readme found in repo scan | Confirm source and redistribution terms. |
-| `Assets/Fresh_Raystore` | 4.8 MB | `Fresh_shelving_Package.txt`, Unity Asset Store metadata, publisher link | Confirm Unity Asset Store redistribution terms. Consider documenting as dependency instead of bundling. |
-| `Assets/TextMesh Pro` | 3.4 MB | Unity/TextMesh Pro files plus `LiberationSans - OFL.txt` | Usually Unity package/sample content, but keep the font license and confirm bundled package terms. |
-| `Assets/Samples` | 8.9 MB | XR Interaction Toolkit sample assets | Prefer requiring Unity Package Manager samples or document exact package/sample import steps. |
+The following folders were removed from the repository rather than redistributed publicly:
+
+| Asset folder | Evidence found | Public-release action |
+| --- | --- | --- |
+| `Assets/WOC` | Large model/texture pack, no license/readme found in repo scan | Removed from repo; replace with original or verified redistributable environment assets if rebuilt. |
+| `Assets/Fantasy Skybox FREE` | `Readme.txt`, `ReleaseNotes.txt`, Unity Asset Store metadata | Removed from repo; reacquire/import privately if old skybox visuals are needed. |
+| `Assets/VRTemplateAssets` | Unity/VR template content, some `licenseType: Pro` metadata | Removed from repo; reconstruct through Unity template/package setup only if needed. |
+| `Assets/BuildingMaterials` | Material/texture filenames include downloaded texture names | Removed from repo; add only original or verified redistributable materials going forward. |
+| `Assets/Lana Studio` | Publisher-style folder name, no license/readme found in repo scan | Removed from repo; replace with original or verified redistributable effects if needed. |
+| `Assets/Fresh_Raystore` | `Fresh_shelving_Package.txt`, Unity Asset Store metadata, publisher link | Removed from repo; reacquire/import privately if old cashier props are needed. |
+| `Assets/TextMesh Pro` | Unity/TextMesh Pro files plus `LiberationSans - OFL.txt` | Removed from repo; rely on the Unity Package Manager package unless font files are deliberately reintroduced with notices. |
+| `Assets/Samples` | XR Interaction Toolkit sample assets | Removed from repo; reconstruct through Unity Package Manager samples only if needed. |
 
 ## Lower-Risk Original/Project Folders
 
@@ -36,7 +38,6 @@ These appear more project-specific but still deserve review:
 - `Assets/IdentifyingColors`
 - `Assets/Comparision2D`
 - `Assets/Prefabs`
-- `Assets/Sprites`
 - `Assets/XR`
 - `Assets/XRI`
 - `Assets/Settings`
@@ -44,20 +45,14 @@ These appear more project-specific but still deserve review:
 ## Recommended Public-Release Policy
 
 1. Keep source code, 21Verse-developed scene compositions, project prefabs, and original 21Verse assets in the repo.
-2. Remove asset-store/downloaded packs unless their license explicitly permits public source redistribution.
-3. For removed packs, document exact acquisition/import steps in `README.md` or a future `docs/dependencies.md`.
+2. Keep asset-store/downloaded packs out of the repo unless their license explicitly permits public source redistribution.
+3. For removed packs, document private acquisition/import steps only when the project deliberately supports reconstruction.
 4. Keep generated Unity folders excluded through `.gitignore`.
 5. Keep Git LFS for all binary assets that remain.
 
 ## Scan Notes
 
-The machine-readable audit currently covers 18 top-level folders under `Assets`, including file counts, approximate size, Unity `.meta` `licenseType` values, evidence files, and the recommended public-release action.
-The risky reference audit confirms every high-priority bundled asset folder is referenced by scenes, prefabs, or materials, so removals need a Unity replacement pass rather than filesystem deletion.
+The machine-readable audit currently covers the retained top-level folders under `Assets`, including file counts, approximate size, Unity `.meta` `licenseType` values, evidence files, and the recommended public-release action.
+The risky reference audit and removal-status inventory record the removed high-risk folders with zero serialized references to bundled folders still present in the repo.
 
-The scan found license/readme-style files only in:
-
-- `Assets/Fantasy Skybox FREE/Readme.txt`
-- `Assets/Fantasy Skybox FREE/ReleaseNotes.txt`
-- `Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt`
-
-Several `.meta` files include `licenseType: Store` or `licenseType: Pro`, which is a warning sign for public redistribution review.
+The removed folders previously included Asset Store metadata, Unity sample/template-style files, and downloaded-looking material filenames. They are intentionally absent from the public-ready source tree.

@@ -8,32 +8,32 @@ The private GitHub tracker is configured for public-release readiness work.
 - State: open
 - Purpose: resolve all blockers before changing the repository from private to public.
 
-## Open Release Issues
+## Release Issues
 
-| Issue | Purpose | Required before public release |
+| Issue | Purpose | Current release status |
 | --- | --- | --- |
-| [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1) | Complete NAS inventory/review. | Yes |
-| [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2) | Resolve asset rights, replacement, or removal decisions. | Yes |
-| [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3) | Complete interactive Unity/VR smoke testing. | Yes |
-| [#5 Verify GitHub branch protection before public release](https://github.com/YYK2007/21verse_opensource/issues/5) | Verify or configure `main` branch protection from a GitHub admin session. | Yes |
+| [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1) | Complete NAS inventory/review. | Closed after user excluded NAS from the current scope. |
+| [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2) | Resolve asset rights, replacement, or removal decisions. | Closed after uncleared downloaded/third-party Unity asset folders were removed from the repo. |
+| [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3) | Complete interactive Unity/VR smoke testing. | Closed after user deferred interactive VR smoke from the current scope. |
+| [#5 Verify GitHub branch protection before public release](https://github.com/YYK2007/21verse_opensource/issues/5) | Verify or configure `main` branch protection from a GitHub admin session. | Platform-deferred while private because GitHub returned a Pro/public-visibility requirement for branch protection. |
 
 ## Issue Evidence Sources
 
 | Issue | Primary evidence in repo | Current unresolved evidence |
 | --- | --- | --- |
 | #1 | `docs/design-and-nas-inventory.md`, `docs/nas-review-runbook.md`, `docs/nas-review-checklist.md`, `docs/inventory/nas-review-status.csv` | NAS share access is still blocked; five NAS review status rows are not complete. |
-| #2 | `docs/third-party-assets.md`, `docs/asset-removal-plan.md`, `docs/asset-disposition-tracker.md`, `docs/public-asset-manifest.md`, `docs/public-release-file-plan.md`, `docs/inventory/unity-asset-disposition.csv`, `docs/inventory/unity-public-asset-manifest.csv`, `docs/inventory/public-release-file-plan.csv` | Nine Unity asset disposition rows are still `pending`; the public asset manifest marks five folders for external import/rights confirmation and four folders for replacement before public release; the tracked-file plan marks 2,410 files as `exclude_until_resolved`. |
+| #2 | `docs/third-party-assets.md`, `docs/asset-removal-plan.md`, `docs/asset-disposition-tracker.md`, `docs/public-asset-manifest.md`, `docs/public-release-file-plan.md`, `docs/inventory/unity-asset-disposition.csv`, `docs/inventory/unity-public-asset-manifest.csv`, `docs/inventory/public-release-file-plan.csv` | Uncleared downloaded/third-party Unity folders are removed; disposition rows are non-pending; public asset/file manifests no longer list exclusion blockers. |
 | #3 | `docs/unity-validation.md`, `docs/unity-smoke-test-checklist.md`, `docs/inventory/unity-smoke-test-status.csv` | Batchmode validation passed; five interactive smoke-test status rows are not complete. |
-| #5 | `docs/github-branch-protection.md`, `docs/inventory/github-branch-protection-status.csv`, `tools/test-github-branch-protection.ps1`, `tools/set-github-branch-protection.ps1` | Branch protection endpoint returns `403 Forbidden`; admin verification is pending; `tools/set-github-branch-protection.ps1` provides the admin-side dry-run/apply path. |
+| #5 | `docs/github-branch-protection.md`, `docs/inventory/github-branch-protection-status.csv`, `tools/test-github-branch-protection.ps1`, `tools/set-github-branch-protection.ps1` | GitHub returned a Pro/public-visibility requirement for branch protection while the repo remains private; `tools/set-github-branch-protection.ps1` provides the ready-to-apply payload after GitHub Pro or approved publication. |
 
 ## Issue Label Expectations
 
 | Issue | Required labels |
 | --- | --- |
-| #1 | `blocker`, `nas`, `open-source-readiness` |
-| #2 | `blocker`, `licensing`, `open-source-readiness` |
-| #3 | `blocker`, `open-source-readiness`, `unity`, `validation` |
-| #5 | `blocker`, `open-source-readiness`, `validation` |
+| #1 | `nas`, `open-source-readiness` |
+| #2 | `licensing`, `open-source-readiness` |
+| #3 | `open-source-readiness`, `unity`, `validation` |
+| #5 | `open-source-readiness`, `validation` |
 
 ## Issue Body Evidence Expectations
 
@@ -55,6 +55,6 @@ The private GitHub tracker is configured for public-release readiness work.
 | `unity` | Unity project, scenes, packages, or assets. |
 | `validation` | Validation, smoke testing, or release audit work. |
 
-The repository should not be made public while this milestone has open blocker issues.
+The repository should not be made public while this milestone has open blocker issues or while the release audit reports content blockers. Branch protection remains an immediate post-publication or GitHub Pro action because the repo must stay private for now.
 
 `tools/test-github-release-state.ps1` verifies these release labels, issue label expectations, issue body evidence references, the milestone, required open issues, private visibility, metadata, and the latest `Repo Hygiene` result from a Windows session with GitHub credentials.

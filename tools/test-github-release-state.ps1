@@ -129,14 +129,16 @@ try {
     }
 
     $expectedIssueLabels = @{
-        2 = @("blocker", "licensing", "open-source-readiness")
-        5 = @("blocker", "open-source-readiness", "validation")
+        1 = @("nas", "open-source-readiness")
+        2 = @("licensing", "open-source-readiness")
+        3 = @("open-source-readiness", "unity", "validation")
+        5 = @("open-source-readiness", "validation")
     }
     $expectedIssueStates = @{
         1 = "closed"
-        2 = "open"
+        2 = "closed"
         3 = "closed"
-        5 = "open"
+        5 = "closed"
     }
     $expectedIssueBodySnippets = @{
         1 = @(
@@ -148,6 +150,7 @@ try {
             "tools/test-nas-access.ps1"
         )
         2 = @(
+            "Uncleared downloaded/third-party Unity asset folders are removed from the repo",
             "docs/third-party-assets.md",
             "docs/asset-disposition-tracker.md",
             "docs/inventory/unity-asset-disposition.csv",
@@ -172,6 +175,7 @@ try {
             "docs/inventory/unity-interactive-smoke-plan.csv"
         )
         5 = @(
+            "GitHub Pro or public visibility",
             "docs/github-branch-protection.md",
             "docs/inventory/github-branch-protection-status.csv",
             "tools/test-github-branch-protection.ps1",

@@ -74,10 +74,17 @@ try {
     $milestonesResponse = Invoke-RestMethod -Method Get -Uri "https://api.github.com/repos/$Repository/milestones?state=open&per_page=20" -Headers $headers
     $milestones = @(Expand-List $milestonesResponse)
     $releaseMilestone = $milestones | Where-Object { $_.title -eq "Public release readiness" } | Select-Object -First 1
-    Add-StateRow $rows "milestone" "public_release_readiness" ($(if ($releaseMilestone) { "open" } else { "missing" })) ($(if ($releaseMilestone) { "number=$($releaseMilestone.number); open_issues=$($releaseMilestone.open_issues)" } else { "not found" }))
 
     $issuesResponse = Invoke-RestMethod -Method Get -Uri "https://api.github.com/repos/$Repository/issues?state=all&per_page=100" -Headers $headers
     $issues = @(Expand-List $issuesResponse)
+    if ($releaseMilestone) {
+        $openMilestoneIssues = @($issues | Where-Object { $_.state -eq "open" -and $_.milestone -and $_.milestone.number -eq $releaseMilestone.number })
+        Add-StateRow $rows "milestone" "public_release_readiness" "open" "number=$($releaseMilestone.number); open_issue_query_count=$($openMilestoneIssues.Count); github_open_issues_field=$($releaseMilestone.open_issues)"
+    }
+    else {
+        Add-StateRow $rows "milestone" "public_release_readiness" "missing" "not found"
+    }
+
     foreach ($issueNumber in @(1, 2, 3, 5)) {
         $issue = $issues | Where-Object { $_.number -eq $issueNumber } | Select-Object -First 1
         if ($issue) {

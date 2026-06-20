@@ -1,6 +1,7 @@
 param(
     [string] $PublicAssetManifestPath = (Join-Path $PSScriptRoot "..\docs\inventory\unity-public-asset-manifest.csv"),
     [string] $RiskyReferencesPath = (Join-Path $PSScriptRoot "..\docs\inventory\unity-risky-asset-references.csv"),
+    [string] $ProjectPath = (Join-Path $PSScriptRoot "..\unity\21verse-vr-game-hub"),
     [string] $OutputPath = (Join-Path $PSScriptRoot "..\docs\inventory\unity-third-party-removal-status.csv")
 )
 
@@ -20,22 +21,31 @@ function Get-ByFolder {
 
 Push-Location $repoRoot
 try {
-    $manifestRows = @(Import-Csv -LiteralPath $PublicAssetManifestPath)
+    $manifestRows = if (Test-Path -LiteralPath $PublicAssetManifestPath) { @(Import-Csv -LiteralPath $PublicAssetManifestPath) } else { @() }
     $referenceRows = @(Import-Csv -LiteralPath $RiskyReferencesPath)
 
     $rows = [System.Collections.Generic.List[object]]::new()
-    foreach ($row in $manifestRows | Where-Object { $_.public_repo_treatment -match "exclude|replace" } | Sort-Object folder) {
-        $reference = Get-ByFolder -Rows $referenceRows -Folder $row.folder
+    foreach ($reference in $referenceRows | Sort-Object folder) {
+        $row = Get-ByFolder -Rows $manifestRows -Folder $reference.folder
         $referenceCount = if ($reference) { [int] $reference.external_reference_count } else { 0 }
+        $folderRelativePath = $reference.folder -replace '^Assets/', ''
+        $folderPath = Join-Path (Join-Path $ProjectPath "Assets") $folderRelativePath
+        $folderPresent = Test-Path -LiteralPath $folderPath
         $safeToDelete = $referenceCount -eq 0
-        $removalStatus = if ($safeToDelete) {
+        $removalStatus = if (-not $folderPresent) {
+            "removed_from_repo"
+        }
+        elseif ($safeToDelete) {
             "safe_to_remove_now"
         }
         else {
             "referenced_replace_before_removal"
         }
 
-        $nextAction = if ($safeToDelete) {
+        $nextAction = if (-not $folderPresent) {
+            "No bundled repo action remains; keep package/import notes only if a private user wants to reconstruct the old scene visuals."
+        }
+        elseif ($safeToDelete) {
             "Remove the folder and regenerate Unity asset inventories."
         }
         else {
@@ -43,9 +53,9 @@ try {
         }
 
         $rows.Add([PSCustomObject]@{
-            folder = $row.folder
-            public_repo_treatment = $row.public_repo_treatment
-            tracked_file_count = $row.tracked_file_count
+            folder = $reference.folder
+            public_repo_treatment = if ($row) { $row.public_repo_treatment } else { "removed_from_repo" }
+            tracked_file_count = if ($row) { $row.tracked_file_count } else { 0 }
             serialized_reference_count = $referenceCount
             safe_to_delete_now = ($(if ($safeToDelete) { "yes" } else { "no" }))
             removal_status = $removalStatus

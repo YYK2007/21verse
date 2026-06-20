@@ -1,6 +1,6 @@
 # Unity Dependencies and Asset Handoff
 
-This file separates reconstructable Unity Package Manager dependencies from bundled asset folders that need rights review before a public release.
+This file separates reconstructable Unity Package Manager dependencies from removed asset folders that should not be redistributed in the public source tree without rights evidence.
 
 ## Unity Version
 
@@ -36,9 +36,9 @@ These are declared in `Packages/manifest.json` and can be restored by Unity from
 
 The `com.unity.modules.*` entries in the manifest are built-in Unity modules and are not listed here individually.
 
-## Bundled Asset Folders Requiring Release Decisions
+## Removed Asset Folders
 
-These folders are committed in the private staging repo today. Before making the repository public, either confirm their redistribution rights in writing, replace them, or remove them and document import steps.
+These folders were present in the private staging project and were removed from the repository for public-release readiness. Reacquire/import them privately only if old visuals are needed, or replace them with original/verified redistributable assets.
 
 The source CSV for this table is regenerated with:
 
@@ -47,20 +47,20 @@ The source CSV for this table is regenerated with:
 .\tools\export-unity-risky-asset-references.ps1
 ```
 
-| Folder | Evidence in repo | Recommended public-release treatment |
+| Folder | Evidence found before removal | Public-release treatment |
 | --- | --- | --- |
-| `Assets/Fantasy Skybox FREE` | Readme/release notes identify it as a free Unity Asset Store package, version `1.6.5`; `.meta` files include `licenseType: Store`. | Do not assume public GitHub redistribution is allowed. Prefer remove and document Asset Store import, unless redistribution rights are confirmed. |
-| `Assets/Fresh_Raystore` | Package note points to a Unity Asset Store publisher page. | Treat as Asset Store content. Prefer remove and document import, unless redistribution rights are confirmed. |
-| `Assets/WOC` | Large model/texture pack with no license/readme found in the repo scan. | Confirm origin and rights. If unknown, replace or remove before public release. |
-| `Assets/Lana Studio` | Publisher-style folder name with no license/readme found in the repo scan. | Confirm origin and rights. If unknown, replace or remove before public release. |
-| `Assets/BuildingMaterials` | Contains downloaded-looking texture filenames, including marble/wood image assets. | Replace with original materials or verified redistributable textures before public release. |
-| `Assets/Samples` | XR Interaction Toolkit sample content. | Prefer documenting Unity Package Manager sample import steps instead of bundling sample content. |
-| `Assets/VRTemplateAssets` | Unity VR template-style assets. | Confirm whether these are Unity template/sample assets and whether bundling is permitted; otherwise document template import steps. |
-| `Assets/TextMesh Pro` | Includes TextMesh Pro assets and `LiberationSans - OFL.txt`. | Keep the font license with any retained font assets; prefer relying on the UPM package where possible. |
+| `Assets/Fantasy Skybox FREE` | Readme/release notes identify it as a free Unity Asset Store package, version `1.6.5`; `.meta` files include `licenseType: Store`. | Removed from repo; do not bundle unless redistribution rights are confirmed. |
+| `Assets/Fresh_Raystore` | Package note points to a Unity Asset Store publisher page. | Removed from repo; do not bundle unless redistribution rights are confirmed. |
+| `Assets/WOC` | Large model/texture pack with no license/readme found in the repo scan. | Removed from repo; replace with original or verified redistributable assets if rebuilt. |
+| `Assets/Lana Studio` | Publisher-style folder name with no license/readme found in the repo scan. | Removed from repo; replace with original or verified redistributable assets if rebuilt. |
+| `Assets/BuildingMaterials` | Contains downloaded-looking texture filenames, including marble/wood image assets. | Removed from repo; add only original or verified redistributable textures/materials. |
+| `Assets/Samples` | XR Interaction Toolkit sample content. | Removed from repo; reconstruct through Unity Package Manager samples only if needed. |
+| `Assets/VRTemplateAssets` | Unity VR template-style assets. | Removed from repo; reconstruct through Unity template/package setup only if needed. |
+| `Assets/TextMesh Pro` | Includes TextMesh Pro assets and `LiberationSans - OFL.txt`. | Removed from repo; rely on the UPM package unless bundled font files are deliberately reintroduced with notices. |
 
 ## Suggested Cleanup Path
 
-1. Keep project-specific folders such as `Assets/Scripts`, `Assets/Scenes`, `Assets/Prefabs`, `Assets/Sprites`, `Assets/XR`, `Assets/XRI`, `Assets/Settings`, `Assets/IdentifyingColors`, and `Assets/Comparision2D`.
-2. For each Asset Store/downloaded folder, decide: confirmed redistributable, replace with original placeholder, or remove and document install/import instructions.
-3. After removals or replacements, reopen the project in Unity `2022.3.25f1`, let it reimport, and smoke-test the scenes in `README.md`.
-4. Update `NOTICE.md`, `docs/third-party-assets.md`, and GitHub issue #2 with the final decision for each folder.
+1. Keep project-specific folders such as `Assets/Scripts`, `Assets/Scenes`, `Assets/Prefabs`, `Assets/XR`, `Assets/XRI`, `Assets/Settings`, `Assets/IdentifyingColors`, and `Assets/Comparision2D`.
+2. Keep removed Asset Store/downloaded/sample/template-style folders out of Git unless redistribution rights are confirmed in writing.
+3. After any future asset addition or replacement, reopen the project in Unity `2022.3.25f1`, let it reimport, and smoke-test the scenes in `README.md`.
+4. Update `NOTICE.md`, `docs/third-party-assets.md`, and GitHub issue #2 evidence if third-party assets are ever reintroduced.

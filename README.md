@@ -25,7 +25,7 @@ Important scenes live under:
 - `Assets/Scenes/NumberInequalitiesLevel.unity`
 - `Assets/Scenes/Cashier.unity`
 
-These listed scenes are 21Verse-developed learning/gameplay scene compositions from the curated project. The scene files, scripts, layout work, and educational interaction structure are treated as 21Verse project work in this private staging repo. Some visual/audio/template assets referenced by those scenes may still come from Unity packages, samples, Asset Store downloads, or other uncertain-rights folders, so those referenced assets remain blocked from public release until replaced, removed after references are cleared, or confirmed redistributable.
+These listed scenes are 21Verse-developed learning/gameplay scene compositions from the curated project. The scene files, scripts, layout work, and educational interaction structure are treated as 21Verse project work in this private staging repo. Downloaded, Asset Store, package sample, template-style, and uncertain-rights Unity asset folders were removed from the repository before public release prep; old visuals can be reconstructed privately only by reacquiring/importing the relevant assets outside this repo.
 
 Unity-generated folders such as `Library`, `Logs`, `Temp`, `Obj`, `Build`, `Builds`, and `UserSettings` are intentionally excluded.
 
@@ -68,7 +68,7 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `CODE_OF_CONDUCT.md`
 - `SUPPORT.md`
 - `CHANGELOG.md`
-- third-party Unity asset licenses under `unity/21verse-vr-game-hub/Assets`
+- Unity package dependencies and any newly added third-party Unity asset licenses
 
 To regenerate the Unity asset folder audit:
 
@@ -112,7 +112,8 @@ Private GitHub tracker issues:
 - [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)
 - [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2)
 - [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3)
+- [#5 Verify GitHub branch protection before public release](https://github.com/YYK2007/21verse_opensource/issues/5)
 
 ## License
 
-Code and 21Verse-developed scene compositions are staged under the MIT License in `LICENSE` unless another file-level notice says otherwise. Brand assets, screenshots, presentations, and third-party Unity assets may have separate ownership or license terms; see `NOTICE.md` and `docs/open-source-review.md`.
+Code and 21Verse-developed scene compositions are staged under the MIT License in `LICENSE` unless another file-level notice says otherwise. Brand assets, screenshots, presentations, and any future third-party Unity assets may have separate ownership or license terms; see `NOTICE.md` and `docs/open-source-review.md`.
