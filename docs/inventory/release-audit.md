@@ -1,6 +1,6 @@
 ﻿# Release Audit
 
-Generated: 2026-06-20 06:19:34 +03:00
+Generated: 2026-06-20 06:23:29 +03:00
 
 This audit is a local verification snapshot for the private staging repo. A `blocker` status means the repo must not be made public yet.
 
@@ -14,7 +14,7 @@ This audit is a local verification snapshot for the private staging repo. A `blo
 | Release evidence manifest | blocker | 9 release requirements tracked; 3 requirements are blocked: Review attached NAS Youssef Storage (#1); Complete interactive Unity/VR smoke testing (#3); Resolve Unity third-party asset rights (#2). | Resolve or document every blocked release requirement before changing visibility. |
 | Unity batchmode scene validation | pass | Scene validator script present: True; docs record zero missing script references: True. | Run tools/run-unity-scene-validation.ps1 and update docs/unity-validation.md. |
 | Unity interactive smoke testing | blocker | 5 Unity smoke-test status rows are not complete. | Open the project interactively, smoke-test README scenes, and update issue #3. |
-| Unity third-party asset release decisions | blocker | 18 asset folders audited; 9 folders still need rights/replacement decisions; 9 risky folders have serialized references; 9 asset disposition rows are pending. | Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps. |
+| Unity third-party asset release decisions | blocker | 18 asset folders audited; 9 folders still need rights/replacement decisions; 9 risky folders have serialized references; 9 asset disposition rows are pending; 9 pending folders have external import/removal handoff rows. | Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps. |
 | NAS review | blocker | NAS access log records: Get-SmbMapping: no active mapping for Youssef Storage/WDMyCloudEX4100; net use: no active connection; ARP: 192.168.0.104 reachable; NetBIOS: WDMYCLOUDEX4100 registered; Reverse DNS: WDMyCloudEX4100; Open TCP ports: 22 SSH; 80 HTTP; 139/445 SMB; Closed TCP ports: 21 FTP; 443 HTTPS; 548 AFP; 2049 NFS; SMB public share: blocked by Windows guest policy or invalid credential; SSH admin: batch mode denied; password required; WD web UI: HTTP 200 at root; obvious unauthenticated share APIs unavailable; 5 NAS review status rows are not complete. | Mount/authenticate to Youssef Storage / WDMyCloudEX4100 and inventory 21Verse files. |
 | Google Drive inventory | pass | 35 Google Drive rows inventoried. | Only export public-safe, redacted docs/decks when selected. |
 
