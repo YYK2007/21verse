@@ -95,7 +95,7 @@ try {
         "docs/inventory/google-drive-21verse.csv" = 1
         "docs/inventory/google-drive-release-plan.csv" = 1
         "docs/inventory/github-branch-protection-status.csv" = 5
-        "docs/inventory/release-requirements-status.csv" = 9
+        "docs/inventory/release-requirements-status.csv" = 10
         "docs/inventory/nas-review-status.csv" = 5
         "docs/inventory/unity-smoke-test-status.csv" = 5
         "docs/inventory/unity-pre-smoke-status.csv" = 7

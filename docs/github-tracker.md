@@ -15,6 +15,7 @@ The private GitHub tracker is configured for public-release readiness work.
 | [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1) | Complete NAS inventory/review. | Yes |
 | [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2) | Resolve asset rights, replacement, or removal decisions. | Yes |
 | [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3) | Complete interactive Unity/VR smoke testing. | Yes |
+| [#5 Verify GitHub branch protection before public release](https://github.com/YYK2007/21verse_opensource/issues/5) | Verify or configure `main` branch protection from a GitHub admin session. | Yes |
 
 ## Issue Evidence Sources
 
@@ -23,6 +24,7 @@ The private GitHub tracker is configured for public-release readiness work.
 | #1 | `docs/design-and-nas-inventory.md`, `docs/nas-review-runbook.md`, `docs/nas-review-checklist.md`, `docs/inventory/nas-review-status.csv` | NAS share access is still blocked; five NAS review status rows are not complete. |
 | #2 | `docs/third-party-assets.md`, `docs/asset-removal-plan.md`, `docs/asset-disposition-tracker.md`, `docs/inventory/unity-asset-disposition.csv` | Nine Unity asset disposition rows are still `pending`. |
 | #3 | `docs/unity-validation.md`, `docs/unity-smoke-test-checklist.md`, `docs/inventory/unity-smoke-test-status.csv` | Batchmode validation passed; five interactive smoke-test status rows are not complete. |
+| #5 | `docs/github-branch-protection.md`, `docs/inventory/github-branch-protection-status.csv`, `tools/test-github-branch-protection.ps1` | Branch protection endpoint returns `403 Forbidden`; admin verification is pending. |
 
 ## Issue Label Expectations
 
@@ -31,6 +33,7 @@ The private GitHub tracker is configured for public-release readiness work.
 | #1 | `blocker`, `nas`, `open-source-readiness` |
 | #2 | `blocker`, `licensing`, `open-source-readiness` |
 | #3 | `blocker`, `open-source-readiness`, `unity`, `validation` |
+| #5 | `blocker`, `open-source-readiness`, `validation` |
 
 ## Issue Body Evidence Expectations
 
@@ -39,6 +42,7 @@ The private GitHub tracker is configured for public-release readiness work.
 | #1 | `docs/design-and-nas-inventory.md`, `docs/nas-review-checklist.md`, `docs/inventory/nas-review-status.csv` |
 | #2 | `docs/third-party-assets.md`, `docs/asset-disposition-tracker.md`, `docs/inventory/unity-asset-disposition.csv` |
 | #3 | `docs/unity-validation.md`, `docs/unity-smoke-test-checklist.md`, `docs/inventory/unity-smoke-test-status.csv` |
+| #5 | `docs/github-branch-protection.md`, `docs/inventory/github-branch-protection-status.csv`, `tools/test-github-branch-protection.ps1` |
 
 ## Release Labels
 

@@ -132,6 +132,7 @@ try {
         1 = @("blocker", "nas", "open-source-readiness")
         2 = @("blocker", "licensing", "open-source-readiness")
         3 = @("blocker", "open-source-readiness", "unity", "validation")
+        5 = @("blocker", "open-source-readiness", "validation")
     }
     $expectedIssueBodySnippets = @{
         1 = @(
@@ -154,9 +155,14 @@ try {
             "docs/inventory/unity-smoke-test-status.csv",
             "docs/inventory/unity-pre-smoke-status.csv"
         )
+        5 = @(
+            "docs/github-branch-protection.md",
+            "docs/inventory/github-branch-protection-status.csv",
+            "tools/test-github-branch-protection.ps1"
+        )
     }
     $openIssues = @(Invoke-GitHubApi -Method Get -Uri "https://api.github.com/repos/$Repository/issues?state=open&per_page=50" -Headers $headers)
-    foreach ($issueNumber in @(1, 2, 3)) {
+    foreach ($issueNumber in @(1, 2, 3, 5)) {
         $issue = $openIssues | Where-Object { $_.number -eq $issueNumber } | Select-Object -First 1
         if (-not $issue) {
             Add-Failure "Required release tracker issue #$issueNumber is not open."

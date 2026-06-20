@@ -83,6 +83,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Review `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
    - Review `docs/github-metadata.md`.
    - Review `docs/github-branch-protection.md`.
+   - Resolve GitHub issue #5 and confirm branch protection status rows are `complete`.
    - Confirm the `Public release readiness` milestone has no open blocker issues.
    - Run a secret scan.
    - Confirm no non-LFS file exceeds GitHub's 100 MB limit.

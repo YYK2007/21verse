@@ -18,13 +18,14 @@ Machine-readable status is tracked in `docs/inventory/release-requirements-statu
 | Review Google Drive docs, decks, sheets, and Slides | complete for inventory; export decisions pending by design | `docs/google-drive-inventory.md`, `docs/google-drive-release-plan.md`, `docs/inventory/google-drive-21verse.csv`, `docs/inventory/google-drive-release-plan.csv` | Only redacted public-safe derivatives are exported; private rows remain excluded. |
 | Stage open-source governance and contributor docs | complete | `README.md`, `LICENSE`, `NOTICE.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `SUPPORT.md`, `CHANGELOG.md` | Public-facing governance files are present and reviewed before visibility changes. |
 | Stage GitHub repo configuration privately | complete | `docs/github-private-repo.md`, `docs/github-metadata.md`, `docs/github-tracker.md`, `.github/` | Private repo exists, metadata is documented, issue templates and hygiene workflow are staged. |
+| Verify GitHub branch protection before public release | blocked | `docs/github-branch-protection.md`, `docs/inventory/github-branch-protection-status.csv`, `tools/test-github-branch-protection.ps1` | A GitHub admin verifies `main` branch protection, required pull requests, required `Repo Hygiene` check, disabled force pushes, and disabled branch deletion. |
 | Keep repository private until release approval | complete and ongoing | `docs/github-private-repo.md`, `docs/public-release-runbook.md`, `docs/inventory/release-audit.md` | GitHub visibility remains private until the release audit has no blockers and the milestone is cleared. |
 
 ## Final Evidence Gate
 
 Before changing repository visibility to public:
 
-1. Resolve GitHub issues #1, #2, and #3.
+1. Resolve GitHub issues #1, #2, #3, and #5.
 2. Run the inventory and validation commands in `docs/public-release-runbook.md`.
 3. Run `tools/test-repo-hygiene.ps1`.
 4. Run `tools/run-release-audit.ps1`.
