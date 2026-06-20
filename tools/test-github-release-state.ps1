@@ -165,7 +165,8 @@ try {
         5 = @(
             "docs/github-branch-protection.md",
             "docs/inventory/github-branch-protection-status.csv",
-            "tools/test-github-branch-protection.ps1"
+            "tools/test-github-branch-protection.ps1",
+            "tools/set-github-branch-protection.ps1"
         )
     }
     $openIssues = @(Invoke-GitHubApi -Method Get -Uri "https://api.github.com/repos/$Repository/issues?state=open&per_page=50" -Headers $headers)
