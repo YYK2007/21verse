@@ -19,7 +19,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Final publication steps are documented in `docs/public-release-runbook.md`.
 - Public-repo governance docs and GitHub issue/PR templates are staged for release review.
 - Conduct, support, and changelog docs are staged for public release review.
-- Lightweight repository hygiene checks are staged in `.github/workflows/repo-hygiene.yml`.
+- Lightweight repository hygiene checks and a GitHub Actions private-visibility guard are staged in `.github/workflows/repo-hygiene.yml`.
 - Repository ownership and dependency-maintenance config are staged in `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
 - GitHub tracker milestone and labels are documented in `docs/github-tracker.md`.
 - GitHub repository metadata is documented in `docs/github-metadata.md`.

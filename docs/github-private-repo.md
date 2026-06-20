@@ -37,7 +37,7 @@ Expected state:
 - GitHub metadata matches `docs/github-metadata.md`.
 - Release evidence map is present at `docs/release-evidence-manifest.md`.
 - Git LFS is installed and tracks Unity binary/media assets.
-- `Repo Hygiene` GitHub Actions checks pass.
+- `Repo Hygiene` GitHub Actions checks pass, including the repository visibility guard.
 - `tools/test-github-release-state.ps1` passes from a Windows session with GitHub credentials.
 
 ## Private Tracker Issues

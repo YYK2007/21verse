@@ -71,5 +71,6 @@ Only after all release blockers are resolved:
 2. Confirm `docs/inventory/release-requirements-status.csv` has no `blocked` requirements.
 3. Confirm `docs/inventory/release-audit.md` reports no blockers.
 4. Confirm the `Public release readiness` milestone has no open blocker issues.
-5. Change GitHub repository visibility from private to public.
-6. Create a release announcement or tag only after visibility is public and verified.
+5. Remove or update the private-visibility guard in `tools/test-repo-hygiene.ps1` as part of the same reviewed release change.
+6. Change GitHub repository visibility from private to public.
+7. Create a release announcement or tag only after visibility is public and verified.

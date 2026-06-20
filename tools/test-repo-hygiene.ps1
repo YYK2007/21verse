@@ -74,6 +74,13 @@ try {
         }
     }
 
+    if ($env:GITHUB_EVENT_PATH -and (Test-Path -LiteralPath $env:GITHUB_EVENT_PATH)) {
+        $githubEvent = Get-Content -LiteralPath $env:GITHUB_EVENT_PATH -Raw | ConvertFrom-Json
+        if ($githubEvent.repository -and $githubEvent.repository.private -ne $true) {
+            Add-Failure "GitHub Actions visibility guard failed: repository is public, but release blockers are still tracked."
+        }
+    }
+
     $csvExpectations = @{
         "docs/inventory/google-drive-21verse.csv" = 1
         "docs/inventory/google-drive-release-plan.csv" = 1
