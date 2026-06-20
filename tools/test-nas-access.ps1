@@ -1,7 +1,22 @@
 param(
     [string] $HostName = "WDMyCloudEX4100",
     [string] $Address = "192.168.0.104",
-    [string] $OutputPath = (Join-Path $PSScriptRoot "..\docs\inventory\nas-access-log.csv")
+    [string] $OutputPath = (Join-Path $PSScriptRoot "..\docs\inventory\nas-access-log.csv"),
+    [string[]] $CandidateShares = @(
+        "Public",
+        "Shared",
+        "Share",
+        "Youssef",
+        "Youssef Storage",
+        "YoussefStorage",
+        "21verse",
+        "21Verse",
+        "homes",
+        "TimeMachineBackup",
+        "SmartWare",
+        "Backup"
+    ),
+    [int] $ShareProbeTimeoutSeconds = 8
 )
 
 $ErrorActionPreference = "Stop"
@@ -71,6 +86,46 @@ function Invoke-ExternalCommand {
     return [PSCustomObject]@{
         ExitCode = $exitCode
         Output = @($output | ForEach-Object { $_.ToString().Trim() } | Where-Object { $_ })
+    }
+}
+
+function Test-ShareRoot {
+    param(
+        [string] $Path,
+        [int] $TimeoutSeconds
+    )
+
+    $job = Start-Job -ScriptBlock {
+        param([string] $ProbePath)
+
+        Get-ChildItem -LiteralPath $ProbePath -ErrorAction Stop |
+            Select-Object -First 5 -ExpandProperty Name
+    } -ArgumentList $Path
+
+    try {
+        $completed = Wait-Job -Job $job -Timeout $TimeoutSeconds
+        if (-not $completed) {
+            Stop-Job -Job $job | Out-Null
+            return [PSCustomObject]@{
+                Listed = $false
+                Message = "timed out after $TimeoutSeconds seconds"
+            }
+        }
+
+        $items = @(Receive-Job -Job $job -ErrorAction Stop)
+        return [PSCustomObject]@{
+            Listed = $true
+            Message = "listed $($items.Count) entries: " + ($items -join "; ")
+        }
+    }
+    catch {
+        return [PSCustomObject]@{
+            Listed = $false
+            Message = "not listable: " + (($_.Exception.Message -replace "\s+", " ").Trim())
+        }
+    }
+    finally {
+        Remove-Job -Job $job -Force -ErrorAction SilentlyContinue
     }
 }
 
@@ -146,6 +201,19 @@ try {
                 $summary = "failed with exit code $($view.ExitCode)"
             }
             $rows.Add((New-Result "net view $viewTarget" $summary)) | Out-Null
+        }
+    }
+
+    $uniqueCandidateShares = @($CandidateShares |
+        Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
+        ForEach-Object { $_.Trim() } |
+        Select-Object -Unique)
+
+    foreach ($targetHost in @($Address, $HostName)) {
+        foreach ($share in $uniqueCandidateShares) {
+            $sharePath = "\\$targetHost\$share"
+            $shareResult = Test-ShareRoot -Path $sharePath -TimeoutSeconds $ShareProbeTimeoutSeconds
+            $rows.Add((New-Result "UNC share $sharePath" $shareResult.Message)) | Out-Null
         }
     }
 

@@ -25,7 +25,13 @@ Before retrying the full inventory, refresh the access log:
 .\tools\test-nas-access.ps1
 ```
 
-The probe writes `docs/inventory/nas-access-log.csv` and checks active SMB mappings, NetBIOS identity, common NAS ports, UNC root listing, `net view`, and the WD web UI root. It does not store credentials or copy NAS files. If OneDrive temporarily locks the tracked CSV, the script exits successfully and prints the temp CSV path it could not promote.
+The probe writes `docs/inventory/nas-access-log.csv` and checks active SMB mappings, NetBIOS identity, common NAS ports, UNC root listing, `net view`, common WD/MyCloud share names, and the WD web UI root. It does not store credentials, recurse into shares, or copy NAS files. If OneDrive temporarily locks the tracked CSV, the script exits successfully and prints the temp CSV path it could not promote.
+
+The built-in candidate share names include `Public`, `Shared`, `Youssef Storage`, `21Verse`, `homes`, `TimeMachineBackup`, and common WD backup names. To test a known share name without editing the script:
+
+```powershell
+.\tools\test-nas-access.ps1 -CandidateShares "ExactShareName","AnotherShare" -ShareProbeTimeoutSeconds 12
+```
 
 If you know the exact share name, test it directly:
 
