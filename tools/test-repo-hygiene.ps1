@@ -36,6 +36,7 @@ try {
         ".github/workflows/repo-hygiene.yml",
         "docs/release-readiness.md",
         "docs/release-evidence-manifest.md",
+        "docs/release-blocker-action-plan.md",
         "docs/public-release-runbook.md",
         "docs/public-release-file-plan.md",
         "docs/google-drive-public-manifest.md",
@@ -51,6 +52,7 @@ try {
         "docs/github-metadata.md",
         "docs/github-tracker.md",
         "docs/inventory/release-audit.md",
+        "docs/inventory/release-blocker-action-plan.csv",
         "docs/inventory/github-branch-protection-status.csv",
         "docs/inventory/release-requirements-status.csv",
         "docs/inventory/google-drive-21verse.csv",
@@ -72,6 +74,7 @@ try {
         "tools/set-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
         "tools/export-unity-pre-smoke-status.ps1",
+        "tools/export-release-blocker-action-plan.ps1",
         "tools/export-unity-interactive-smoke-plan.ps1",
         "tools/run-release-audit.ps1",
         "tools/export-nas-inventory.ps1",
@@ -110,6 +113,7 @@ try {
         "docs/inventory/google-drive-public-manifest.csv" = 1
         "docs/inventory/public-release-file-plan.csv" = 1
         "docs/inventory/github-branch-protection-status.csv" = 5
+        "docs/inventory/release-blocker-action-plan.csv" = 4
         "docs/inventory/release-requirements-status.csv" = 10
         "docs/inventory/nas-review-status.csv" = 5
         "docs/inventory/unity-smoke-test-status.csv" = 5
@@ -274,6 +278,22 @@ try {
     }
 
     $requirementRows = @(Import-Csv -LiteralPath "docs/inventory/release-requirements-status.csv")
+    $releaseBlockerActionRows = @(Import-Csv -LiteralPath "docs/inventory/release-blocker-action-plan.csv")
+    $blockedRequirementRowsForPlan = @($requirementRows | Where-Object { $_.status -eq "blocked" })
+    if ($releaseBlockerActionRows.Count -ne $blockedRequirementRowsForPlan.Count) {
+        Add-Failure "Release blocker action plan has $($releaseBlockerActionRows.Count) rows; expected $($blockedRequirementRowsForPlan.Count) blocked requirements."
+    }
+
+    foreach ($row in $releaseBlockerActionRows) {
+        if ([string]::IsNullOrWhiteSpace($row.requirement) -or
+            [string]::IsNullOrWhiteSpace($row.issue) -or
+            [string]::IsNullOrWhiteSpace($row.owner_action) -or
+            [string]::IsNullOrWhiteSpace($row.completion_evidence) -or
+            [string]::IsNullOrWhiteSpace($row.external_dependency)) {
+            Add-Failure "Release blocker action plan row '$($row.requirement)' is missing required handoff detail."
+        }
+    }
+
     $manifest = Get-Content -LiteralPath "docs/release-evidence-manifest.md" -Raw
     $comparableManifest = ConvertTo-ComparableText $manifest
     $allowedRequirementStatuses = @(

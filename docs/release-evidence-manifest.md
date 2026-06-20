@@ -5,6 +5,7 @@ This manifest is the reviewer-facing map from the original open-source preparati
 The repository must stay private until every required item below is either `complete` or deliberately excluded with a documented public-release rationale.
 
 Machine-readable status is tracked in `docs/inventory/release-requirements-status.csv`.
+Current blocked-requirement owner actions are tracked in `docs/inventory/release-blocker-action-plan.csv`.
 
 ## Evidence Map
 
@@ -27,9 +28,10 @@ Before changing repository visibility to public:
 
 1. Resolve GitHub issues #1, #2, #3, and #5.
 2. Run the inventory and validation commands in `docs/public-release-runbook.md`.
-3. Run `tools/test-repo-hygiene.ps1`.
-4. Run `tools/run-release-audit.ps1`.
-5. Confirm `docs/inventory/release-audit.md` reports no blockers.
-6. Confirm GitHub Actions are green on `main`.
+3. Regenerate `docs/inventory/release-blocker-action-plan.csv` with `tools/export-release-blocker-action-plan.ps1`.
+4. Run `tools/test-repo-hygiene.ps1`.
+5. Run `tools/run-release-audit.ps1`.
+6. Confirm `docs/inventory/release-audit.md` reports no blockers.
+7. Confirm GitHub Actions are green on `main`.
 
 If any evidence source above contradicts the release audit, treat the repo as not ready and update the audit or source document before publication.

@@ -23,6 +23,7 @@ This repository is private and staged for a future open-source release. Do not m
 - The tracked-file public release dry run is tracked in `docs/public-release-file-plan.md` and `docs/inventory/public-release-file-plan.csv`.
 - Current local release gate snapshot is in `docs/inventory/release-audit.md`.
 - Release evidence is mapped in `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements-status.csv`.
+- Current blocker owner actions are generated in `docs/release-blocker-action-plan.md` and `docs/inventory/release-blocker-action-plan.csv`.
 - Final publication steps are documented in `docs/public-release-runbook.md`.
 - Public-repo governance docs and GitHub issue/PR templates are staged for release review.
 - Conduct, support, and changelog docs are staged for public release review.
@@ -82,6 +83,7 @@ This repository is private and staged for a future open-source release. Do not m
 5. Final repo hygiene
    - Follow `docs/public-release-runbook.md`.
    - Review `docs/release-evidence-manifest.md`.
+   - Review `docs/release-blocker-action-plan.md`.
    - Confirm `docs/inventory/release-requirements-status.csv` has no `blocked` rows.
    - Run `tools/test-repo-hygiene.ps1`.
    - Run `tools/run-release-audit.ps1`.

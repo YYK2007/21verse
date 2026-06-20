@@ -85,6 +85,7 @@ try {
         "docs/unity-validation.md",
         "docs/release-readiness.md",
         "docs/release-evidence-manifest.md",
+        "docs/release-blocker-action-plan.md",
         "docs/public-release-runbook.md",
         "docs/public-release-file-plan.md",
         "docs/google-drive-public-manifest.md",
@@ -102,6 +103,7 @@ try {
         "docs/inventory/google-drive-public-manifest.csv",
         "docs/inventory/public-release-file-plan.csv",
         "docs/inventory/github-branch-protection-status.csv",
+        "docs/inventory/release-blocker-action-plan.csv",
         "docs/inventory/release-requirements-status.csv",
         "docs/inventory/local-design-summary.csv",
         "docs/inventory/nas-access-log.csv",
@@ -120,6 +122,7 @@ try {
         "tools/test-github-branch-protection.ps1",
         "tools/set-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
+        "tools/export-release-blocker-action-plan.ps1",
         "tools/export-unity-pre-smoke-status.ps1",
         "tools/export-unity-interactive-smoke-plan.ps1",
         "tools/export-unity-asset-replacement-worklist.ps1",
@@ -133,13 +136,14 @@ try {
 
     $requirementRows = @(Import-Csv -LiteralPath "docs/inventory/release-requirements-status.csv")
     $blockedRequirements = @($requirementRows | Where-Object { $_.status -eq "blocked" })
+    $releaseBlockerActionRows = @(Import-Csv -LiteralPath "docs/inventory/release-blocker-action-plan.csv")
     $blockedRequirementNames = if ($blockedRequirements.Count -eq 0) {
         "none"
     }
     else {
         ($blockedRequirements | ForEach-Object { "$($_.requirement) ($($_.issue))" }) -join "; "
     }
-    Add-Gate $gates "Release evidence manifest" ($(if ($blockedRequirements.Count -eq 0) { "pass" } else { "blocker" })) "$($requirementRows.Count) release requirements tracked; $($blockedRequirements.Count) requirements are blocked: $blockedRequirementNames." "Resolve or document every blocked release requirement before changing visibility."
+    Add-Gate $gates "Release evidence manifest" ($(if ($blockedRequirements.Count -eq 0) { "pass" } else { "blocker" })) "$($requirementRows.Count) release requirements tracked; $($blockedRequirements.Count) requirements are blocked: $blockedRequirementNames; $($releaseBlockerActionRows.Count) blocker action rows generated." "Resolve or document every blocked release requirement before changing visibility."
 
     $sceneValidator = Test-Path -LiteralPath "tools/run-unity-scene-validation.ps1"
     $unityValidation = Select-String -LiteralPath "docs/unity-validation.md" -Pattern "zero missing script references" -Quiet
