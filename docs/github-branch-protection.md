@@ -11,7 +11,7 @@ Desired state before public release:
 
 - `main` is protected.
 - Pull requests are required before merging.
-- The `Repo Hygiene` check is required before merge.
+- The `Repository hygiene` check from the `Repo Hygiene` workflow is required before merge.
 - Conversations are resolved before merge.
 - Force pushes are disabled.
 - Deletions are disabled.
@@ -26,3 +26,13 @@ To refresh the local handoff evidence, run:
 ```
 
 The script probes `GET /repos/YYK2007/21verse_opensource/branches/main/protection` and rewrites `docs/inventory/github-branch-protection-status.csv`. If the current credential still lacks admin access, the CSV remains an explicit admin-verification handoff instead of silently claiming protection is configured.
+
+To apply the desired settings from a GitHub admin session without changing repository visibility:
+
+```powershell
+.\tools\set-github-branch-protection.ps1
+.\tools\set-github-branch-protection.ps1 -Apply
+.\tools\test-github-branch-protection.ps1
+```
+
+The first command is a dry run that prints the JSON payload. The `-Apply` command sends `PUT /repos/YYK2007/21verse_opensource/branches/main/protection` and requires an admin-capable GitHub credential.

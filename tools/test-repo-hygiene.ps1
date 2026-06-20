@@ -61,6 +61,7 @@ try {
         "docs/inventory/unity-asset-replacement-worklist.csv",
         "tools/test-github-release-state.ps1",
         "tools/test-github-branch-protection.ps1",
+        "tools/set-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
         "tools/export-unity-pre-smoke-status.ps1",
         "tools/run-release-audit.ps1",

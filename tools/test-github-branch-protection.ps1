@@ -61,8 +61,9 @@ try {
         if ($protection.required_status_checks -and $protection.required_status_checks.contexts) {
             $contexts = @($protection.required_status_checks.contexts)
         }
-        $repoHygieneRequired = $contexts -contains "Repo Hygiene"
-        $rows.Add((New-StatusRow "repo_hygiene_required" ($(if ($repoHygieneRequired) { "complete" } else { "missing" })) ($(if ($contexts.Count -gt 0) { "Required contexts: " + ($contexts -join "; ") } else { "No required status-check contexts returned." })) "Require the Repo Hygiene status check before merge.")) | Out-Null
+        $acceptedRepoHygieneContexts = @("Repository hygiene", "Repo Hygiene")
+        $repoHygieneRequired = @($acceptedRepoHygieneContexts | Where-Object { $contexts -contains $_ }).Count -gt 0
+        $rows.Add((New-StatusRow "repo_hygiene_required" ($(if ($repoHygieneRequired) { "complete" } else { "missing" })) ($(if ($contexts.Count -gt 0) { "Required contexts: " + ($contexts -join "; ") } else { "No required status-check contexts returned." })) "Require the Repository hygiene status check before merge.")) | Out-Null
 
         $allowsForcePushes = $false
         if ($protection.allow_force_pushes -and $null -ne $protection.allow_force_pushes.enabled) {
@@ -92,7 +93,7 @@ try {
 
         $rows.Add((New-StatusRow "main_protection_endpoint" "blocked" $endpointEvidence "Verify branch protection from a GitHub admin session.")) | Out-Null
         $rows.Add((New-StatusRow "pull_request_required" "pending_admin_verification" "Not inspected from this session." "Require pull requests before merging to main.")) | Out-Null
-        $rows.Add((New-StatusRow "repo_hygiene_required" "pending_admin_verification" "Not inspected from this session." "Require the Repo Hygiene status check before merge.")) | Out-Null
+        $rows.Add((New-StatusRow "repo_hygiene_required" "pending_admin_verification" "Not inspected from this session." "Require the Repository hygiene status check before merge.")) | Out-Null
         $rows.Add((New-StatusRow "force_pushes_disabled" "pending_admin_verification" "Not inspected from this session." "Confirm force pushes are disabled on main.")) | Out-Null
         $rows.Add((New-StatusRow "branch_deletions_disabled" "pending_admin_verification" "Not inspected from this session." "Confirm branch deletion is disabled on main.")) | Out-Null
     }

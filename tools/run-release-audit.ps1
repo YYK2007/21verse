@@ -45,7 +45,7 @@ try {
         })
     Add-Gate $gates "Non-LFS >100 MB file check" ($(if ($largeFiles.Count -eq 0) { "pass" } else { "blocker" })) ($(if ($largeFiles.Count -eq 0) { "No non-generated files over 100 MB found." } else { ($largeFiles | ForEach-Object { "$($_.FullName) ($($_.Length) bytes)" }) -join "; " })) "Move oversized files to Git LFS or remove them."
 
-    $secretMatches = @(rg -n --hidden -S "(api[_-]?key|secret|password|passwd|token|client_secret|private_key|BEGIN RSA|BEGIN PRIVATE|ghp_|AIza|sk-[A-Za-z0-9])" --glob "!.git/**" --glob "!docs/inventory/generated/**" --glob "!docs/inventory/release-audit.md" --glob "!tools/run-release-audit.ps1" --glob "!tools/test-repo-hygiene.ps1" --glob "!tools/test-github-release-state.ps1" --glob "!tools/test-github-branch-protection.ps1" --glob "!tools/test-nas-access.ps1" . 2>$null)
+    $secretMatches = @(rg -n --hidden -S "(api[_-]?key|secret|password|passwd|token|client_secret|private_key|BEGIN RSA|BEGIN PRIVATE|ghp_|AIza|sk-[A-Za-z0-9])" --glob "!.git/**" --glob "!docs/inventory/generated/**" --glob "!docs/inventory/release-audit.md" --glob "!tools/run-release-audit.ps1" --glob "!tools/test-repo-hygiene.ps1" --glob "!tools/test-github-release-state.ps1" --glob "!tools/test-github-branch-protection.ps1" --glob "!tools/set-github-branch-protection.ps1" --glob "!tools/test-nas-access.ps1" . 2>$null)
     $unexpectedSecrets = @($secretMatches | Where-Object {
         $_ -notmatch '^\.\\\.gitignore:' -and
         $_ -notmatch '^\.\\SECURITY\.md:' -and
@@ -110,6 +110,7 @@ try {
         "docs/inventory/unity-projects.csv",
         "tools/test-github-release-state.ps1",
         "tools/test-github-branch-protection.ps1",
+        "tools/set-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
         "tools/export-unity-pre-smoke-status.ps1",
         "tools/export-unity-asset-replacement-worklist.ps1",
