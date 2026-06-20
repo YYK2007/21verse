@@ -1,6 +1,6 @@
 ﻿# Release Audit
 
-Generated: 2026-06-20 06:52:13 +03:00
+Generated: 2026-06-20 06:55:42 +03:00
 
 This audit is a local verification snapshot for the private staging repo. A `blocker` status means the repo must not be made public yet.
 
@@ -11,7 +11,7 @@ This audit is a local verification snapshot for the private staging repo. A `blo
 | Non-LFS >100 MB file check | pass | No non-generated files over 100 MB found. | Move oversized files to Git LFS or remove them. |
 | Secret scan | pass | Only expected documentation matches found. | Investigate and remove any real secret material. |
 | Required handoff docs | pass | All expected handoff docs and inventories are present. | Restore missing docs. |
-| Release evidence manifest | blocker | 9 release requirements tracked; 3 requirements are blocked: Review attached NAS Youssef Storage (#1); Complete interactive Unity/VR smoke testing (#3); Resolve Unity third-party asset rights (#2). | Resolve or document every blocked release requirement before changing visibility. |
+| Release evidence manifest | blocker | 10 release requirements tracked; 4 requirements are blocked: Review attached NAS Youssef Storage (#1); Complete interactive Unity/VR smoke testing (#3); Resolve Unity third-party asset rights (#2); Verify GitHub branch protection before public release (#5). | Resolve or document every blocked release requirement before changing visibility. |
 | Unity batchmode scene validation | pass | Scene validator script present: True; docs record zero missing script references: True. | Run tools/run-unity-scene-validation.ps1 and update docs/unity-validation.md. |
 | Unity interactive smoke testing | blocker | 5 Unity smoke-test status rows are not complete; 7 of 7 README scenes pass automated pre-smoke structural checks. | Open the project interactively, smoke-test README scenes, and update issue #3. |
 | Unity third-party asset release decisions | blocker | 18 asset folders audited; 9 folders still need rights/replacement decisions; 9 risky folders have serialized references; 57 scene/prefab/material replacement worklist rows are tracked; 9 asset disposition rows are pending; 9 pending folders have external import/removal handoff rows. | Resolve issue #2 by confirming rights, replacing referenced assets, removing assets, or documenting import steps. |
