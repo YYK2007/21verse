@@ -108,6 +108,36 @@ try {
         }
     }
 
+    $assetDispositionRowsForImportCheck = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-disposition.csv")
+    $externalImportRows = @(Import-Csv -LiteralPath "docs/inventory/unity-external-imports.csv")
+    $externalImportFolders = @($externalImportRows | ForEach-Object { $_.folder })
+    $pendingDispositionFolders = @($assetDispositionRowsForImportCheck |
+        Where-Object { $_.release_decision -eq "pending" } |
+        ForEach-Object { $_.folder })
+
+    foreach ($folder in $pendingDispositionFolders) {
+        if ($externalImportFolders -notcontains $folder) {
+            Add-Failure "Pending Unity asset disposition folder '$folder' is missing from docs/inventory/unity-external-imports.csv."
+        }
+    }
+
+    foreach ($row in $externalImportRows) {
+        if ($pendingDispositionFolders -notcontains $row.folder) {
+            Add-Failure "Unity external import row '$($row.folder)' does not correspond to a pending asset disposition row."
+        }
+
+        if ([string]::IsNullOrWhiteSpace($row.source_type) -or
+            [string]::IsNullOrWhiteSpace($row.source_evidence) -or
+            [string]::IsNullOrWhiteSpace($row.preferred_public_release_treatment) -or
+            [string]::IsNullOrWhiteSpace($row.import_or_replacement_path)) {
+            Add-Failure "Unity external import row '$($row.folder)' is missing required handoff detail."
+        }
+
+        if ($row.issue -ne "#2") {
+            Add-Failure "Unity external import row '$($row.folder)' is linked to '$($row.issue)', expected '#2'."
+        }
+    }
+
     $requirementRows = @(Import-Csv -LiteralPath "docs/inventory/release-requirements-status.csv")
     $manifest = Get-Content -LiteralPath "docs/release-evidence-manifest.md" -Raw
     $comparableManifest = ConvertTo-ComparableText $manifest

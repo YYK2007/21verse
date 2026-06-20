@@ -142,7 +142,9 @@ try {
         2 = @(
             "docs/third-party-assets.md",
             "docs/asset-disposition-tracker.md",
-            "docs/inventory/unity-asset-disposition.csv"
+            "docs/inventory/unity-asset-disposition.csv",
+            "docs/unity-external-imports.md",
+            "docs/inventory/unity-external-imports.csv"
         )
         3 = @(
             "docs/unity-validation.md",
