@@ -9,6 +9,8 @@ Source inventories:
 - `docs/inventory/unity-asset-disposition.csv`
 - `docs/inventory/unity-external-imports.csv`
 - `docs/inventory/unity-asset-replacement-worklist.csv`
+- `docs/inventory/unity-public-asset-manifest.csv`
+- `docs/public-asset-manifest.md`
 
 ## Policy
 
@@ -34,5 +36,6 @@ Source inventories:
 ## Completion Rule
 
 Use `docs/unity-external-imports.md` to decide whether each unresolved folder is imported externally, replaced, removed, or retained with confirmed rights.
+Use `docs/public-asset-manifest.md` for the generated keep/exclude/replacement map that should guide the eventual public branch cut.
 
 Issue #2 can close only when every row in `docs/inventory/unity-asset-disposition.csv` has a non-`pending` `release_decision`, the resulting asset/reference inventories have been regenerated, `NOTICE.md` reflects retained third-party material, and Unity scene validation still passes.

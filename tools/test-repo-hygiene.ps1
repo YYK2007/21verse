@@ -44,6 +44,7 @@ try {
         "docs/github-branch-protection.md",
         "docs/asset-disposition-tracker.md",
         "docs/unity-external-imports.md",
+        "docs/public-asset-manifest.md",
         "docs/github-metadata.md",
         "docs/github-tracker.md",
         "docs/inventory/release-audit.md",
@@ -59,6 +60,7 @@ try {
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
         "docs/inventory/unity-asset-replacement-worklist.csv",
+        "docs/inventory/unity-public-asset-manifest.csv",
         "tools/test-github-release-state.ps1",
         "tools/test-github-branch-protection.ps1",
         "tools/set-github-branch-protection.ps1",
@@ -67,6 +69,7 @@ try {
         "tools/run-release-audit.ps1",
         "tools/export-nas-inventory.ps1",
         "tools/export-unity-asset-replacement-worklist.ps1",
+        "tools/export-public-asset-manifest.ps1",
         "tools/run-unity-scene-validation.ps1"
     )
 
@@ -103,6 +106,7 @@ try {
         "docs/inventory/unity-asset-audit.csv" = 18
         "docs/inventory/unity-asset-disposition.csv" = 9
         "docs/inventory/unity-external-imports.csv" = 9
+        "docs/inventory/unity-public-asset-manifest.csv" = 18
         "docs/inventory/unity-risky-asset-references.csv" = 9
         "docs/inventory/unity-asset-replacement-worklist.csv" = 47
         "docs/inventory/unity-projects.csv" = 1
@@ -187,6 +191,23 @@ try {
 
         if ($row.issue -ne "#2") {
             Add-Failure "Unity external import row '$($row.folder)' is linked to '$($row.issue)', expected '#2'."
+        }
+    }
+
+    $publicAssetManifestRows = @(Import-Csv -LiteralPath "docs/inventory/unity-public-asset-manifest.csv")
+    $auditFolders = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-audit.csv" | ForEach-Object { $_.folder })
+    $manifestFolders = @($publicAssetManifestRows | ForEach-Object { $_.folder })
+    foreach ($folder in $auditFolders) {
+        if ($manifestFolders -notcontains $folder) {
+            Add-Failure "Unity public asset manifest is missing audited folder '$folder'."
+        }
+    }
+
+    foreach ($row in $publicAssetManifestRows) {
+        if ([string]::IsNullOrWhiteSpace($row.public_repo_treatment) -or
+            [string]::IsNullOrWhiteSpace($row.public_release_resolution) -or
+            [string]::IsNullOrWhiteSpace($row.validation_required)) {
+            Add-Failure "Unity public asset manifest row '$($row.folder)' is missing release handoff detail."
         }
     }
 

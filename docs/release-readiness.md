@@ -17,6 +17,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Scene/prefab/material replacement work for risky Unity assets is tracked in `docs/inventory/unity-asset-replacement-worklist.csv`.
 - Unity asset release decisions are tracked in `docs/asset-disposition-tracker.md` and `docs/inventory/unity-asset-disposition.csv`.
 - Unity external import/removal paths are tracked in `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
+- Unity public asset keep/exclude/replacement treatment is tracked in `docs/public-asset-manifest.md` and `docs/inventory/unity-public-asset-manifest.csv`.
 - Current local release gate snapshot is in `docs/inventory/release-audit.md`.
 - Release evidence is mapped in `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements-status.csv`.
 - Final publication steps are documented in `docs/public-release-runbook.md`.
@@ -49,6 +50,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Review the UPM/package and bundled asset handoff in `docs/unity-dependencies.md`.
    - Review the external import/removal handoff in `docs/unity-external-imports.md`.
    - Follow `docs/asset-removal-plan.md` for replacement/removal sequencing.
+   - Use `docs/public-asset-manifest.md` and `docs/inventory/unity-public-asset-manifest.csv` as the keep/exclude/replacement map for the eventual public branch cut.
    - Resolve all `pending` rows in `docs/inventory/unity-asset-disposition.csv`.
    - Resolve all high-priority items in `docs/third-party-assets.md`.
    - Remove or replace any asset that cannot be redistributed in a public source repo.
