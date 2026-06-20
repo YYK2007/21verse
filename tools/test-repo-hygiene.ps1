@@ -217,6 +217,16 @@ try {
         if ($row.status -eq "blocked" -and [string]::IsNullOrWhiteSpace($row.issue)) {
             Add-Failure "Blocked release requirement '$($row.requirement)' is not linked to a tracker issue."
         }
+
+        $evidencePaths = @($row.evidence -split ';' |
+            ForEach-Object { $_.Trim() } |
+            Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+
+        foreach ($path in $evidencePaths) {
+            if (-not (Test-Path -LiteralPath $path)) {
+                Add-Failure "Release requirement '$($row.requirement)' references missing evidence path '$path'."
+            }
+        }
     }
 
     $trackedGenerated = @(git ls-files |
