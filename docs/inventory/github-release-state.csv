@@ -1,5 +1,4 @@
 "area","setting","status","evidence"
-"git","local_head","complete","local=05fc6d1a1b4c5f6cdf56eb12203629d5463099a3; origin/main=05fc6d1a1b4c5f6cdf56eb12203629d5463099a3"
 "repository","visibility","private","private=True"
 "repository","default_branch","complete","default_branch=main"
 "repository","issues_enabled","complete","has_issues=True"
@@ -11,4 +10,4 @@
 "issue","#2","open","title=Blocker: Confirm third-party Unity asset redistribution rights; labels=blocker; licensing; open-source-readiness; milestone=Public release readiness"
 "issue","#3","open","title=Validation: Open curated Unity project and smoke test main scenes; labels=blocker; open-source-readiness; unity; validation; milestone=Public release readiness"
 "issue","#5","open","title=Blocker: Verify GitHub branch protection before public release; labels=blocker; open-source-readiness; validation; milestone=Public release readiness"
-"actions","repo_hygiene_head","success","status=completed; conclusion=success; sha=05fc6d1a1b4c5f6cdf56eb12203629d5463099a3"
+"actions","repo_hygiene_latest_completed","success","conclusion=success; sha=a461fd29bec2eb27a4365675449fb9b21927a140"

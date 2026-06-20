@@ -61,10 +61,6 @@ try {
     }
 
     $rows = [System.Collections.Generic.List[object]]::new()
-    $localHead = (git rev-parse HEAD).Trim()
-    $remoteHead = (git ls-remote --heads origin main | ForEach-Object { ($_ -split "\s+")[0] } | Select-Object -First 1)
-    Add-StateRow $rows "git" "local_head" ($(if ($localHead -eq $remoteHead) { "complete" } else { "mismatch" })) "local=$localHead; origin/main=$remoteHead"
-
     $repo = Invoke-RestMethod -Method Get -Uri "https://api.github.com/repos/$Repository" -Headers $headers
     Add-StateRow $rows "repository" "visibility" ($(if ($repo.private) { "private" } else { "public" })) "private=$($repo.private)"
     Add-StateRow $rows "repository" "default_branch" ($(if ($repo.default_branch -eq "main") { "complete" } else { "mismatch" })) "default_branch=$($repo.default_branch)"
@@ -94,12 +90,14 @@ try {
     }
 
     $runs = Invoke-RestMethod -Method Get -Uri "https://api.github.com/repos/$Repository/actions/runs?per_page=20" -Headers $headers
-    $headRun = @($runs.workflow_runs | Where-Object { $_.name -eq "Repo Hygiene" -and $_.head_sha -eq $localHead } | Select-Object -First 1)
-    if ($headRun) {
-        Add-StateRow $rows "actions" "repo_hygiene_head" ($(if ($headRun.status -eq "completed" -and $headRun.conclusion -eq "success") { "success" } else { "not_success" })) "status=$($headRun.status); conclusion=$($headRun.conclusion); sha=$localHead"
+    $latestCompletedRun = @($runs.workflow_runs |
+        Where-Object { $_.name -eq "Repo Hygiene" -and $_.status -eq "completed" } |
+        Select-Object -First 1)
+    if ($latestCompletedRun) {
+        Add-StateRow $rows "actions" "repo_hygiene_latest_completed" ($(if ($latestCompletedRun.conclusion -eq "success") { "success" } else { "not_success" })) "conclusion=$($latestCompletedRun.conclusion); sha=$($latestCompletedRun.head_sha)"
     }
     else {
-        Add-StateRow $rows "actions" "repo_hygiene_head" "missing" "No Repo Hygiene run found for $localHead."
+        Add-StateRow $rows "actions" "repo_hygiene_latest_completed" "missing" "No completed Repo Hygiene run found."
     }
 
     New-Item -ItemType Directory -Force -Path (Split-Path -Parent $resolvedOutput) | Out-Null

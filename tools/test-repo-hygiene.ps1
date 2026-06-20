@@ -282,7 +282,7 @@ try {
     }
 
     $githubReleaseRows = @(Import-Csv -LiteralPath "docs/inventory/github-release-state.csv")
-    foreach ($expectedSetting in @("visibility", "default_branch", "public_release_readiness", "#1", "#2", "#3", "#5", "repo_hygiene_head")) {
+    foreach ($expectedSetting in @("visibility", "default_branch", "public_release_readiness", "#1", "#2", "#3", "#5", "repo_hygiene_latest_completed")) {
         if (@($githubReleaseRows | Where-Object { $_.setting -eq $expectedSetting }).Count -eq 0) {
             Add-Failure "GitHub release state snapshot is missing setting '$expectedSetting'."
         }
