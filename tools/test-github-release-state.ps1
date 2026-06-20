@@ -133,6 +133,23 @@ try {
         2 = @("blocker", "licensing", "open-source-readiness")
         3 = @("blocker", "open-source-readiness", "unity", "validation")
     }
+    $expectedIssueBodySnippets = @{
+        1 = @(
+            "docs/design-and-nas-inventory.md",
+            "docs/nas-review-checklist.md",
+            "docs/inventory/nas-review-status.csv"
+        )
+        2 = @(
+            "docs/third-party-assets.md",
+            "docs/asset-disposition-tracker.md",
+            "docs/inventory/unity-asset-disposition.csv"
+        )
+        3 = @(
+            "docs/unity-validation.md",
+            "docs/unity-smoke-test-checklist.md",
+            "docs/inventory/unity-smoke-test-status.csv"
+        )
+    }
     $openIssues = @(Invoke-GitHubApi -Method Get -Uri "https://api.github.com/repos/$Repository/issues?state=open&per_page=50" -Headers $headers)
     foreach ($issueNumber in @(1, 2, 3)) {
         $issue = $openIssues | Where-Object { $_.number -eq $issueNumber } | Select-Object -First 1
@@ -149,6 +166,12 @@ try {
         foreach ($expectedLabel in $expectedIssueLabels[$issueNumber]) {
             if ($actualIssueLabels -notcontains $expectedLabel) {
                 Add-Failure "Release tracker issue #$issueNumber is missing label '$expectedLabel'."
+            }
+        }
+
+        foreach ($snippet in $expectedIssueBodySnippets[$issueNumber]) {
+            if ($issue.body -notlike "*$snippet*") {
+                Add-Failure "Release tracker issue #$issueNumber body is missing evidence reference '$snippet'."
             }
         }
     }

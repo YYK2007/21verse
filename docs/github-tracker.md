@@ -32,6 +32,14 @@ The private GitHub tracker is configured for public-release readiness work.
 | #2 | `blocker`, `licensing`, `open-source-readiness` |
 | #3 | `blocker`, `open-source-readiness`, `unity`, `validation` |
 
+## Issue Body Evidence Expectations
+
+| Issue | Required evidence references |
+| --- | --- |
+| #1 | `docs/design-and-nas-inventory.md`, `docs/nas-review-checklist.md`, `docs/inventory/nas-review-status.csv` |
+| #2 | `docs/third-party-assets.md`, `docs/asset-disposition-tracker.md`, `docs/inventory/unity-asset-disposition.csv` |
+| #3 | `docs/unity-validation.md`, `docs/unity-smoke-test-checklist.md`, `docs/inventory/unity-smoke-test-status.csv` |
+
 ## Release Labels
 
 | Label | Meaning |
@@ -45,4 +53,4 @@ The private GitHub tracker is configured for public-release readiness work.
 
 The repository should not be made public while this milestone has open blocker issues.
 
-`tools/test-github-release-state.ps1` verifies these release labels, issue label expectations, the milestone, required open issues, private visibility, metadata, and the latest `Repo Hygiene` result from a Windows session with GitHub credentials.
+`tools/test-github-release-state.ps1` verifies these release labels, issue label expectations, issue body evidence references, the milestone, required open issues, private visibility, metadata, and the latest `Repo Hygiene` result from a Windows session with GitHub credentials.
