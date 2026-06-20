@@ -24,6 +24,14 @@ The private GitHub tracker is configured for public-release readiness work.
 | #2 | `docs/third-party-assets.md`, `docs/asset-removal-plan.md`, `docs/asset-disposition-tracker.md`, `docs/inventory/unity-asset-disposition.csv` | Nine Unity asset disposition rows are still `pending`. |
 | #3 | `docs/unity-validation.md`, `docs/unity-smoke-test-checklist.md`, `docs/inventory/unity-smoke-test-status.csv` | Batchmode validation passed; five interactive smoke-test status rows are not complete. |
 
+## Issue Label Expectations
+
+| Issue | Required labels |
+| --- | --- |
+| #1 | `blocker`, `nas`, `open-source-readiness` |
+| #2 | `blocker`, `licensing`, `open-source-readiness` |
+| #3 | `blocker`, `open-source-readiness`, `unity`, `validation` |
+
 ## Release Labels
 
 | Label | Meaning |
@@ -37,4 +45,4 @@ The private GitHub tracker is configured for public-release readiness work.
 
 The repository should not be made public while this milestone has open blocker issues.
 
-`tools/test-github-release-state.ps1` verifies these release labels, the milestone, required open issues, private visibility, metadata, and the latest `Repo Hygiene` result from a Windows session with GitHub credentials.
+`tools/test-github-release-state.ps1` verifies these release labels, issue label expectations, the milestone, required open issues, private visibility, metadata, and the latest `Repo Hygiene` result from a Windows session with GitHub credentials.

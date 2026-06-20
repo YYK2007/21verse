@@ -128,6 +128,11 @@ try {
         Add-Failure "Public release readiness milestone is not open as expected."
     }
 
+    $expectedIssueLabels = @{
+        1 = @("blocker", "nas", "open-source-readiness")
+        2 = @("blocker", "licensing", "open-source-readiness")
+        3 = @("blocker", "open-source-readiness", "unity", "validation")
+    }
     $openIssues = @(Invoke-GitHubApi -Method Get -Uri "https://api.github.com/repos/$Repository/issues?state=open&per_page=50" -Headers $headers)
     foreach ($issueNumber in @(1, 2, 3)) {
         $issue = $openIssues | Where-Object { $_.number -eq $issueNumber } | Select-Object -First 1
@@ -138,6 +143,13 @@ try {
 
         if ($issue.milestone.number -ne 1) {
             Add-Failure "Release tracker issue #$issueNumber is not assigned to milestone 1."
+        }
+
+        $actualIssueLabels = @($issue.labels | ForEach-Object { $_.name })
+        foreach ($expectedLabel in $expectedIssueLabels[$issueNumber]) {
+            if ($actualIssueLabels -notcontains $expectedLabel) {
+                Add-Failure "Release tracker issue #$issueNumber is missing label '$expectedLabel'."
+            }
         }
     }
 
