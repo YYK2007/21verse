@@ -94,6 +94,27 @@ try {
         }
     }
 
+    $expectedLabels = @{
+        "blocker" = "Must be resolved before public release"
+        "open-source-readiness" = "Work required for future public open-source release"
+        "licensing" = "Licensing, attribution, or redistribution rights review"
+        "nas" = "Youssef Storage / WDMyCloudEX4100 inventory and review"
+        "unity" = "Unity project, scenes, packages, or assets"
+        "validation" = "Validation, smoke testing, or release audit work"
+    }
+    $labels = @(Invoke-GitHubApi -Method Get -Uri "https://api.github.com/repos/$Repository/labels?per_page=100" -Headers $headers)
+    foreach ($entry in $expectedLabels.GetEnumerator()) {
+        $label = $labels | Where-Object { $_.name -eq $entry.Key } | Select-Object -First 1
+        if (-not $label) {
+            Add-Failure "GitHub label '$($entry.Key)' is missing."
+            continue
+        }
+
+        if ($label.description -ne $entry.Value) {
+            Add-Failure "GitHub label '$($entry.Key)' has description '$($label.description)', expected '$($entry.Value)'."
+        }
+    }
+
     $milestone = Invoke-GitHubApi -Method Get -Uri "https://api.github.com/repos/$Repository/milestones/1" -Headers $headers
     if ($milestone.title -ne "Public release readiness" -or $milestone.state -ne "open") {
         Add-Failure "Public release readiness milestone is not open as expected."

@@ -36,3 +36,5 @@ The private GitHub tracker is configured for public-release readiness work.
 | `validation` | Validation, smoke testing, or release audit work. |
 
 The repository should not be made public while this milestone has open blocker issues.
+
+`tools/test-github-release-state.ps1` verifies these release labels, the milestone, required open issues, private visibility, metadata, and the latest `Repo Hygiene` result from a Windows session with GitHub credentials.
