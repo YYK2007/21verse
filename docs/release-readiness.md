@@ -13,6 +13,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Unity `2022.3.25f1` batchmode project open/import passed for `unity/21verse-vr-game-hub`, and all listed scenes open in batchmode with zero missing script references; see `docs/unity-validation.md`.
 - Interactive Unity/VR smoke-test status is tracked in `docs/unity-smoke-test-checklist.md` and `docs/inventory/unity-smoke-test-status.csv`.
 - Unity pre-smoke structural status is tracked in `docs/inventory/unity-pre-smoke-status.csv`.
+- Scene-level interactive Unity smoke-test planning is tracked in `docs/unity-interactive-smoke-plan.md` and `docs/inventory/unity-interactive-smoke-plan.csv`.
 - Unity bundled asset folders have a machine-readable audit in `docs/inventory/unity-asset-audit.csv`.
 - Risky Unity asset references are mapped in `docs/inventory/unity-risky-asset-references.csv` and summarized in `docs/asset-removal-plan.md`.
 - Scene/prefab/material replacement work for risky Unity assets is tracked in `docs/inventory/unity-asset-replacement-worklist.csv`.
@@ -64,6 +65,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Batchmode open/import with Unity `2022.3.25f1` passed on 2026-06-19.
    - Batchmode scene-open validation passed for all main scenes with zero missing script references.
    - Regenerate `docs/inventory/unity-pre-smoke-status.csv` with `tools/export-unity-pre-smoke-status.ps1`.
+   - Regenerate `docs/inventory/unity-interactive-smoke-plan.csv` with `tools/export-unity-interactive-smoke-plan.ps1`.
    - Load and smoke-test the main scenes listed in `README.md`.
    - Review shader fallback warnings seen during import.
    - Mark every row in `docs/inventory/unity-smoke-test-status.csv` as `complete`.

@@ -157,7 +157,9 @@ try {
             "docs/unity-validation.md",
             "docs/unity-smoke-test-checklist.md",
             "docs/inventory/unity-smoke-test-status.csv",
-            "docs/inventory/unity-pre-smoke-status.csv"
+            "docs/inventory/unity-pre-smoke-status.csv",
+            "docs/unity-interactive-smoke-plan.md",
+            "docs/inventory/unity-interactive-smoke-plan.csv"
         )
         5 = @(
             "docs/github-branch-protection.md",

@@ -91,6 +91,7 @@ try {
         "docs/nas-review-runbook.md",
         "docs/nas-review-checklist.md",
         "docs/unity-smoke-test-checklist.md",
+        "docs/unity-interactive-smoke-plan.md",
         "docs/repository-maintenance.md",
         "docs/github-branch-protection.md",
         "docs/github-private-repo.md",
@@ -107,6 +108,7 @@ try {
         "docs/inventory/nas-review-status.csv",
         "docs/inventory/unity-smoke-test-status.csv",
         "docs/inventory/unity-pre-smoke-status.csv",
+        "docs/inventory/unity-interactive-smoke-plan.csv",
         "docs/inventory/unity-asset-disposition.csv",
         "docs/inventory/unity-external-imports.csv",
         "docs/inventory/unity-asset-audit.csv",
@@ -119,6 +121,7 @@ try {
         "tools/set-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
         "tools/export-unity-pre-smoke-status.ps1",
+        "tools/export-unity-interactive-smoke-plan.ps1",
         "tools/export-unity-asset-replacement-worklist.ps1",
         "tools/export-public-asset-manifest.ps1",
         "tools/export-public-release-file-plan.ps1",
@@ -146,7 +149,12 @@ try {
     $openUnitySmokeSteps = @($unitySmokeRows | Where-Object { $_.status -ne "complete" })
     $preSmokeRows = @(Import-Csv -LiteralPath "docs/inventory/unity-pre-smoke-status.csv")
     $readyPreSmokeRows = @($preSmokeRows | Where-Object { $_.status -eq "ready_for_interactive_smoke" })
-    Add-Gate $gates "Unity interactive smoke testing" ($(if ($openUnitySmokeSteps.Count -eq 0) { "pass" } else { "blocker" })) "$($openUnitySmokeSteps.Count) Unity smoke-test status rows are not complete; $($readyPreSmokeRows.Count) of $($preSmokeRows.Count) README scenes pass automated pre-smoke structural checks." "Open the project interactively, smoke-test README scenes, and update issue #3."
+    $interactiveSmokePlanRows = @(Import-Csv -LiteralPath "docs/inventory/unity-interactive-smoke-plan.csv")
+    $interactiveSmokeRiskRefs = 0
+    foreach ($row in $interactiveSmokePlanRows) {
+        $interactiveSmokeRiskRefs += [int]$row.risky_asset_reference_count
+    }
+    Add-Gate $gates "Unity interactive smoke testing" ($(if ($openUnitySmokeSteps.Count -eq 0) { "pass" } else { "blocker" })) "$($openUnitySmokeSteps.Count) Unity smoke-test status rows are not complete; $($readyPreSmokeRows.Count) of $($preSmokeRows.Count) README scenes pass automated pre-smoke structural checks; $($interactiveSmokePlanRows.Count) scene-level interactive smoke plan rows track $interactiveSmokeRiskRefs risky asset references to inspect visually." "Open the project interactively, smoke-test README scenes, and update issue #3."
 
     $assetAuditRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-audit.csv")
     $assetReferenceRows = @(Import-Csv -LiteralPath "docs/inventory/unity-risky-asset-references.csv")

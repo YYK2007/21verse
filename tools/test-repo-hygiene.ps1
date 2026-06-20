@@ -42,6 +42,7 @@ try {
         "docs/nas-review-runbook.md",
         "docs/nas-review-checklist.md",
         "docs/unity-smoke-test-checklist.md",
+        "docs/unity-interactive-smoke-plan.md",
         "docs/repository-maintenance.md",
         "docs/github-branch-protection.md",
         "docs/asset-disposition-tracker.md",
@@ -59,6 +60,7 @@ try {
         "docs/inventory/nas-review-status.csv",
         "docs/inventory/unity-smoke-test-status.csv",
         "docs/inventory/unity-pre-smoke-status.csv",
+        "docs/inventory/unity-interactive-smoke-plan.csv",
         "docs/inventory/unity-asset-disposition.csv",
         "docs/inventory/unity-external-imports.csv",
         "docs/inventory/unity-asset-audit.csv",
@@ -70,6 +72,7 @@ try {
         "tools/set-github-branch-protection.ps1",
         "tools/test-nas-access.ps1",
         "tools/export-unity-pre-smoke-status.ps1",
+        "tools/export-unity-interactive-smoke-plan.ps1",
         "tools/run-release-audit.ps1",
         "tools/export-nas-inventory.ps1",
         "tools/export-google-drive-public-manifest.ps1",
@@ -111,6 +114,7 @@ try {
         "docs/inventory/nas-review-status.csv" = 5
         "docs/inventory/unity-smoke-test-status.csv" = 5
         "docs/inventory/unity-pre-smoke-status.csv" = 7
+        "docs/inventory/unity-interactive-smoke-plan.csv" = 7
         "docs/inventory/unity-asset-audit.csv" = 18
         "docs/inventory/unity-asset-disposition.csv" = 9
         "docs/inventory/unity-external-imports.csv" = 9
@@ -176,6 +180,16 @@ try {
     foreach ($row in $preSmokeRows) {
         if ($row.status -ne "ready_for_interactive_smoke") {
             Add-Failure "Unity pre-smoke row '$($row.scene)' is not ready: $($row.notes)"
+        }
+    }
+
+    $interactiveSmokePlanRows = @(Import-Csv -LiteralPath "docs/inventory/unity-interactive-smoke-plan.csv")
+    foreach ($row in $interactiveSmokePlanRows) {
+        if ($row.status -ne "pending_interactive_smoke" -or
+            $row.issue -ne "#3" -or
+            [string]::IsNullOrWhiteSpace($row.required_manual_checks) -or
+            [string]::IsNullOrWhiteSpace($row.pass_condition)) {
+            Add-Failure "Unity interactive smoke plan row '$($row.scene)' is missing required manual validation detail."
         }
     }
 

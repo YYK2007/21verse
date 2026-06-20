@@ -7,14 +7,18 @@ Source evidence:
 - `docs/unity-validation.md`
 - `tools/run-unity-scene-validation.ps1`
 - `tools/export-unity-pre-smoke-status.ps1`
+- `tools/export-unity-interactive-smoke-plan.ps1`
 - `docs/inventory/unity-smoke-test-status.csv`
 - `docs/inventory/unity-pre-smoke-status.csv`
+- `docs/inventory/unity-interactive-smoke-plan.csv`
 
 ## Current State
 
 Unity `2022.3.25f1` batchmode project open/import and scene-open validation passed for the curated project. Interactive Unity/VR smoke testing is still pending and must happen before the repository is made public.
 
 Automated pre-smoke structural checks are tracked in `docs/inventory/unity-pre-smoke-status.csv`. These checks confirm scene files, enabled build-settings entries, and XR scene markers, but they do not replace interactive Unity/VR smoke testing.
+
+The scene-by-scene manual smoke plan is tracked in `docs/inventory/unity-interactive-smoke-plan.csv` and summarized in `docs/unity-interactive-smoke-plan.md`.
 
 ## Completion Checklist
 
