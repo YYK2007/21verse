@@ -43,6 +43,7 @@ try {
         "docs/repository-maintenance.md",
         "docs/github-branch-protection.md",
         "docs/asset-disposition-tracker.md",
+        "docs/unity-external-imports.md",
         "docs/github-metadata.md",
         "docs/github-tracker.md",
         "docs/inventory/release-audit.md",
@@ -53,6 +54,7 @@ try {
         "docs/inventory/nas-review-status.csv",
         "docs/inventory/unity-smoke-test-status.csv",
         "docs/inventory/unity-asset-disposition.csv",
+        "docs/inventory/unity-external-imports.csv",
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
         "tools/test-github-release-state.ps1",
@@ -92,6 +94,7 @@ try {
         "docs/inventory/unity-smoke-test-status.csv" = 5
         "docs/inventory/unity-asset-audit.csv" = 18
         "docs/inventory/unity-asset-disposition.csv" = 9
+        "docs/inventory/unity-external-imports.csv" = 9
         "docs/inventory/unity-risky-asset-references.csv" = 9
         "docs/inventory/unity-projects.csv" = 1
     }

@@ -49,6 +49,7 @@ This repo is private-ready, not public-published. Before changing visibility to 
 - `docs/asset-removal-plan.md`
 - `docs/asset-disposition-tracker.md`
 - `docs/unity-dependencies.md`
+- `docs/unity-external-imports.md`
 - `docs/third-party-assets.md`
 - `docs/release-readiness.md`
 - `docs/release-evidence-manifest.md`

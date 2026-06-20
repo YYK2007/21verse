@@ -10,6 +10,7 @@ This file separates reconstructable Unity Package Manager dependencies from bund
 - Package lock: `unity/21verse-vr-game-hub/Packages/packages-lock.json`
 - Bundled asset audit: `docs/inventory/unity-asset-audit.csv`
 - Risky asset reference audit: `docs/inventory/unity-risky-asset-references.csv`
+- External import handoff: `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`
 
 ## Direct Unity Package Manager Dependencies
 

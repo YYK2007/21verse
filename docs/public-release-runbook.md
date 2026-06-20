@@ -19,13 +19,14 @@ Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements
 
 1. Review `docs/inventory/unity-asset-audit.csv`.
 2. Review `docs/inventory/unity-risky-asset-references.csv`.
-3. Follow `docs/asset-removal-plan.md`.
-4. For every high-risk asset folder, choose one final action:
+3. Review `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
+4. Follow `docs/asset-removal-plan.md`.
+5. For every high-risk asset folder, choose one final action:
    - confirm public source redistribution rights,
    - replace with original or verified redistributable assets,
    - remove and document import/acquisition steps.
-5. Update `NOTICE.md`, `docs/third-party-assets.md`, and `docs/unity-dependencies.md`.
-6. Close or update issue #2.
+6. Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-disposition-tracker.md`.
+7. Close or update issue #2.
 
 ## 3. Final Unity Validation
 

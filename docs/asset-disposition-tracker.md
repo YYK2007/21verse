@@ -7,6 +7,7 @@ Source inventories:
 - `docs/inventory/unity-asset-audit.csv`
 - `docs/inventory/unity-risky-asset-references.csv`
 - `docs/inventory/unity-asset-disposition.csv`
+- `docs/inventory/unity-external-imports.csv`
 
 ## Policy
 
@@ -30,5 +31,7 @@ Source inventories:
 | `Assets/VRTemplateAssets` | Confirm template/sample redistribution terms or document import steps. | `pending` | Document Unity template/sample import steps or replace template prefabs with project-owned XR setup assets. |
 
 ## Completion Rule
+
+Use `docs/unity-external-imports.md` to decide whether each unresolved folder is imported externally, replaced, removed, or retained with confirmed rights.
 
 Issue #2 can close only when every row in `docs/inventory/unity-asset-disposition.csv` has a non-`pending` `release_decision`, the resulting asset/reference inventories have been regenerated, `NOTICE.md` reflects retained third-party material, and Unity scene validation still passes.
