@@ -147,7 +147,9 @@ try {
             "docs/inventory/unity-asset-disposition.csv",
             "docs/inventory/unity-asset-replacement-worklist.csv",
             "docs/unity-external-imports.md",
-            "docs/inventory/unity-external-imports.csv"
+            "docs/inventory/unity-external-imports.csv",
+            "docs/public-asset-manifest.md",
+            "docs/inventory/unity-public-asset-manifest.csv"
         )
         3 = @(
             "docs/unity-validation.md",
