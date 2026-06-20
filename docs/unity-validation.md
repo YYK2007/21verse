@@ -16,6 +16,8 @@ Unity opened the curated project, rebuilt the local `Library` cache, imported as
 
 The raw Unity batchmode log was not committed because it contains local machine and Unity licensing metadata. The local log also reported shader fallback warnings for several URP and Shader Graph materials; these should be reviewed during the interactive scene smoke test, but they did not prevent the batchmode import from completing.
 
+Automated pre-smoke structural checks are tracked in `docs/inventory/unity-pre-smoke-status.csv` and regenerated with `tools/export-unity-pre-smoke-status.ps1`. They confirm scene presence, build-settings inclusion, and XR scene markers before interactive testing.
+
 ## Scene Validation
 
 `SceneValidation.ValidateConfiguredScenes` opened each listed scene in Unity batchmode and checked for missing script components.
@@ -46,3 +48,4 @@ Open the project interactively in Unity `2022.3.25f1` and smoke-test these proje
 
 Track remaining work in GitHub issue #3.
 Detailed interactive smoke-test status is tracked in `docs/unity-smoke-test-checklist.md` and `docs/inventory/unity-smoke-test-status.csv`.
+Pre-smoke structural status is tracked in `docs/inventory/unity-pre-smoke-status.csv`.

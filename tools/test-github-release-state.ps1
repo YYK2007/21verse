@@ -150,7 +150,8 @@ try {
         3 = @(
             "docs/unity-validation.md",
             "docs/unity-smoke-test-checklist.md",
-            "docs/inventory/unity-smoke-test-status.csv"
+            "docs/inventory/unity-smoke-test-status.csv",
+            "docs/inventory/unity-pre-smoke-status.csv"
         )
     }
     $openIssues = @(Invoke-GitHubApi -Method Get -Uri "https://api.github.com/repos/$Repository/issues?state=open&per_page=50" -Headers $headers)

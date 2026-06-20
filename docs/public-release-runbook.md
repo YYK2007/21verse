@@ -36,6 +36,7 @@ Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements
 4. Run:
 
 ```powershell
+.\tools\export-unity-pre-smoke-status.ps1
 .\tools\run-unity-scene-validation.ps1
 ```
 

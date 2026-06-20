@@ -101,6 +101,7 @@ try {
         "docs/inventory/nas-access-log.csv",
         "docs/inventory/nas-review-status.csv",
         "docs/inventory/unity-smoke-test-status.csv",
+        "docs/inventory/unity-pre-smoke-status.csv",
         "docs/inventory/unity-asset-disposition.csv",
         "docs/inventory/unity-external-imports.csv",
         "docs/inventory/unity-asset-audit.csv",
@@ -108,6 +109,7 @@ try {
         "docs/inventory/unity-projects.csv",
         "tools/test-github-release-state.ps1",
         "tools/test-nas-access.ps1",
+        "tools/export-unity-pre-smoke-status.ps1",
         "tools/export-nas-inventory.ps1"
     )
     $missingFiles = @($requiredFiles | Where-Object { -not (Test-Path -LiteralPath $_) })
@@ -129,7 +131,9 @@ try {
 
     $unitySmokeRows = @(Import-Csv -LiteralPath "docs/inventory/unity-smoke-test-status.csv")
     $openUnitySmokeSteps = @($unitySmokeRows | Where-Object { $_.status -ne "complete" })
-    Add-Gate $gates "Unity interactive smoke testing" ($(if ($openUnitySmokeSteps.Count -eq 0) { "pass" } else { "blocker" })) "$($openUnitySmokeSteps.Count) Unity smoke-test status rows are not complete." "Open the project interactively, smoke-test README scenes, and update issue #3."
+    $preSmokeRows = @(Import-Csv -LiteralPath "docs/inventory/unity-pre-smoke-status.csv")
+    $readyPreSmokeRows = @($preSmokeRows | Where-Object { $_.status -eq "ready_for_interactive_smoke" })
+    Add-Gate $gates "Unity interactive smoke testing" ($(if ($openUnitySmokeSteps.Count -eq 0) { "pass" } else { "blocker" })) "$($openUnitySmokeSteps.Count) Unity smoke-test status rows are not complete; $($readyPreSmokeRows.Count) of $($preSmokeRows.Count) README scenes pass automated pre-smoke structural checks." "Open the project interactively, smoke-test README scenes, and update issue #3."
 
     $assetAuditRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-audit.csv")
     $assetReferenceRows = @(Import-Csv -LiteralPath "docs/inventory/unity-risky-asset-references.csv")
