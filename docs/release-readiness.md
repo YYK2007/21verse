@@ -14,6 +14,7 @@ This repository is private and staged for a future open-source release. Do not m
 - Unity pre-smoke structural status is tracked in `docs/inventory/unity-pre-smoke-status.csv`.
 - Unity bundled asset folders have a machine-readable audit in `docs/inventory/unity-asset-audit.csv`.
 - Risky Unity asset references are mapped in `docs/inventory/unity-risky-asset-references.csv` and summarized in `docs/asset-removal-plan.md`.
+- Scene/prefab/material replacement work for risky Unity assets is tracked in `docs/inventory/unity-asset-replacement-worklist.csv`.
 - Unity asset release decisions are tracked in `docs/asset-disposition-tracker.md` and `docs/inventory/unity-asset-disposition.csv`.
 - Unity external import/removal paths are tracked in `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
 - Current local release gate snapshot is in `docs/inventory/release-audit.md`.
@@ -43,6 +44,7 @@ This repository is private and staged for a future open-source release. Do not m
 2. Unity asset licensing
    - Regenerate `docs/inventory/unity-asset-audit.csv` with `tools/export-unity-asset-audit.ps1` after asset changes.
    - Regenerate `docs/inventory/unity-risky-asset-references.csv` with `tools/export-unity-risky-asset-references.ps1` after asset changes.
+   - Regenerate `docs/inventory/unity-asset-replacement-worklist.csv` with `tools/export-unity-asset-replacement-worklist.ps1`.
    - Review the UPM/package and bundled asset handoff in `docs/unity-dependencies.md`.
    - Review the external import/removal handoff in `docs/unity-external-imports.md`.
    - Follow `docs/asset-removal-plan.md` for replacement/removal sequencing.

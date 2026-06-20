@@ -7,17 +7,21 @@ Source audits:
 - `docs/inventory/unity-asset-audit.csv`
 - `docs/inventory/unity-risky-asset-references.csv`
 - `docs/inventory/unity-asset-disposition.csv`
+- `docs/inventory/unity-asset-replacement-worklist.csv`
 
 Regenerate them with:
 
 ```powershell
 .\tools\export-unity-asset-audit.ps1
 .\tools\export-unity-risky-asset-references.ps1
+.\tools\export-unity-asset-replacement-worklist.ps1
 ```
 
 ## Current Finding
 
 Every high-risk bundled asset folder has serialized references from scenes, prefabs, or materials. Do not delete these folders blindly. Remove or replace them in Unity, rerun scene validation, and confirm all README scenes still open with zero missing scripts or broken material references.
+
+Use `docs/inventory/unity-asset-replacement-worklist.csv` as the scene/prefab/material worklist. It expands the folder-level reference audit into one row per referenced serialized file and carries forward the pending disposition, import/replacement path, validation requirement, and GitHub issue link.
 
 ## Folder-Level Plan
 
@@ -45,6 +49,7 @@ Every high-risk bundled asset folder has serialized references from scenes, pref
 ```powershell
 .\tools\export-unity-asset-audit.ps1
 .\tools\export-unity-risky-asset-references.ps1
+.\tools\export-unity-asset-replacement-worklist.ps1
 .\tools\run-unity-scene-validation.ps1
 .\tools\run-release-audit.ps1
 ```

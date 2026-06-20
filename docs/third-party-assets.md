@@ -7,7 +7,7 @@ It is not legal advice. Treat every item below as needing owner/license confirma
 For Unity Package Manager dependencies and a public-release handoff plan, see `docs/unity-dependencies.md`.
 For the external import/removal handoff, see `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
 For the machine-readable folder audit, see `docs/inventory/unity-asset-audit.csv`.
-For serialized scene/prefab reference impact and removal sequencing, see `docs/asset-removal-plan.md` and `docs/inventory/unity-risky-asset-references.csv`.
+For serialized scene/prefab reference impact and removal sequencing, see `docs/asset-removal-plan.md`, `docs/inventory/unity-risky-asset-references.csv`, and `docs/inventory/unity-asset-replacement-worklist.csv`.
 For folder-level release decisions, see `docs/asset-disposition-tracker.md` and `docs/inventory/unity-asset-disposition.csv`.
 
 ## High-Priority Review Items

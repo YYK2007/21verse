@@ -19,14 +19,15 @@ Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements
 
 1. Review `docs/inventory/unity-asset-audit.csv`.
 2. Review `docs/inventory/unity-risky-asset-references.csv`.
-3. Review `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
-4. Follow `docs/asset-removal-plan.md`.
-5. For every high-risk asset folder, choose one final action:
+3. Review `docs/inventory/unity-asset-replacement-worklist.csv`.
+4. Review `docs/unity-external-imports.md` and `docs/inventory/unity-external-imports.csv`.
+5. Follow `docs/asset-removal-plan.md`.
+6. For every high-risk asset folder, choose one final action:
    - confirm public source redistribution rights,
    - replace with original or verified redistributable assets,
    - remove and document import/acquisition steps.
-6. Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-disposition-tracker.md`.
-7. Close or update issue #2.
+7. Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-disposition-tracker.md`.
+8. Close or update issue #2.
 
 ## 3. Final Unity Validation
 
@@ -56,6 +57,7 @@ Run:
 ```powershell
 .\tools\export-unity-asset-audit.ps1
 .\tools\export-unity-risky-asset-references.ps1
+.\tools\export-unity-asset-replacement-worklist.ps1
 .\tools\export-google-drive-release-plan.ps1
 .\tools\test-repo-hygiene.ps1
 .\tools\run-release-audit.ps1

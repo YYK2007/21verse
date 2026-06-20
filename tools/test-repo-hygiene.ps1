@@ -58,11 +58,13 @@ try {
         "docs/inventory/unity-external-imports.csv",
         "docs/inventory/unity-asset-audit.csv",
         "docs/inventory/unity-risky-asset-references.csv",
+        "docs/inventory/unity-asset-replacement-worklist.csv",
         "tools/test-github-release-state.ps1",
         "tools/test-nas-access.ps1",
         "tools/export-unity-pre-smoke-status.ps1",
         "tools/run-release-audit.ps1",
         "tools/export-nas-inventory.ps1",
+        "tools/export-unity-asset-replacement-worklist.ps1",
         "tools/run-unity-scene-validation.ps1"
     )
 
@@ -100,6 +102,7 @@ try {
         "docs/inventory/unity-asset-disposition.csv" = 9
         "docs/inventory/unity-external-imports.csv" = 9
         "docs/inventory/unity-risky-asset-references.csv" = 9
+        "docs/inventory/unity-asset-replacement-worklist.csv" = 47
         "docs/inventory/unity-projects.csv" = 1
     }
 
@@ -109,6 +112,26 @@ try {
             if ($rows.Count -lt $entry.Value) {
                 Add-Failure "CSV $($entry.Key) has $($rows.Count) rows; expected at least $($entry.Value)."
             }
+        }
+    }
+
+    $referenceRowsForWorklistCheck = @(Import-Csv -LiteralPath "docs/inventory/unity-risky-asset-references.csv")
+    $worklistRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-replacement-worklist.csv")
+    $expectedWorklistCount = 0
+    foreach ($row in $referenceRowsForWorklistCheck) {
+        $expectedWorklistCount += @($row.referenced_by -split ';' | Where-Object { -not [string]::IsNullOrWhiteSpace($_.Trim()) }).Count
+    }
+
+    if ($worklistRows.Count -ne $expectedWorklistCount) {
+        Add-Failure "Unity asset replacement worklist has $($worklistRows.Count) rows; expected $expectedWorklistCount from unity-risky-asset-references.csv."
+    }
+
+    foreach ($row in $worklistRows) {
+        if ([string]::IsNullOrWhiteSpace($row.folder) -or
+            [string]::IsNullOrWhiteSpace($row.referenced_file) -or
+            [string]::IsNullOrWhiteSpace($row.recommended_action) -or
+            $row.issue -ne "#2") {
+            Add-Failure "Unity asset replacement worklist row for '$($row.folder)' / '$($row.referenced_file)' is missing required release handoff detail."
         }
     }
 

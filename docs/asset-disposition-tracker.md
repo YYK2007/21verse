@@ -8,6 +8,7 @@ Source inventories:
 - `docs/inventory/unity-risky-asset-references.csv`
 - `docs/inventory/unity-asset-disposition.csv`
 - `docs/inventory/unity-external-imports.csv`
+- `docs/inventory/unity-asset-replacement-worklist.csv`
 
 ## Policy
 
