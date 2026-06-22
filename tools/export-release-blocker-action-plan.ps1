@@ -44,7 +44,7 @@ function Get-BlockerDetail {
                 OwnerAction = "Run branch protection apply/verification from a GitHub admin session without changing repo visibility."
                 LocalNextCommand = ".\tools\set-github-branch-protection.ps1; .\tools\set-github-branch-protection.ps1 -Apply; .\tools\test-github-branch-protection.ps1"
                 CompletionEvidence = "docs/inventory/github-branch-protection-status.csv has all rows complete."
-                ExternalDependency = "GitHub credential with admin access to YYK2007/21verse_opensource."
+                ExternalDependency = "GitHub credential with admin access to YYK2007/21verse."
             }
         }
         default {

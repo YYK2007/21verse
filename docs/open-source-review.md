@@ -1,6 +1,6 @@
 # Open-Source Review
 
-Status: private staging repository prepared on 2026-06-19.
+Status: public open-source release prepared from the curated 21Verse project.
 
 ## Included
 
@@ -18,25 +18,24 @@ Status: private staging repository prepared on 2026-06-19.
 - Investor, partner, testing, pilot, financial, and outreach documents unless explicitly sanitized later.
 - Backup archives and duplicate project zips/rar files.
 
-## Publication Blockers
+## Release Decisions
 
-- Third-party Unity assets need license review before public release. See `docs/third-party-assets.md`.
-- The main scenes are 21Verse-developed compositions, but some referenced assets inside those scenes are downloaded/third-party/sample/template content and must be replaced, removed after references are cleared, or confirmed redistributable.
-- Brand assets are included for private staging, but public reuse terms should be stated before release.
+- Downloaded, Asset Store, sample, template, and uncertain-rights Unity asset folders were removed from the public release. See `docs/third-party-assets.md`.
+- The main scenes are 21Verse-developed compositions. Public redistribution covers the 21Verse scene/script/layout work in this repo, not any private excluded asset imports.
+- Brand assets are included as selected public-facing 21Verse materials; reuse terms are stated in `NOTICE.md`.
 - The Google Drive materials contain business, research, testing, and financial files. Keep them out of the public repo unless redacted.
-- Confirm whether MIT is the desired code license before making the repo public.
-- Push to a private GitHub repository after the repo exists. See `docs/github-private-repo.md`.
-- Review private tracker issues before public release:
-  - https://github.com/YYK2007/21verse_opensource/issues/1
-  - https://github.com/YYK2007/21verse_opensource/issues/2
-  - https://github.com/YYK2007/21verse_opensource/issues/3
+- Code is released under MIT unless a file-level notice says otherwise.
+- GitHub repository state is tracked in `docs/github-repo-handoff.md`.
+- Release tracker issues:
+  - https://github.com/YYK2007/21verse/issues/1
+  - https://github.com/YYK2007/21verse/issues/2
+  - https://github.com/YYK2007/21verse/issues/3
 - Unity batchmode open/import has passed; see `docs/unity-validation.md`.
 
-## Recommended Release Steps
+## Future Maintenance Steps
 
 1. Open `unity/21verse-vr-game-hub` interactively in Unity `2022.3.25f1`.
 2. Run through the main scenes listed in `README.md` and review shader fallback warnings.
-3. Replace any non-redistributable third-party assets referenced by the 21Verse-developed scenes with package dependencies, placeholders, original assets, or links.
-4. Confirm final code and asset licensing.
-5. Push to a private GitHub repository.
-6. Only after review, change GitHub visibility from private to public.
+3. Keep non-redistributable third-party assets out of the public repo unless rights are confirmed.
+4. Reconfirm code and asset licensing after any future imported asset change.
+5. Keep private Drive/NAS materials out of public commits unless a sanitized derivative is deliberately created.

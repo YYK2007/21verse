@@ -1,6 +1,6 @@
 # Google Drive Public-Release Plan
 
-This plan turns the curated Google Drive inventory into public-release decisions for docs, decks, and sheets.
+This plan turns the curated Google Drive inventory into public-release decisions for docs, decks, and sheets. It records file names and release decisions without storing private Drive links in the public repository.
 
 Source files:
 

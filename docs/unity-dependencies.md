@@ -38,7 +38,7 @@ The `com.unity.modules.*` entries in the manifest are built-in Unity modules and
 
 ## Removed Asset Folders
 
-These folders were present in the private staging project and were removed from the repository for public-release readiness. Reacquire/import them privately only if old visuals are needed, or replace them with original/verified redistributable assets.
+These folders were present in the pre-release project and were removed from the repository for public-release readiness. Reacquire/import them privately only if old visuals are needed, or replace them with original/verified redistributable assets.
 
 The source CSV for this table is regenerated with:
 

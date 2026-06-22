@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Release readiness runbook
-    url: https://github.com/YYK2007/21verse_opensource/blob/main/docs/public-release-runbook.md
-    about: Review the private-to-public release process before opening release issues.
+    url: https://github.com/YYK2007/21verse/blob/main/docs/public-release-runbook.md
+    about: Review the public release process before opening release issues.
   - name: Security and sensitive material
-    url: https://github.com/YYK2007/21verse_opensource/blob/main/SECURITY.md
+    url: https://github.com/YYK2007/21verse/blob/main/SECURITY.md
     about: Do not post credentials, testing data, research material, or private partner/investor information in public issues.

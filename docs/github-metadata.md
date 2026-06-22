@@ -4,11 +4,11 @@ The GitHub repository is configured for the public open-source release.
 
 Repository:
 
-- `YYK2007/21verse_opensource`
+- `YYK2007/21verse`
 
 Description:
 
-- `Open-source Unity VR learning project for 21Verse educational mini-games`
+- `Open-source release of 21Verse Unity VR learning mini-games; not the full private 21Verse project.`
 
 Topics:
 
@@ -24,7 +24,7 @@ Features:
 - Issues: enabled
 - Projects: disabled
 - Wiki: disabled
-- Visibility: public after release approval
+- Visibility: public
 
 Issue templates:
 

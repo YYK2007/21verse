@@ -1,5 +1,5 @@
 param(
-    [string] $Repository = "YYK2007/21verse_opensource",
+    [string] $Repository = "YYK2007/21verse",
     [string] $OutputPath = (Join-Path $PSScriptRoot "..\docs\inventory\github-release-state.csv")
 )
 

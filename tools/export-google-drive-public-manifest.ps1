@@ -57,7 +57,6 @@ try {
             required_review = if ($gate -match "sanitize|redact|manual") { "owner_review_and_redaction" } elseif ($gate -match "keep_private") { "none_keep_private" } else { "verify_staged_artifact" }
             private_material_rule = if ($decision -eq "exclude_private") { "Do not export to the public repo." } else { "Export only a sanitized derivative after review." }
             reason = $row.reason
-            url = $row.url
         }
     }
 

@@ -3,11 +3,10 @@
 Source reviewed:
 
 - Google Doc: `21Verse Game Design Document [May 2024]`
-- URL: https://docs.google.com/document/d/1yAiJyX4CfLZiUXEPBdMdw6GkvcLPtUl5yarULz9ghpw
 - Created: 2024-05-09
 - Modified: 2024-05-20
 
-The original document includes Google Docs comment/reaction metadata and at least one personal email reference, so this repo keeps a sanitized summary instead of copying the full document text.
+The original document includes Google Docs comment/reaction metadata and at least one personal email reference, so this repo keeps a sanitized summary instead of copying the full document text or linking the private source.
 
 ## Project Background
 
@@ -56,4 +55,4 @@ The document aligns with the repository direction:
 
 ## Open-Source Implication
 
-This summary is safe to publish as product context. The original Google Doc should remain private or be manually redacted before public inclusion.
+This summary is safe to publish as product context. The original Google Doc and related private Drive research, IRB, deck, and partner materials should remain private unless a separate redacted derivative is deliberately created for public inclusion.

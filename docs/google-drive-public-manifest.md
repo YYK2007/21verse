@@ -1,6 +1,6 @@
 # Google Drive Public Manifest
 
-This manifest converts the Google Drive release plan into a public/private export gate for each inventoried Drive file.
+This manifest converts the Google Drive release plan into a public/private export gate for each inventoried Drive file. It intentionally omits private Drive URLs.
 
 Authoritative generated file:
 

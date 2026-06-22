@@ -1,6 +1,6 @@
 # Repository Maintenance
 
-This private staging repository includes lightweight maintenance automation for the future public release.
+This public open-source repository includes lightweight maintenance automation for future release changes.
 
 ## GitHub Automation
 
@@ -27,4 +27,4 @@ Dependabot does not manage Unity Package Manager dependencies here. Unity packag
 
 ## Release Audit
 
-The current release gate snapshot is `docs/inventory/release-audit.md`. A public release should not proceed while it reports blockers.
+The current release gate snapshot is `docs/inventory/release-audit.md`. Future release changes should not proceed while it reports blockers.

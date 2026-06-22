@@ -53,6 +53,7 @@ try {
         "docs/unity-attribution-gap-report.md",
         "docs/github-metadata.md",
         "docs/github-tracker.md",
+        "docs/github-repo-handoff.md",
         "docs/inventory/release-audit.md",
         "docs/inventory/github-release-state.csv",
         "docs/inventory/release-blocker-action-plan.csv",

@@ -4,7 +4,7 @@ The GitHub tracker is configured for public-release readiness and follow-up work
 
 ## Milestone
 
-- [Public release readiness](https://github.com/YYK2007/21verse_opensource/milestone/1)
+- [Public release readiness](https://github.com/YYK2007/21verse/milestone/1)
 - State: open
 - Purpose: resolve all blockers before changing the repository from private to public.
 
@@ -12,10 +12,10 @@ The GitHub tracker is configured for public-release readiness and follow-up work
 
 | Issue | Purpose | Current release status |
 | --- | --- | --- |
-| [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1) | Complete NAS inventory/review. | Closed after user excluded NAS from the current scope. |
-| [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2) | Resolve asset rights, replacement, or removal decisions. | Closed after uncleared downloaded/third-party Unity asset folders were removed from the repo. |
-| [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3) | Complete interactive Unity/VR smoke testing. | Closed after user deferred interactive VR smoke from the current scope. |
-| [#5 Verify GitHub branch protection before public release](https://github.com/YYK2007/21verse_opensource/issues/5) | Verify or configure `main` branch protection from a GitHub admin session. | Platform-deferred while private because GitHub returned a Pro/public-visibility requirement for branch protection. |
+| [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse/issues/1) | Complete NAS inventory/review. | Closed after user excluded NAS from the current scope. |
+| [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse/issues/2) | Resolve asset rights, replacement, or removal decisions. | Closed after uncleared downloaded/third-party Unity asset folders were removed from the repo. |
+| [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse/issues/3) | Complete interactive Unity/VR smoke testing. | Closed after user deferred interactive VR smoke from the current scope. |
+| [#5 Verify GitHub branch protection before public release](https://github.com/YYK2007/21verse/issues/5) | Verify or configure `main` branch protection from a GitHub admin session. | Platform-deferred while private because GitHub returned a Pro/public-visibility requirement for branch protection. |
 
 ## Issue Evidence Sources
 

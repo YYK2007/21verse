@@ -1,8 +1,26 @@
 # 21Verse
 
-21Verse is a Unity VR learning project focused on immersive educational mini-games.
+21Verse is a Unity VR learning project focused on accessible, immersive educational mini-games.
 
-This repository contains the public open-source release of the curated 21Verse Unity project, selected brand/public-facing assets, and review notes for materials that remain excluded unless explicitly sanitized.
+This repository is the public open-source release of selected 21Verse work. It is not the full private 21Verse project: private research proposals, IRB materials, pitch decks, partner materials, testing data, financials, and unsanitized Drive/NAS files remain excluded unless a separate public-safe derivative is created.
+
+## Project Context
+
+21Verse explores VR learning experiences for people with Down syndrome and adjacent accessibility-focused learning contexts. The public release centers on Unity scene compositions, game logic, and educational interaction patterns that were developed as part of 21Verse. Private Drive research, IRB, pitch, and partner documents are used only as release-review context; their links and raw contents are not included in this repository.
+
+## Open-Source Scope
+
+Included here:
+
+- Curated 21Verse Unity scenes and scripts for learning/gameplay prototypes.
+- Selected public-facing 21Verse brand assets.
+- Public-safe documentation, release evidence, and exclusion records.
+
+Excluded from this release:
+
+- Private Google Drive docs, pitch decks, IRB files, partner proposals, and research/testing sheets.
+- NAS files, by user request, unless that scope is reopened later.
+- Downloaded/Asset Store/sample/template Unity asset folders with uncertain redistribution rights.
 
 ## Repository Layout
 
@@ -35,7 +53,7 @@ To rerun the batchmode scene-open validation:
 .\tools\run-unity-scene-validation.ps1
 ```
 
-## Before Public Release
+## Release Evidence
 
 Release evidence and retained/excluded material are documented in:
 
@@ -57,7 +75,7 @@ Release evidence and retained/excluded material are documented in:
 - `docs/release-evidence-manifest.md`
 - `docs/public-release-runbook.md`
 - `docs/repository-maintenance.md`
-- `docs/github-private-repo.md`
+- `docs/github-repo-handoff.md`
 - `docs/github-metadata.md`
 - `docs/github-tracker.md`
 - `docs/github-branch-protection.md`
@@ -107,12 +125,12 @@ To verify the GitHub repository state from this Windows session:
 .\tools\test-github-release-state.ps1
 ```
 
-Private GitHub tracker issues:
+GitHub release tracker issues:
 
-- [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)
-- [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse_opensource/issues/2)
-- [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse_opensource/issues/3)
-- [#5 Verify GitHub branch protection before public release](https://github.com/YYK2007/21verse_opensource/issues/5)
+- [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse/issues/1)
+- [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse/issues/2)
+- [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse/issues/3)
+- [#5 Verify GitHub branch protection before public release](https://github.com/YYK2007/21verse/issues/5)
 
 ## License
 

@@ -4,7 +4,7 @@ This repository is approved for public open-source release. Keep the checks belo
 
 ## Current Status
 
-- Public GitHub repository exists: `YYK2007/21verse_opensource`.
+- Public GitHub repository exists: `YYK2007/21verse`.
 - Curated Unity project is included under `unity/21verse-vr-game-hub`.
 - Local Unity projects and local design files have machine-readable inventories in `docs/inventory/`.
 - Google Drive presentations, docs, and sheets have a curated inventory in `docs/inventory/google-drive-21verse.csv`.
@@ -27,7 +27,7 @@ This repository is approved for public open-source release. Keep the checks belo
 - Final publication steps are documented in `docs/public-release-runbook.md`.
 - Public-repo governance docs and GitHub issue/PR templates are staged for release review.
 - Conduct, support, and changelog docs are staged for public release review.
-- Lightweight repository hygiene checks and a GitHub Actions private-visibility guard are staged in `.github/workflows/repo-hygiene.yml`.
+- Lightweight repository hygiene checks and a GitHub Actions release-blocker guard are staged in `.github/workflows/repo-hygiene.yml`.
 - Repository ownership and dependency-maintenance config are staged in `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
 - GitHub tracker milestone and labels are documented in `docs/github-tracker.md`.
 - GitHub repository metadata is documented in `docs/github-metadata.md`.
@@ -38,7 +38,7 @@ This repository is approved for public open-source release. Keep the checks belo
 - NAS review instructions are staged in `docs/nas-review-runbook.md`.
 - NAS review completion status is tracked in `docs/nas-review-checklist.md` and `docs/inventory/nas-review-status.csv`.
 
-## Required Before Public Release
+## Ongoing Release Controls
 
 1. NAS review
    - Excluded from the current release-prep scope by user request on 2026-06-20.
@@ -50,8 +50,8 @@ This repository is approved for public open-source release. Keep the checks belo
    - Regenerate `docs/inventory/unity-asset-replacement-worklist.csv` with `tools/export-unity-asset-replacement-worklist.ps1`.
    - Review the UPM/package and removed-asset handoff in `docs/unity-dependencies.md`.
    - Review the external import/removal handoff in `docs/unity-external-imports.md`.
-   - Use `docs/public-asset-manifest.md` and `docs/inventory/unity-public-asset-manifest.csv` as the retained-folder map for the eventual public branch cut.
-   - Regenerate `docs/inventory/public-release-file-plan.csv` with `tools/export-public-release-file-plan.ps1` to review tracked include/exclude effects before any public branch cut.
+   - Use `docs/public-asset-manifest.md` and `docs/inventory/unity-public-asset-manifest.csv` as the retained-folder map for public release changes.
+   - Regenerate `docs/inventory/public-release-file-plan.csv` with `tools/export-public-release-file-plan.ps1` to review tracked include/exclude effects before future public release changes.
    - Confirm all rows in `docs/inventory/unity-asset-disposition.csv` are non-`pending`.
    - Keep removed downloaded/third-party asset folders out of Git unless redistribution rights are later confirmed.
    - Update `NOTICE.md` after any future third-party asset change.
@@ -87,11 +87,11 @@ This repository is approved for public open-source release. Keep the checks belo
    - Review `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
    - Review `docs/github-metadata.md`.
    - Review `docs/github-branch-protection.md`.
-   - Keep GitHub issue #5 documented as platform-deferred while the repo remains private without GitHub Pro branch protection.
+   - Keep GitHub issue #5 documented until branch protection has been verified from a GitHub admin session.
    - Confirm the `Public release readiness` milestone has no open blocker issues.
    - Run a secret scan.
    - Confirm no non-LFS file exceeds GitHub's 100 MB limit.
-   - Enable branch protection through GitHub Pro while private, or immediately after an explicitly approved public visibility change.
+   - Enable and verify branch protection after the repository is public.
    - Confirm `git status --short --branch` is clean.
    - Confirm GitHub visibility matches the approved release state.
 

@@ -97,7 +97,7 @@ try {
         "docs/repository-maintenance.md",
         "docs/github-branch-protection.md",
         "docs/github-release-state.md",
-        "docs/github-private-repo.md",
+        "docs/github-repo-handoff.md",
         "docs/github-metadata.md",
         "docs/github-tracker.md",
         "docs/inventory/google-drive-21verse.csv",
@@ -151,7 +151,7 @@ try {
     else {
         ($blockedRequirements | ForEach-Object { "$($_.requirement) ($($_.issue))" }) -join "; "
     }
-    Add-Gate $gates "Release evidence manifest" ($(if ($blockedRequirements.Count -eq 0) { "pass" } else { "blocker" })) "$($requirementRows.Count) release requirements tracked; $($blockedRequirements.Count) requirements are blocked: $blockedRequirementNames; $($releaseBlockerActionRows.Count) blocker action rows generated." "Resolve or document every blocked release requirement before changing visibility."
+    Add-Gate $gates "Release evidence manifest" ($(if ($blockedRequirements.Count -eq 0) { "pass" } else { "blocker" })) "$($requirementRows.Count) release requirements tracked; $($blockedRequirements.Count) requirements are blocked: $blockedRequirementNames; $($releaseBlockerActionRows.Count) blocker action rows generated." "Resolve or document every blocked release requirement before publishing release changes."
 
     $sceneValidator = Test-Path -LiteralPath "tools/run-unity-scene-validation.ps1"
     $unityValidation = Select-String -LiteralPath "docs/unity-validation.md" -Pattern "zero missing script references" -Quiet
@@ -168,7 +168,7 @@ try {
         $interactiveSmokeRiskRefs += [int]$row.risky_asset_reference_count
     }
     $smokeGateStatus = if ($openUnitySmokeSteps.Count -eq 0) { "pass" } elseif ($smokeRequirement -and $smokeRequirement.status -eq "deferred_optional") { "deferred" } else { "blocker" }
-    $smokeNextStep = if ($smokeGateStatus -eq "deferred") { "Optional before a VR gameplay release; not required for the current private source-prep scope." } else { "Open the project interactively, smoke-test README scenes, and update issue #3." }
+    $smokeNextStep = if ($smokeGateStatus -eq "deferred") { "Optional before a VR gameplay release; not required for the current release scope." } else { "Open the project interactively, smoke-test README scenes, and update issue #3." }
     Add-Gate $gates "Unity interactive smoke testing" $smokeGateStatus "$($openUnitySmokeSteps.Count) Unity smoke-test status rows are not complete; $($readyPreSmokeRows.Count) of $($preSmokeRows.Count) README scenes pass automated pre-smoke structural checks; $($interactiveSmokePlanRows.Count) scene-level interactive smoke plan rows track $interactiveSmokeRiskRefs risky asset references to inspect visually; current requirement status: $($smokeRequirement.status)." $smokeNextStep
 
     $assetAuditRows = @(Import-Csv -LiteralPath "docs/inventory/unity-asset-audit.csv")
@@ -198,7 +198,7 @@ try {
         $publicFileExclusions.Count -eq 0 -and
         $attributionPendingRows.Count -eq 0
     )
-    Add-Gate $gates "Unity third-party asset release decisions" ($(if ($unityAssetGatePass) { "pass" } else { "blocker" })) "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) audited folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references to bundled high-risk folders; $($assetReplacementWorkRows.Count) removal/reconstruction worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($removedRows.Count) high-risk folders are removed from the repo; $($coveredExternalImportRows.Count) pending/removed folders have external import/removal handoff rows; $($safeDeletionRows.Count) high-risk folders are currently safe to delete without replacing references; $($publicAssetExclusions.Count) public asset manifest rows and $($publicFileExclusions.Count) tracked files require exclusion/replacement/import before public release; $($attributionPendingRows.Count) attribution/NOTICE rows still require owner, package, or final asset-decision review." "If this gate is not passing, resolve issue #2 by replacing referenced downloaded assets, removing assets after references are cleared, documenting import steps, and updating NOTICE for retained third-party material."
+    Add-Gate $gates "Unity third-party asset release decisions" ($(if ($unityAssetGatePass) { "pass" } else { "blocker" })) "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) audited folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references to bundled high-risk folders; $($assetReplacementWorkRows.Count) removal/reconstruction worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($removedRows.Count) high-risk folders are removed from the repo; $($coveredExternalImportRows.Count) pending/removed folders have external import/removal handoff rows; $($safeDeletionRows.Count) high-risk folders are currently safe to delete without replacing references; $($publicAssetExclusions.Count) public asset manifest rows and $($publicFileExclusions.Count) tracked files require exclusion/replacement/import for public release; $($attributionPendingRows.Count) attribution/NOTICE rows still require owner, package, or final asset-decision review." "If this gate is not passing, resolve issue #2 by replacing referenced downloaded assets, removing assets after references are cleared, documenting import steps, and updating NOTICE for retained third-party material."
 
     $nasRows = @(Import-Csv -LiteralPath "docs/inventory/nas-access-log.csv")
     $nasRequirement = $requirementRows | Where-Object { $_.requirement -eq "Review attached NAS Youssef Storage" } | Select-Object -First 1
@@ -238,10 +238,10 @@ try {
         "blocker"
     }
     $branchProtectionNextStep = if ($branchProtectionGateStatus -eq "deferred") {
-        "Enable branch protection immediately after the repo is made public, or upgrade GitHub Pro while keeping it private."
+        "Enable and verify branch protection for the public repository from a GitHub admin session."
     }
     else {
-        "Verify branch protection from a GitHub admin session before public release."
+        "Verify branch protection from a GitHub admin session."
     }
     Add-Gate $gates "GitHub branch protection" $branchProtectionGateStatus "$branchProtectionEvidence; github_visibility_snapshot: $($githubVisibilityRow.status); current requirement status: $($branchProtectionRequirement.status)" $branchProtectionNextStep
 

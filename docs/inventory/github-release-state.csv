@@ -4,7 +4,7 @@
 "repository","issues_enabled","complete","has_issues=True"
 "repository","projects_disabled","complete","has_projects=False"
 "repository","wiki_disabled","complete","has_wiki=False"
-"repository","topics","complete","21verse; accessibility; education; open-source-staging; unity; virtual-reality"
+"repository","topics","complete","21verse; accessibility; education; open-source; unity; virtual-reality"
 "milestone","public_release_readiness","open","number=1; open_issue_query_count=0; github_open_issues_field=4"
 "issue","#1","closed","title=Scoped out: Review 21Verse files on Youssef Storage NAS; labels=nas; open-source-readiness; milestone=Public release readiness; state_reason=not_planned"
 "issue","#2","closed","title=Resolved: Remove uncleared third-party Unity assets; labels=licensing; open-source-readiness; milestone=Public release readiness; state_reason=completed"

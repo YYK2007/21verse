@@ -60,7 +60,6 @@ $planRows = foreach ($row in $rows) {
         public_release_decision = $decision
         public_candidate = $publicCandidate
         reason = $reason
-        url = $row.url
     }
 }
 

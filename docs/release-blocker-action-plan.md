@@ -12,4 +12,4 @@ Refresh it with:
 .\tools\export-release-blocker-action-plan.ps1
 ```
 
-The plan is intentionally narrow: it includes only rows from `docs/inventory/release-requirements-status.csv` where `status` is `blocked`. It does not close blockers by itself. The repository must remain private until the release audit reports no content blockers, the GitHub milestone has no open blocker issues, and publication is explicitly approved.
+The plan is intentionally narrow: it includes only rows from `docs/inventory/release-requirements-status.csv` where `status` is `blocked`. It does not close blockers by itself. If blockers appear in a future audit, resolve them before publishing additional release changes.
