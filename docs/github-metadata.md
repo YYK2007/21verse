@@ -1,35 +1,24 @@
 # GitHub Metadata
 
-The GitHub repository is configured for the public open-source release.
-
 Repository:
 
 - `YYK2007/21verse`
 
-Description:
+Suggested description:
 
-- `Selected Unity VR learning modules from 21Verse; this is only the open-source release, not the full private project.`
+- `Selected Unity VR learning experiences from 21Verse.`
 
-Topics:
+Suggested topics:
 
 - `21verse`
 - `unity`
 - `virtual-reality`
 - `education`
 - `accessibility`
-- `open-source`
+- `inclusive-design`
 
-Features:
+Recommended features:
 
 - Issues: enabled
-- Projects: disabled
-- Wiki: disabled
-- Visibility: public
-
-Issue templates:
-
-- Asset release review
-- NAS review
-- Release gate
-
-Blank issues are disabled through `.github/ISSUE_TEMPLATE/config.yml` so release work is routed through structured templates.
+- Projects: optional
+- Wiki: disabled unless documentation moves out of the repository

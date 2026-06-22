@@ -1,6 +1,0 @@
-"check","result"
-"private_archive_scope","excluded from current open-source release"
-"private_network_details","omitted from public repository"
-"raw_scan_output","not committed"
-"archive_file_review","not performed for current release scope"
-"public_release_action","do not include archive files unless maintainers reopen and sanitize this scope"

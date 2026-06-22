@@ -1,7 +1,7 @@
 # Default owner for the public open-source repo.
 * @YYK2007
 
-# Release-sensitive project areas.
+# Project areas that should be reviewed carefully.
 /unity/ @YYK2007
 /docs/ @YYK2007
 /tools/ @YYK2007

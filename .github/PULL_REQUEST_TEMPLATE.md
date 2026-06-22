@@ -1,16 +1,14 @@
 ## Summary
 
-- 
+-
 
 ## Validation
 
+- [ ] `tools/test-repo-hygiene.ps1`
 - [ ] `tools/run-unity-scene-validation.ps1`
-- [ ] `tools/export-unity-asset-audit.ps1`
-- [ ] `tools/export-unity-risky-asset-references.ps1`
-- [ ] `tools/run-release-audit.ps1`
+- [ ] Manual Unity/VR check, if this changes gameplay or scene UI
 
-## Release Impact
+## Notes
 
-- [ ] No new third-party or downloaded assets added
-- [ ] No private Google Drive, NAS, testing, financial, investor, partner, or outreach material added
-- [ ] `NOTICE.md` and release docs updated if licensing or asset status changed
+- [ ] Documentation updated, if needed
+- [ ] New assets or dependencies are documented, if added

@@ -1,21 +1,19 @@
 # Support
 
-Use GitHub issues for public-safe support requests about:
+Use GitHub issues for:
 
-- Unity setup or validation problems.
+- Unity setup problems.
+- Bugs in the included scenes.
 - Documentation fixes.
-- Public-safe asset replacement work.
-- Bugs in the included Unity scenes.
+- Validation failures.
+- Accessibility or learning-design improvements.
 
-Do not post private Google Drive, NAS, testing, research, IRB, financial, investor, partner, outreach, credential, or student material in public issues or discussions.
+For security concerns, follow `SECURITY.md`.
 
 Useful starting points:
 
 - `README.md`
-- `docs/release-readiness.md`
-- `docs/open-source-review.md`
-- `docs/inventory/release-audit.md`
+- `docs/game-design-summary.md`
+- `docs/unity-validation.md`
+- `docs/unity-dependencies.md`
 - `CONTRIBUTING.md`
-- `SECURITY.md`
-
-For suspected vulnerabilities or exposed sensitive material, follow `SECURITY.md` instead of opening a public issue.

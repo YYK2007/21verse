@@ -1,6 +1,0 @@
-"step","status","evidence","next_action","issue"
-"confirm_access_method","blocked","Private archive details are intentionally omitted from the public repository.","Reopen this scope only if maintainers decide to review private archive files for public-safe additions.","#1"
-"run_nas_inventory_export","pending","No raw private archive inventory is committed.","Run tools/export-nas-inventory.ps1 against a mounted private archive only after scope is reopened.","#1"
-"review_candidate_files","pending","Private archive candidate files have not been classified for public release.","Review generated archive candidate rows and classify include, exclude, or private-only.","#1"
-"promote_safe_files_or_document_exclusions","pending","No private archive files are included in this release.","Copy only reviewed public-safe files, or keep the archive excluded.","#1"
-"refresh_release_evidence","pending","Public docs record private archive files as excluded from the current scope.","Update public-safe docs and issue #1 if this scope is reopened.","#1"

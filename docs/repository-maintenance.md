@@ -1,30 +1,46 @@
 # Repository Maintenance
 
-This public open-source repository includes lightweight maintenance automation for future release changes.
+This repository keeps maintenance lightweight and public-facing.
 
-## GitHub Automation
+## Automation
 
-- `.github/workflows/repo-hygiene.yml` runs lightweight repository checks on pushes to `main` and pull requests.
+- `.github/workflows/repo-hygiene.yml` runs repository hygiene checks on pull requests and pushes to `main`.
 - `.github/dependabot.yml` checks GitHub Actions dependencies monthly.
-- `.github/CODEOWNERS` assigns release-sensitive areas to the repository owner.
+- `.github/CODEOWNERS` identifies maintainers for reviewed areas.
 
-## Unity Dependencies
+## Local Checks
 
-Unity Package Manager dependencies are tracked in:
+Run:
 
-- `unity/21verse-vr-game-hub/Packages/manifest.json`
-- `unity/21verse-vr-game-hub/Packages/packages-lock.json`
-- `docs/unity-dependencies.md`
+```powershell
+.\tools\test-repo-hygiene.ps1
+```
 
-Dependabot does not manage Unity Package Manager dependencies here. Unity package upgrades should be done manually in Unity `2022.3.25f1`, followed by:
+When Unity scenes, scripts, packages, or assets change, also run:
 
 ```powershell
 .\tools\run-unity-scene-validation.ps1
-.\tools\export-unity-asset-audit.ps1
-.\tools\export-unity-risky-asset-references.ps1
-.\tools\run-release-audit.ps1
 ```
 
-## Release Audit
+## Unity Generated Files
 
-The current release gate snapshot is `docs/inventory/release-audit.md`. Future release changes should not proceed while it reports blockers.
+Do not commit Unity-generated folders such as:
+
+- `Library`
+- `Logs`
+- `Temp`
+- `Obj`
+- `Build`
+- `Builds`
+- `UserSettings`
+
+Unity will regenerate them locally.
+
+## Documentation Updates
+
+Update the relevant docs when changing:
+
+- Project setup or Unity version: `README.md` and `docs/unity-dependencies.md`
+- Scene validation status: `docs/unity-validation.md`
+- Asset policy or attribution: `NOTICE.md` and `docs/third-party-assets.md`
+- Contributor workflow: `CONTRIBUTING.md`

@@ -1,85 +1,81 @@
 # 21verse
 
-This repository is the open-source release of selected Unity work from 21Verse. It is not the full private 21Verse project, company archive, research program, partner archive, or Drive/NAS workspace.
+![21Verse banner](brand/21verse-banner-social.jpg)
 
-21Verse is a broader immersive learning and health-support platform for people with Down syndrome and other intellectual disabilities, with an initial focus on Arabic-speaking educational settings. The private research, IRB, pitch, and partner materials frame the project as specialist-informed, culturally localized VR for education, therapy-oriented practice, and daily living skills. This public repository exposes only the release-safe Unity source, scene compositions, selected brand assets, and documentation needed to understand and maintain the open-source slice.
+`21verse` contains selected Unity VR learning experiences from 21Verse.
 
-## What Is Included
+21Verse explores accessible, specialist-informed VR education and life-skills practice for learners with Down syndrome and other intellectual disabilities, with an initial focus on Arabic-speaking learning environments. The experiences in this repository translate focused educational goals into simple, repeatable VR activities with clear prompts, low visual noise, limited choices, and consistent interaction patterns.
 
-- Curated Unity scenes and scripts for 21Verse learning/gameplay prototypes.
-- Public-safe documentation about release scope, asset decisions, validation, and maintenance.
-- Selected 21Verse brand assets approved for this repository.
+## Experiences
 
-The included Unity work covers parts of the current 21Verse module library: Arabic word completion and letter-shape practice, adjective/attribute identification, color/object recognition, number sequences, number and quantity comparison, arithmetic-oriented UI flows, and a cashier/life-skills simulation.
+The Unity project currently includes selected scenes for:
 
-## What Is Not Included
+- Arabic word completion and letter-shape practice.
+- Attribute and adjective identification, such as tall/short and hot/cold.
+- Color and object recognition using fruit-based prompts.
+- Number sequences with a missing value.
+- Number comparison and inequality practice.
+- Arithmetic-oriented UI flows for step-by-step math practice.
+- A cashier simulation for scanning items, handling prices, and practicing daily living skills.
 
-- Private Google Drive docs, research proposals, IRB materials, pitch decks, partner materials, testing notes, student data, financials, and outreach files.
-- Raw NAS files or private archives.
-- Downloaded, Asset Store, sample, template, or uncertain-rights Unity asset folders unless redistribution rights are confirmed.
+## Design Approach
 
-Those private materials may inform the project context, but their links and raw contents are deliberately excluded from this open-source release.
+These experiences are built around a few recurring product principles:
 
-## Project Context
-
-21Verse is designed around repeatable, accessible VR experiences that translate real educational and functional goals into structured practice. The broader program uses feedback from special-education specialists, classroom testing, and research planning to refine modules before deeper pilots or controlled studies.
-
-Design principles reflected in this release include:
-
-- Co-design with educators and specialists rather than building modules in isolation.
-- One clear skill per module, with low visual noise and limited answer choices.
-- Audio-first or symbol-supported instructions for learners who may not rely on written text.
-- Multi-level scaffolding so learners with different baselines can start at a reachable level.
-- Consistent interaction patterns across modules so VR literacy does not overshadow the target skill.
-- Privacy-first release boundaries for research, IRB, testing, partner, and student materials.
+- One clear skill per module.
+- Large, visually dominant targets and answers.
+- Audio-first or symbol-supported instructions.
+- Gradual scaffolding so learners can begin at a reachable level.
+- Reused interaction patterns so VR navigation does not overshadow the learning goal.
+- Real-world context when it helps skills transfer beyond the headset.
 
 ## Repository Layout
 
-- `unity/21verse-vr-game-hub/` - curated Unity project for the public release.
-- `brand/` - selected public 21Verse brand images.
-- `docs/` - public-safe release notes, inventories, validation evidence, and maintenance docs.
-- `tools/` - PowerShell scripts for release review, Unity validation, and repo hygiene.
+- `unity/21verse-vr-game-hub/` - Unity project containing the selected scenes and scripts.
+- `brand/` - 21Verse brand images used by the repository.
+- `docs/` - concise project, validation, dependency, and maintenance notes.
+- `tools/` - PowerShell validation scripts.
 
-## Unity Project
+## Unity Setup
 
-Open `unity/21verse-vr-game-hub` in Unity Hub using Unity `2022.3.25f1`.
+Open `unity/21verse-vr-game-hub` in Unity Hub with Unity `2022.3.25f1`.
 
-Important scenes live under:
+Important scenes live under `Assets/Scenes`:
 
-- `Assets/Scenes/MainMenu.unity`
-- `Assets/Scenes/WordLevel01.unity`
-- `Assets/Scenes/AdjectiveLevel01.unity`
-- `Assets/Scenes/IdentifyingColors.unity`
-- `Assets/Scenes/NumberLevelUI01.unity`
-- `Assets/Scenes/NumberInequalitiesLevel.unity`
-- `Assets/Scenes/Cashier.unity`
+- `MainMenu.unity`
+- `WordLevel01.unity`
+- `AdjectiveLevel01.unity`
+- `IdentifyingColors.unity`
+- `NumberLevelUI01.unity`
+- `NumberInequalitiesLevel.unity`
+- `Cashier.unity`
 
-These scenes, scripts, layout work, and educational interaction structures are treated as 21Verse-developed project work in this repository. Unity-generated folders such as `Library`, `Logs`, `Temp`, `Obj`, `Build`, `Builds`, and `UserSettings` are intentionally excluded.
+Unity-generated folders such as `Library`, `Logs`, `Temp`, `Obj`, `Build`, `Builds`, and `UserSettings` are intentionally ignored.
 
-## Validation And Maintenance
+## Validation
 
-The repository includes scripts for maintainers who need to rerun the release checks:
+Run the repository hygiene check:
 
 ```powershell
 .\tools\test-repo-hygiene.ps1
-.\tools\run-unity-scene-validation.ps1
-.\tools\run-release-audit.ps1
-.\tools\test-github-release-state.ps1
 ```
 
-Detailed release evidence and maintenance notes live in:
+Run Unity scene validation from a machine with Unity installed:
 
-- `docs/open-source-review.md`
-- `docs/release-readiness.md`
-- `docs/release-evidence-manifest.md`
-- `docs/github-metadata.md`
-- `docs/github-repo-handoff.md`
-- `docs/unity-validation.md`
-- `docs/third-party-assets.md`
-- `docs/google-drive-release-plan.md`
-- `docs/google-drive-public-manifest.md`
-- `docs/repository-maintenance.md`
+```powershell
+.\tools\run-unity-scene-validation.ps1
+```
+
+The scene validation opens the configured scenes in Unity batchmode and checks for missing script components. See `docs/unity-validation.md` for the latest recorded validation summary.
+
+## Documentation
+
+- `docs/game-design-summary.md` - product and experience overview.
+- `docs/unity-validation.md` - scene validation status.
+- `docs/unity-dependencies.md` - Unity version and package dependencies.
+- `docs/third-party-assets.md` - asset and attribution policy.
+- `docs/repository-maintenance.md` - maintenance workflow.
 
 ## License
 
-Code and 21Verse-developed scene compositions are released under the MIT License in `LICENSE` unless another file-level notice says otherwise. Brand assets, screenshots, presentations, research materials, partner materials, and any future third-party Unity assets may have separate ownership or license terms; see `NOTICE.md` and `docs/open-source-review.md`.
+Source code and 21Verse-developed scene compositions are released under the MIT License unless a file-level notice says otherwise. Unity packages, platform SDKs, fonts, brand assets, and any third-party assets remain governed by their own license terms. See `NOTICE.md` for details.

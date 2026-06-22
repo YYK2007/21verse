@@ -1,16 +1,15 @@
 # Changelog
 
-All notable public-release changes are summarized here.
+Notable public changes are summarized here.
 
 ## Unreleased
 
-- Reframed the README around `21verse` as the open-source release, enriched with public-safe project context from private research, IRB, deck, and partner materials.
-- Updated contribution, support, security, and GitHub metadata docs so they no longer describe the repository with old private-release wording.
+- Reframed the repository around selected 21Verse Unity VR learning experiences.
+- Simplified public documentation and removed internal planning material.
+- Kept the public maintenance surface focused on Unity scene validation and repository hygiene.
 
-## Initial Open-Source Release - 2026-06-22
+## 2026-06-20
 
-- Published the curated Unity project under `unity/21verse-vr-game-hub`.
-- Added local, Google Drive, Unity asset, and NAS review inventories/runbooks.
-- Added Unity batchmode scene validation tooling.
-- Added release audit tooling and GitHub repo hygiene workflow.
-- Added governance, support, security, contribution, and maintenance docs.
+- Added the selected Unity project under `unity/21verse-vr-game-hub`.
+- Added validation and maintenance documentation.
+- Added repository hygiene automation.
