@@ -1,12 +1,12 @@
 ﻿# Release Audit
 
-Generated: 2026-06-22 15:54:13 +03:00
+Generated: 2026-06-22 15:55:06 +03:00
 
 This audit is a local verification snapshot for the release repository. A `blocker` status means the repo needs remediation before or after publication, depending on visibility state.
 
 | Gate | Status | Evidence | Next step |
 | --- | --- | --- | --- |
-| Git working tree | pass | ## main...origin/main [ahead 1] | Commit, discard, or document all local changes. |
+| Git working tree | pass | ## main...origin/main [ahead 2] | Commit, discard, or document all local changes. |
 | GitHub remote main | pass | origin/main resolved. | Restore origin/main tracking. |
 | Non-LFS >100 MB file check | pass | No non-generated files over 100 MB found. | Move oversized files to Git LFS or remove them. |
 | Secret scan | pass | Only expected documentation matches found. | Investigate and remove any real secret material. |
