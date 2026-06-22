@@ -81,6 +81,14 @@ try {
     }
     else {
         $secretMatches = @(git grep -n -I -E $secretPattern -- . ":(exclude)tools/test-repo-hygiene.ps1" 2>$null)
+        $grepExitCode = $LASTEXITCODE
+        if ($grepExitCode -eq 1) {
+            $global:LASTEXITCODE = 0
+        }
+        elseif ($grepExitCode -ne 0) {
+            Add-Failure "Secret scan failed with git grep exit code $grepExitCode."
+            $global:LASTEXITCODE = 0
+        }
     }
     if ($secretMatches.Count -gt 0) {
         Add-Failure "Potential secret material found: $($secretMatches -join '; ')"
@@ -97,6 +105,7 @@ try {
     }
 
     Write-Output "Repository hygiene checks passed."
+    $global:LASTEXITCODE = 0
 }
 finally {
     Pop-Location
