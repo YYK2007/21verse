@@ -32,8 +32,8 @@ This repository is approved for public open-source release. Keep the checks belo
 - GitHub tracker milestone and labels are documented in `docs/github-tracker.md`.
 - GitHub repository metadata is documented in `docs/github-metadata.md`.
 - GitHub release-state snapshot is tracked in `docs/github-release-state.md` and `docs/inventory/github-release-state.csv`.
-- GitHub branch protection handoff is documented in `docs/github-branch-protection.md`.
-- GitHub branch protection admin-verification status is tracked in `docs/inventory/github-branch-protection-status.csv`.
+- GitHub branch protection verification is documented in `docs/github-branch-protection.md`.
+- GitHub branch protection verification status is tracked in `docs/inventory/github-branch-protection-status.csv`.
 - NAS device has been identified but excluded from the current release-prep scope by user request.
 - NAS review instructions are staged in `docs/nas-review-runbook.md`.
 - NAS review completion status is tracked in `docs/nas-review-checklist.md` and `docs/inventory/nas-review-status.csv`.
@@ -87,11 +87,11 @@ This repository is approved for public open-source release. Keep the checks belo
    - Review `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
    - Review `docs/github-metadata.md`.
    - Review `docs/github-branch-protection.md`.
-   - Keep GitHub issue #5 documented until branch protection has been verified from a GitHub admin session.
+   - Keep GitHub issue #5 closed with branch-protection verification evidence.
    - Confirm the `Public release readiness` milestone has no open blocker issues.
    - Run a secret scan.
    - Confirm no non-LFS file exceeds GitHub's 100 MB limit.
-   - Enable and verify branch protection after the repository is public.
+   - Keep branch protection enabled and verified.
    - Confirm `git status --short --branch` is clean.
    - Confirm GitHub visibility matches the approved release state.
 

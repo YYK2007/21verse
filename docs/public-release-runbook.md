@@ -1,6 +1,6 @@
 # Public Release Runbook
 
-This runbook describes the final path from release-prepared repo to public open-source repository. Do not run the visibility-change step while `docs/inventory/release-audit.md` still reports content blockers.
+This runbook describes the publication controls for the public open-source repository. Do not publish future release changes while `docs/inventory/release-audit.md` reports content blockers.
 
 Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements-status.csv` as the evidence map for the final review.
 
@@ -31,7 +31,7 @@ If NAS review is reopened later:
 
 ## 3. Final Unity Validation
 
-Interactive VR smoke testing is deferred by user request on 2026-06-20 and is optional before a VR gameplay release. Keep automated validation current before any visibility change.
+Interactive VR smoke testing is deferred by user request on 2026-06-20 and is optional before a VR gameplay release. Keep automated validation current before future release changes.
 
 1. Open `unity/21verse-vr-game-hub` in Unity `2022.3.25f1`.
 2. Load and smoke-test the README scenes interactively.
@@ -77,19 +77,15 @@ git status --short --branch
 
 Commit any regenerated inventory or audit changes.
 
-## 6. Visibility Change
+## 6. Publication State
 
-Only after the release audit reports no content blockers and the user explicitly approves publication:
+The user approved publication on 2026-06-22, and the repository is public at `YYK2007/21verse`.
+
+For future release changes:
 
 1. Confirm GitHub Actions are green on `main`.
 2. Confirm `docs/inventory/release-requirements-status.csv` has no `blocked` requirements.
 3. Confirm `docs/inventory/release-audit.md` reports no content blockers.
 4. Confirm the `Public release readiness` milestone has no open blocker issues.
-5. Confirm `docs/github-branch-protection.md` has been reviewed and the desired branch protection payload is ready.
-6. Remove or update the private-visibility guard in `tools/test-repo-hygiene.ps1` as part of the same reviewed release change.
-7. Change GitHub repository visibility from private to public only after explicit approval.
-8. Immediately run `tools\set-github-branch-protection.ps1 -Apply`.
-9. Run `tools\test-github-branch-protection.ps1` and confirm `docs/inventory/github-branch-protection-status.csv` has no `blocked`, `missing`, or `pending_admin_verification` rows.
-10. Create a release announcement or tag only after visibility is public, branch protection is verified, and Actions are green.
-
-The user approved publication on 2026-06-22.
+5. Run `tools\test-github-branch-protection.ps1` and confirm `docs/inventory/github-branch-protection-status.csv` has no `blocked`, `missing`, or `pending_admin_verification` rows.
+6. Create a release announcement or tag only after branch protection is verified and Actions are green.

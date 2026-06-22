@@ -130,7 +130,7 @@ GitHub release tracker issues:
 - [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse/issues/1)
 - [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse/issues/2)
 - [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse/issues/3)
-- [#5 Verify GitHub branch protection before public release](https://github.com/YYK2007/21verse/issues/5)
+- [#5 Verify GitHub branch protection](https://github.com/YYK2007/21verse/issues/5)
 
 ## License
 

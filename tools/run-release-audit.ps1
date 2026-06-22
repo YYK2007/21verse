@@ -218,7 +218,7 @@ try {
     Add-Gate $gates "Google Drive inventory" ($(if ($driveRows.Count -gt 0 -and $driveManifestRows.Count -eq $driveRows.Count) { "pass" } else { "blocker" })) "$($driveRows.Count) Google Drive rows inventoried; $($driveManifestRows.Count) Drive public manifest rows tracked; $($privateDriveRows.Count) rows gated private; $($reviewDriveRows.Count) rows require sanitization/redaction/manual review; $($stagedDriveRows.Count) rows have staged local derivatives." "Only export public-safe, redacted docs/decks when selected."
 
     $branchProtectionRows = @(Import-Csv -LiteralPath "docs/inventory/github-branch-protection-status.csv")
-    $branchProtectionRequirement = $requirementRows | Where-Object { $_.requirement -eq "Verify GitHub branch protection before public release" } | Select-Object -First 1
+    $branchProtectionRequirement = $requirementRows | Where-Object { $_.requirement -eq "Verify GitHub branch protection" } | Select-Object -First 1
     $openBranchProtectionRows = @($branchProtectionRows | Where-Object { $_.status -ne "complete" })
     $githubReleaseStateRows = @(Import-Csv -LiteralPath "docs/inventory/github-release-state.csv")
     $githubVisibilityRow = $githubReleaseStateRows | Where-Object { $_.setting -eq "visibility" } | Select-Object -First 1

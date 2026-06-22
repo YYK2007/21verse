@@ -103,8 +103,8 @@ try {
     }
 
     $expectedLabels = @{
-        "blocker" = "Must be resolved before public release"
-        "open-source-readiness" = "Work required for future public open-source release"
+        "blocker" = "Must be resolved before publishing release changes"
+        "open-source-readiness" = "Work required for public open-source release readiness and maintenance"
         "licensing" = "Licensing, attribution, or redistribution rights review"
         "nas" = "Youssef Storage / WDMyCloudEX4100 inventory and review"
         "unity" = "Unity project, scenes, packages, or assets"
@@ -175,7 +175,7 @@ try {
             "docs/inventory/unity-interactive-smoke-plan.csv"
         )
         5 = @(
-            "GitHub Pro or public visibility",
+            "Branch protection endpoint returns 200 OK",
             "docs/github-branch-protection.md",
             "docs/inventory/github-branch-protection-status.csv",
             "tools/test-github-branch-protection.ps1",
