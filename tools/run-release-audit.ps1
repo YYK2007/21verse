@@ -237,7 +237,10 @@ try {
     else {
         "blocker"
     }
-    $branchProtectionNextStep = if ($branchProtectionGateStatus -eq "deferred") {
+    $branchProtectionNextStep = if ($branchProtectionGateStatus -eq "pass") {
+        "Keep branch protection enabled."
+    }
+    elseif ($branchProtectionGateStatus -eq "deferred") {
         "Enable and verify branch protection for the public repository from a GitHub admin session."
     }
     else {
