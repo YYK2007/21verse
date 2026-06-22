@@ -1,6 +1,6 @@
 param(
     [string] $Repository = "YYK2007/21verse",
-    [string] $ExpectedDescription = "Open-source release of 21Verse Unity VR learning mini-games; not the full private 21Verse project."
+    [string] $ExpectedDescription = "Selected Unity VR learning modules from 21Verse; this is only the open-source release, not the full private project."
 )
 
 $ErrorActionPreference = "Stop"

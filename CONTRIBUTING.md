@@ -1,6 +1,6 @@
 # Contributing
 
-21Verse is currently staged in a private repository for a future open-source release. Contributions should stay private until the release blockers in `docs/release-readiness.md` are resolved.
+This repository is the public open-source release of selected 21Verse Unity work. Contributions are welcome when they stay inside the public-safe scope described in `README.md` and `docs/release-readiness.md`.
 
 Please follow `CODE_OF_CONDUCT.md` and `SUPPORT.md` when participating in project discussions or reviews.
 
@@ -13,7 +13,7 @@ Please follow `CODE_OF_CONDUCT.md` and `SUPPORT.md` when participating in projec
 
 ## Validation
 
-Before opening a pull request or publishing a release candidate, run:
+Before opening a pull request or publishing a release candidate, run the checks that match the change scope. Maintainers should run the full set before release-scope changes:
 
 ```powershell
 .\tools\test-repo-hygiene.ps1
@@ -23,13 +23,13 @@ Before opening a pull request or publishing a release candidate, run:
 .\tools\run-release-audit.ps1
 ```
 
-The scene validation must pass. The release audit may still report blockers while the repo is private; do not make the repo public while blockers remain.
+The scene validation and repo hygiene checks should pass before merging code or Unity-scene changes. If the release audit reports a blocker, resolve it before publishing release-scope changes.
 
 Unity Package Manager dependency changes should be made in Unity and validated manually; see `docs/repository-maintenance.md`.
 
 ## Asset Policy
 
-- Do not add Asset Store, downloaded, generated, or sample assets to the future public release unless redistribution rights are confirmed.
+- Do not add Asset Store, downloaded, generated, or sample assets to this public repository unless redistribution rights are confirmed.
 - Prefer documented import steps or original placeholder assets for third-party packages.
 - Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-removal-plan.md` when asset decisions change.
 

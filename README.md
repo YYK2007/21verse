@@ -1,33 +1,44 @@
-# 21Verse
+# 21verse
 
-21Verse is a Unity VR learning project focused on accessible, immersive educational mini-games.
+This repository is the open-source release of selected Unity work from 21Verse. It is not the full private 21Verse project, company archive, research program, partner archive, or Drive/NAS workspace.
 
-This repository is the public open-source release of selected 21Verse work. It is not the full private 21Verse project: private research proposals, IRB materials, pitch decks, partner materials, testing data, financials, and unsanitized Drive/NAS files remain excluded unless a separate public-safe derivative is created.
+21Verse is a broader immersive learning and health-support platform for people with Down syndrome and other intellectual disabilities, with an initial focus on Arabic-speaking educational settings. The private research, IRB, pitch, and partner materials frame the project as specialist-informed, culturally localized VR for education, therapy-oriented practice, and daily living skills. This public repository exposes only the release-safe Unity source, scene compositions, selected brand assets, and documentation needed to understand and maintain the open-source slice.
+
+## What Is Included
+
+- Curated Unity scenes and scripts for 21Verse learning/gameplay prototypes.
+- Public-safe documentation about release scope, asset decisions, validation, and maintenance.
+- Selected 21Verse brand assets approved for this repository.
+
+The included Unity work covers parts of the current 21Verse module library: Arabic word completion and letter-shape practice, adjective/attribute identification, color/object recognition, number sequences, number and quantity comparison, arithmetic-oriented UI flows, and a cashier/life-skills simulation.
+
+## What Is Not Included
+
+- Private Google Drive docs, research proposals, IRB materials, pitch decks, partner materials, testing notes, student data, financials, and outreach files.
+- Raw NAS files or private archives.
+- Downloaded, Asset Store, sample, template, or uncertain-rights Unity asset folders unless redistribution rights are confirmed.
+
+Those private materials may inform the project context, but their links and raw contents are deliberately excluded from this open-source release.
 
 ## Project Context
 
-21Verse explores VR learning experiences for people with Down syndrome and adjacent accessibility-focused learning contexts. The public release centers on Unity scene compositions, game logic, and educational interaction patterns that were developed as part of 21Verse. Private Drive research, IRB, pitch, and partner documents are used only as release-review context; their links and raw contents are not included in this repository.
+21Verse is designed around repeatable, accessible VR experiences that translate real educational and functional goals into structured practice. The broader program uses feedback from special-education specialists, classroom testing, and research planning to refine modules before deeper pilots or controlled studies.
 
-## Open-Source Scope
+Design principles reflected in this release include:
 
-Included here:
-
-- Curated 21Verse Unity scenes and scripts for learning/gameplay prototypes.
-- Selected public-facing 21Verse brand assets.
-- Public-safe documentation, release evidence, and exclusion records.
-
-Excluded from this release:
-
-- Private Google Drive docs, pitch decks, IRB files, partner proposals, and research/testing sheets.
-- NAS files, by user request, unless that scope is reopened later.
-- Downloaded/Asset Store/sample/template Unity asset folders with uncertain redistribution rights.
+- Co-design with educators and specialists rather than building modules in isolation.
+- One clear skill per module, with low visual noise and limited answer choices.
+- Audio-first or symbol-supported instructions for learners who may not rely on written text.
+- Multi-level scaffolding so learners with different baselines can start at a reachable level.
+- Consistent interaction patterns across modules so VR literacy does not overshadow the target skill.
+- Privacy-first release boundaries for research, IRB, testing, partner, and student materials.
 
 ## Repository Layout
 
-- `unity/21verse-vr-game-hub/` - main Unity project, curated from the latest adjective/color game hub.
-- `brand/` - selected public brand images.
-- `docs/` - publication notes, inventory, and non-sensitive public-facing collateral.
-- `tools/` - reserved for future repo maintenance scripts.
+- `unity/21verse-vr-game-hub/` - curated Unity project for the public release.
+- `brand/` - selected public 21Verse brand images.
+- `docs/` - public-safe release notes, inventories, validation evidence, and maintenance docs.
+- `tools/` - PowerShell scripts for release review, Unity validation, and repo hygiene.
 
 ## Unity Project
 
@@ -43,95 +54,32 @@ Important scenes live under:
 - `Assets/Scenes/NumberInequalitiesLevel.unity`
 - `Assets/Scenes/Cashier.unity`
 
-These listed scenes are 21Verse-developed learning/gameplay scene compositions from the curated project. The scene files, scripts, layout work, and educational interaction structure are treated as 21Verse project work. Downloaded, Asset Store, package sample, template-style, and uncertain-rights Unity asset folders were removed from the repository before public release; old visuals can be reconstructed privately only by reacquiring/importing the relevant assets outside this repo.
+These scenes, scripts, layout work, and educational interaction structures are treated as 21Verse-developed project work in this repository. Unity-generated folders such as `Library`, `Logs`, `Temp`, `Obj`, `Build`, `Builds`, and `UserSettings` are intentionally excluded.
 
-Unity-generated folders such as `Library`, `Logs`, `Temp`, `Obj`, `Build`, `Builds`, and `UserSettings` are intentionally excluded.
+## Validation And Maintenance
 
-To rerun the batchmode scene-open validation:
-
-```powershell
-.\tools\run-unity-scene-validation.ps1
-```
-
-## Release Evidence
-
-Release evidence and retained/excluded material are documented in:
-
-- `docs/open-source-review.md`
-- `docs/source-inventory.md`
-- `docs/google-drive-inventory.md`
-- `docs/google-drive-release-plan.md`
-- `docs/design-and-nas-inventory.md`
-- `docs/nas-review-runbook.md`
-- `docs/nas-review-checklist.md`
-- `docs/game-design-summary.md`
-- `docs/unity-smoke-test-checklist.md`
-- `docs/asset-removal-plan.md`
-- `docs/asset-disposition-tracker.md`
-- `docs/unity-dependencies.md`
-- `docs/unity-external-imports.md`
-- `docs/third-party-assets.md`
-- `docs/release-readiness.md`
-- `docs/release-evidence-manifest.md`
-- `docs/public-release-runbook.md`
-- `docs/repository-maintenance.md`
-- `docs/github-repo-handoff.md`
-- `docs/github-metadata.md`
-- `docs/github-tracker.md`
-- `docs/github-branch-protection.md`
-- `docs/inventory/`
-- `docs/inventory/release-requirements-status.csv`
-- `CONTRIBUTING.md`
-- `SECURITY.md`
-- `CODE_OF_CONDUCT.md`
-- `SUPPORT.md`
-- `CHANGELOG.md`
-- Unity package dependencies and any newly added third-party Unity asset licenses
-
-To regenerate the Unity asset folder audit:
-
-```powershell
-.\tools\export-unity-asset-audit.ps1
-.\tools\export-unity-risky-asset-references.ps1
-```
-
-To regenerate the Google Drive release decision matrix:
-
-```powershell
-.\tools\export-google-drive-release-plan.ps1
-```
-
-To scan a mounted NAS share after access is available:
-
-```powershell
-.\tools\export-nas-inventory.ps1 -Roots "Z:\"
-```
-
-To regenerate the release gate snapshot:
-
-```powershell
-.\tools\run-release-audit.ps1
-```
-
-To run lightweight repo hygiene checks without opening Unity:
+The repository includes scripts for maintainers who need to rerun the release checks:
 
 ```powershell
 .\tools\test-repo-hygiene.ps1
-```
-
-To verify the GitHub repository state from this Windows session:
-
-```powershell
+.\tools\run-unity-scene-validation.ps1
+.\tools\run-release-audit.ps1
 .\tools\test-github-release-state.ps1
 ```
 
-GitHub release tracker issues:
+Detailed release evidence and maintenance notes live in:
 
-- [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse/issues/1)
-- [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse/issues/2)
-- [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse/issues/3)
-- [#5 Verify GitHub branch protection](https://github.com/YYK2007/21verse/issues/5)
+- `docs/open-source-review.md`
+- `docs/release-readiness.md`
+- `docs/release-evidence-manifest.md`
+- `docs/github-metadata.md`
+- `docs/github-repo-handoff.md`
+- `docs/unity-validation.md`
+- `docs/third-party-assets.md`
+- `docs/google-drive-release-plan.md`
+- `docs/google-drive-public-manifest.md`
+- `docs/repository-maintenance.md`
 
 ## License
 
-Code and 21Verse-developed scene compositions are staged under the MIT License in `LICENSE` unless another file-level notice says otherwise. Brand assets, screenshots, presentations, and any future third-party Unity assets may have separate ownership or license terms; see `NOTICE.md` and `docs/open-source-review.md`.
+Code and 21Verse-developed scene compositions are released under the MIT License in `LICENSE` unless another file-level notice says otherwise. Brand assets, screenshots, presentations, research materials, partner materials, and any future third-party Unity assets may have separate ownership or license terms; see `NOTICE.md` and `docs/open-source-review.md`.
