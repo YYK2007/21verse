@@ -1,6 +1,6 @@
 # GitHub Tracker
 
-The private GitHub tracker is configured for public-release readiness work.
+The GitHub tracker is configured for public-release readiness and follow-up work.
 
 ## Milestone
 

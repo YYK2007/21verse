@@ -1,6 +1,6 @@
-# Private GitHub Repo Handoff
+# GitHub Repo Handoff
 
-The private staging repository exists at:
+The public GitHub repository exists at:
 
 `https://github.com/YYK2007/21verse_opensource`
 
@@ -12,7 +12,7 @@ Default branch:
 
 `main`
 
-The repository must remain private until the release audit has no blockers.
+The repository was approved for publication after the release audit reported no content blockers. Branch protection should remain enabled after publication.
 
 ## Current Verification
 
@@ -33,15 +33,15 @@ Expected state:
 - Local branch is `main`.
 - Local branch tracks `origin/main`.
 - Working tree is clean after generated audit snapshots are committed.
-- GitHub repository visibility is `private`.
+- GitHub repository visibility matches the approved release state.
 - GitHub metadata matches `docs/github-metadata.md`.
 - Branch protection handoff is documented in `docs/github-branch-protection.md`.
 - Release evidence map is present at `docs/release-evidence-manifest.md`.
 - Git LFS is installed and tracks Unity binary/media assets.
-- `Repo Hygiene` GitHub Actions checks pass, including the repository visibility guard.
+- `Repo Hygiene` GitHub Actions checks pass, including the public-release visibility guard.
 - `tools/test-github-release-state.ps1` passes from a Windows session with GitHub credentials.
 
-## Private Tracker Issues
+## Release Tracker Issues
 
 - [Public release readiness milestone](https://github.com/YYK2007/21verse_opensource/milestone/1)
 - [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse_opensource/issues/1)
@@ -52,7 +52,7 @@ Expected state:
 See `docs/github-tracker.md` for label and milestone details.
 See `docs/github-branch-protection.md` for the branch protection handoff.
 
-## Do Not Publish Until
+## Publication Conditions
 
 - NAS review is complete or explicitly documented as intentionally excluded.
 - Third-party Unity assets are confirmed redistributable, replaced, or removed with import/reconstruction instructions.
@@ -62,4 +62,4 @@ See `docs/github-branch-protection.md` for the branch protection handoff.
 - `docs/inventory/release-audit.md` reports no content blockers.
 - Branch protection is enabled through GitHub Pro while private, or applied immediately after the explicitly approved public visibility change.
 
-Changing repository visibility from private to public is the final step, not a staging step.
+Repository visibility was approved for public release by user request on 2026-06-22. Keep future private, partner, investor, testing, research, and unsanitized Drive/NAS materials out of public commits.

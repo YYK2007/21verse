@@ -1,12 +1,12 @@
 ﻿# Release Audit
 
-Generated: 2026-06-20 15:00:40 +03:00
+Generated: 2026-06-22 15:25:46 +03:00
 
-This audit is a local verification snapshot for the private staging repo. A `blocker` status means the repo must not be made public yet.
+This audit is a local verification snapshot for the release repository. A `blocker` status means the repo needs remediation before or after publication, depending on visibility state.
 
 | Gate | Status | Evidence | Next step |
 | --- | --- | --- | --- |
-| Git working tree | pass | ## main...origin/main | Commit, discard, or document all local changes. |
+| Git working tree | blocker | ## main...origin/main /  M .github/CODEOWNERS /  M README.md /  M docs/github-metadata.md /  M docs/github-private-repo.md /  M docs/github-release-state.md /  M docs/github-tracker.md /  M docs/inventory/release-requirements-status.csv /  M docs/public-release-runbook.md /  M docs/release-evidence-manifest.md /  M docs/release-readiness.md /  M tools/run-release-audit.ps1 /  M tools/test-github-release-state.ps1 /  M tools/test-repo-hygiene.ps1 | Commit, discard, or document all local changes. |
 | GitHub remote main | pass | origin/main resolved. | Restore origin/main tracking. |
 | Non-LFS >100 MB file check | pass | No non-generated files over 100 MB found. | Move oversized files to Git LFS or remove them. |
 | Secret scan | pass | Only expected documentation matches found. | Investigate and remove any real secret material. |
@@ -19,4 +19,4 @@ This audit is a local verification snapshot for the private staging repo. A `blo
 | Google Drive inventory | pass | 35 Google Drive rows inventoried; 35 Drive public manifest rows tracked; 16 rows gated private; 18 rows require sanitization/redaction/manual review; 2 rows have staged local derivatives. | Only export public-safe, redacted docs/decks when selected. |
 | GitHub branch protection | deferred | main_protection_endpoint: blocked; pull_request_required: pending_admin_verification; repo_hygiene_required: pending_admin_verification; force_pushes_disabled: pending_admin_verification; branch_deletions_disabled: pending_admin_verification; github_visibility_snapshot: private; current requirement status: deferred_platform_limit | Enable branch protection immediately after the repo is made public, or upgrade GitHub Pro while keeping it private. |
 
-Summary: pass: 9; deferred: 3
+Summary: blocker: 1; pass: 8; deferred: 3

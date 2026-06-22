@@ -1,8 +1,8 @@
 # Release Evidence Manifest
 
-This manifest is the reviewer-facing map from the original open-source preparation request to the evidence currently staged in this private repository.
+This manifest is the reviewer-facing map from the original open-source preparation request to the evidence for the public repository.
 
-The repository must stay private until every required item below is either `complete`, deliberately excluded by scope, or explicitly deferred by a documented platform/user-scope rationale.
+The repository was approved for publication after every required item below was either `complete`, deliberately excluded by scope, or explicitly deferred by a documented platform/user-scope rationale.
 
 Machine-readable status is tracked in `docs/inventory/release-requirements-status.csv`.
 Current blocked-requirement owner actions are tracked in `docs/inventory/release-blocker-action-plan.csv`.
@@ -18,13 +18,13 @@ Current blocked-requirement owner actions are tracked in `docs/inventory/release
 | Resolve Unity third-party asset rights | complete | `docs/third-party-assets.md`, `docs/asset-removal-plan.md`, `docs/asset-disposition-tracker.md`, `docs/unity-external-imports.md`, `docs/public-asset-manifest.md`, `docs/unity-attribution-gap-report.md`, `docs/public-release-file-plan.md`, `docs/inventory/unity-asset-audit.csv`, `docs/inventory/unity-risky-asset-references.csv`, `docs/inventory/unity-asset-replacement-worklist.csv`, `docs/inventory/unity-public-asset-manifest.csv`, `docs/inventory/unity-attribution-gap-report.csv`, `docs/inventory/unity-third-party-removal-status.csv`, `docs/inventory/public-release-file-plan.csv`, `docs/inventory/unity-asset-disposition.csv`, `docs/inventory/unity-external-imports.csv`, `tools/export-unity-asset-replacement-worklist.ps1`, `tools/export-public-asset-manifest.ps1`, `tools/export-unity-attribution-gap-report.ps1`, `tools/export-unity-third-party-removal-status.ps1`, `tools/export-public-release-file-plan.ps1` | Uncleared downloaded/third-party Unity asset folders are removed from the repo, every asset disposition row has a non-`pending` decision, retained project folders have NOTICE scope coverage, and Unity validation still passes. |
 | Review Google Drive docs, decks, sheets, and Slides | complete for inventory; export decisions pending by design | `docs/google-drive-inventory.md`, `docs/google-drive-release-plan.md`, `docs/google-drive-public-manifest.md`, `docs/inventory/google-drive-21verse.csv`, `docs/inventory/google-drive-release-plan.csv`, `docs/inventory/google-drive-public-manifest.csv`, `tools/export-google-drive-release-plan.ps1`, `tools/export-google-drive-public-manifest.ps1` | Only redacted public-safe derivatives are exported; private rows remain excluded. |
 | Stage open-source governance and contributor docs | complete | `README.md`, `LICENSE`, `NOTICE.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `SUPPORT.md`, `CHANGELOG.md` | Public-facing governance files are present and reviewed before visibility changes. |
-| Stage GitHub repo configuration privately | complete | `docs/github-private-repo.md`, `docs/github-metadata.md`, `docs/github-tracker.md`, `docs/github-release-state.md`, `docs/inventory/github-release-state.csv`, `.github/` | Private repo exists, metadata is documented, issue templates and hygiene workflow are staged. |
+| Stage GitHub repo configuration for release | complete | `docs/github-private-repo.md`, `docs/github-metadata.md`, `docs/github-tracker.md`, `docs/github-release-state.md`, `docs/inventory/github-release-state.csv`, `.github/` | Repository metadata is documented, issue templates and hygiene workflow are staged, and release approval has been given. |
 | Verify GitHub branch protection before public release | deferred platform limit | `docs/github-branch-protection.md`, `docs/inventory/github-branch-protection-status.csv`, `docs/public-release-runbook.md`, `tools/test-github-branch-protection.ps1`, `tools/set-github-branch-protection.ps1` | GitHub returned `403` because branch protection for this private repo requires GitHub Pro or public visibility. Enable branch protection immediately after publication or after upgrading while private. |
-| Keep repository private until release approval | complete and ongoing | `docs/github-private-repo.md`, `docs/public-release-runbook.md`, `docs/github-release-state.md`, `docs/inventory/github-release-state.csv`, `docs/inventory/release-audit.md` | GitHub visibility remains private until the release audit has no blockers and the milestone is cleared. |
+| Publish repository after release approval | complete | `docs/github-private-repo.md`, `docs/public-release-runbook.md`, `docs/github-release-state.md`, `docs/inventory/github-release-state.csv`, `docs/inventory/release-audit.md` | GitHub visibility may be public after release approval, with branch protection applied immediately afterward. |
 
 ## Final Evidence Gate
 
-Before changing repository visibility to public:
+Publication gate:
 
 1. Confirm GitHub issues #2 and #5 are closed or explicitly deferred by the current release scope. Issues #1 and #3 are no longer release blockers under the 2026-06-20 scope update unless the user reopens NAS or interactive VR smoke testing as required work.
 2. Run the inventory and validation commands in `docs/public-release-runbook.md`.
@@ -33,5 +33,6 @@ Before changing repository visibility to public:
 5. Run `tools/run-release-audit.ps1`.
 6. Confirm `docs/inventory/release-audit.md` reports no content blockers.
 7. Confirm GitHub Actions are green on `main`.
+8. Apply and verify branch protection after the public visibility change.
 
 If any evidence source above contradicts the release audit, treat the repo as not ready and update the audit or source document before publication.

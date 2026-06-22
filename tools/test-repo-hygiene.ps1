@@ -113,7 +113,16 @@ try {
     if ($env:GITHUB_EVENT_PATH -and (Test-Path -LiteralPath $env:GITHUB_EVENT_PATH)) {
         $githubEvent = Get-Content -LiteralPath $env:GITHUB_EVENT_PATH -Raw | ConvertFrom-Json
         if ($githubEvent.repository -and $githubEvent.repository.private -ne $true) {
-            Add-Failure "GitHub Actions visibility guard failed: repository is public, but release blockers are still tracked."
+            $releaseAuditText = if (Test-Path -LiteralPath "docs/inventory/release-audit.md") {
+                Get-Content -LiteralPath "docs/inventory/release-audit.md" -Raw
+            }
+            else {
+                ""
+            }
+
+            if ($releaseAuditText -match "Summary:.*blocker") {
+                Add-Failure "GitHub Actions visibility guard failed: repository is public while the release audit still reports blockers."
+            }
         }
     }
 
@@ -356,8 +365,8 @@ try {
     }
 
     $visibilityRow = $githubReleaseRows | Where-Object { $_.setting -eq "visibility" } | Select-Object -First 1
-    if ($visibilityRow.status -ne "private") {
-        Add-Failure "GitHub release state snapshot visibility is '$($visibilityRow.status)', expected private."
+    if (@("private", "public") -notcontains $visibilityRow.status) {
+        Add-Failure "GitHub release state snapshot visibility is '$($visibilityRow.status)', expected private or public."
     }
 
     $requirementRows = @(Import-Csv -LiteralPath "docs/inventory/release-requirements-status.csv")

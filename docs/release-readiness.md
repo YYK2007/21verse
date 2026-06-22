@@ -1,10 +1,10 @@
 # Release Readiness Checklist
 
-This repository is private and staged for a future open-source release. Do not make it public until the checks below are complete.
+This repository is approved for public open-source release. Keep the checks below current for future release work.
 
 ## Current Status
 
-- Private GitHub repository exists: `YYK2007/21verse_opensource`.
+- Public GitHub repository exists: `YYK2007/21verse_opensource`.
 - Curated Unity project is included under `unity/21verse-vr-game-hub`.
 - Local Unity projects and local design files have machine-readable inventories in `docs/inventory/`.
 - Google Drive presentations, docs, and sheets have a curated inventory in `docs/inventory/google-drive-21verse.csv`.
@@ -93,7 +93,7 @@ This repository is private and staged for a future open-source release. Do not m
    - Confirm no non-LFS file exceeds GitHub's 100 MB limit.
    - Enable branch protection through GitHub Pro while private, or immediately after an explicitly approved public visibility change.
    - Confirm `git status --short --branch` is clean.
-   - Confirm GitHub visibility remains private until the final release decision.
+   - Confirm GitHub visibility matches the approved release state.
 
 ## Useful Commands
 

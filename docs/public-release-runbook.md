@@ -1,6 +1,6 @@
 # Public Release Runbook
 
-This runbook describes the final path from private staging repo to public open-source repository. Do not run the visibility-change step while `docs/inventory/release-audit.md` still reports blockers.
+This runbook describes the final path from release-prepared repo to public open-source repository. Do not run the visibility-change step while `docs/inventory/release-audit.md` still reports content blockers.
 
 Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements-status.csv` as the evidence map for the final review.
 
@@ -79,7 +79,7 @@ Commit any regenerated inventory or audit changes.
 
 ## 6. Visibility Change
 
-Only after the release audit reports no content blockers:
+Only after the release audit reports no content blockers and the user explicitly approves publication:
 
 1. Confirm GitHub Actions are green on `main`.
 2. Confirm `docs/inventory/release-requirements-status.csv` has no `blocked` requirements.
@@ -91,3 +91,5 @@ Only after the release audit reports no content blockers:
 8. Immediately run `tools\set-github-branch-protection.ps1 -Apply`.
 9. Run `tools\test-github-branch-protection.ps1` and confirm `docs/inventory/github-branch-protection-status.csv` has no `blocked`, `missing`, or `pending_admin_verification` rows.
 10. Create a release announcement or tag only after visibility is public, branch protection is verified, and Actions are green.
+
+The user approved publication on 2026-06-22.

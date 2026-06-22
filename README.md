@@ -2,7 +2,7 @@
 
 21Verse is a Unity VR learning project focused on immersive educational mini-games.
 
-This repository is prepared as the private staging repo for an eventual open-source release. It currently contains the curated Unity project, selected brand/public-facing assets, and review notes for materials that should stay private until they are explicitly sanitized.
+This repository contains the public open-source release of the curated 21Verse Unity project, selected brand/public-facing assets, and review notes for materials that remain excluded unless explicitly sanitized.
 
 ## Repository Layout
 
@@ -25,7 +25,7 @@ Important scenes live under:
 - `Assets/Scenes/NumberInequalitiesLevel.unity`
 - `Assets/Scenes/Cashier.unity`
 
-These listed scenes are 21Verse-developed learning/gameplay scene compositions from the curated project. The scene files, scripts, layout work, and educational interaction structure are treated as 21Verse project work in this private staging repo. Downloaded, Asset Store, package sample, template-style, and uncertain-rights Unity asset folders were removed from the repository before public release prep; old visuals can be reconstructed privately only by reacquiring/importing the relevant assets outside this repo.
+These listed scenes are 21Verse-developed learning/gameplay scene compositions from the curated project. The scene files, scripts, layout work, and educational interaction structure are treated as 21Verse project work. Downloaded, Asset Store, package sample, template-style, and uncertain-rights Unity asset folders were removed from the repository before public release; old visuals can be reconstructed privately only by reacquiring/importing the relevant assets outside this repo.
 
 Unity-generated folders such as `Library`, `Logs`, `Temp`, `Obj`, `Build`, `Builds`, and `UserSettings` are intentionally excluded.
 
@@ -37,7 +37,7 @@ To rerun the batchmode scene-open validation:
 
 ## Before Public Release
 
-This repo is private-ready, not public-published. Before changing visibility to public, review:
+Release evidence and retained/excluded material are documented in:
 
 - `docs/open-source-review.md`
 - `docs/source-inventory.md`
@@ -101,7 +101,7 @@ To run lightweight repo hygiene checks without opening Unity:
 .\tools\test-repo-hygiene.ps1
 ```
 
-To verify the private GitHub repository state from this Windows session:
+To verify the GitHub repository state from this Windows session:
 
 ```powershell
 .\tools\test-github-release-state.ps1

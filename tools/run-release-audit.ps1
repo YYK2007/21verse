@@ -250,7 +250,7 @@ try {
     $lines.Add("") | Out-Null
     $lines.Add("Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss zzz')") | Out-Null
     $lines.Add("") | Out-Null
-    $lines.Add('This audit is a local verification snapshot for the private staging repo. A `blocker` status means the repo must not be made public yet.') | Out-Null
+    $lines.Add('This audit is a local verification snapshot for the release repository. A `blocker` status means the repo needs remediation before or after publication, depending on visibility state.') | Out-Null
     $lines.Add("") | Out-Null
     $lines.Add("| Gate | Status | Evidence | Next step |") | Out-Null
     $lines.Add("| --- | --- | --- | --- |") | Out-Null

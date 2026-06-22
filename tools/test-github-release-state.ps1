@@ -1,6 +1,6 @@
 param(
     [string] $Repository = "YYK2007/21verse_opensource",
-    [string] $ExpectedDescription = "Private staging repository for preparing 21Verse for open-source release"
+    [string] $ExpectedDescription = "Open-source Unity VR learning project for 21Verse educational mini-games"
 )
 
 $ErrorActionPreference = "Stop"
@@ -67,8 +67,8 @@ try {
     }
 
     $repo = Invoke-GitHubApi -Method Get -Uri "https://api.github.com/repos/$Repository" -Headers $headers
-    if (-not $repo.private) {
-        Add-Failure "GitHub repository is not private."
+    if ($repo.private) {
+        Add-Failure "GitHub repository is still private; expected public after release approval."
     }
     if ($repo.default_branch -ne "main") {
         Add-Failure "GitHub default branch is '$($repo.default_branch)', expected 'main'."
@@ -90,7 +90,7 @@ try {
         "21verse",
         "accessibility",
         "education",
-        "open-source-staging",
+        "open-source",
         "unity",
         "virtual-reality"
     )

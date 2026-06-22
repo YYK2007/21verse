@@ -1,6 +1,6 @@
 # GitHub Metadata
 
-The private GitHub repository is configured with public-release-oriented metadata while remaining private.
+The GitHub repository is configured for the public open-source release.
 
 Repository:
 
@@ -8,7 +8,7 @@ Repository:
 
 Description:
 
-- `Private staging repository for preparing 21Verse for open-source release`
+- `Open-source Unity VR learning project for 21Verse educational mini-games`
 
 Topics:
 
@@ -17,14 +17,14 @@ Topics:
 - `virtual-reality`
 - `education`
 - `accessibility`
-- `open-source-staging`
+- `open-source`
 
 Features:
 
 - Issues: enabled
 - Projects: disabled
 - Wiki: disabled
-- Visibility: private until release blockers are resolved
+- Visibility: public after release approval
 
 Issue templates:
 

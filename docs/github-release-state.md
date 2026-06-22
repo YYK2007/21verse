@@ -1,6 +1,6 @@
 # GitHub Release State Snapshot
 
-This generated snapshot records the current private GitHub repository state that supports the future public-release handoff.
+This generated snapshot records the current GitHub repository state that supports the public-release handoff.
 
 Authoritative generated file:
 
