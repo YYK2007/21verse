@@ -2,14 +2,12 @@
 
 This repository includes a Unity project assembled from 21Verse working files.
 
-The MIT License applies to original 21Verse source code and 21Verse-developed scene compositions unless another file-level license says otherwise. The main learning/gameplay scenes under `unity/21verse-vr-game-hub/Assets/Scenes` are treated as 21Verse project work, including scene layout, scripting integration, and educational interaction structure.
+The MIT License applies to original 21Verse source code and 21Verse-developed scene compositions unless another file-level license says otherwise. This includes the learning/gameplay structure, scene layout, and scripting integration under `unity/21verse-vr-game-hub/Assets`.
 
 The MIT License does not automatically grant rights to:
 
-- Unity, Meta/Oculus, XR Interaction Toolkit, TextMesh Pro, or other package content.
-- Asset-store, marketplace, downloaded, template, or sample assets that are reacquired, imported, or newly added outside the current reviewed source tree.
-- Brand marks, logos, banners, pitch decks, posters, research files, testing data, financial files, or partner materials.
+- Unity, Meta/Oculus, XR Interaction Toolkit, TextMesh Pro, Universal Render Pipeline, or other package content.
+- Third-party assets, fonts, SDKs, samples, templates, or marketplace content.
+- 21Verse names, logos, banners, and brand artwork.
 
-The uncleared downloaded/third-party Unity asset folders previously found in the private source project were removed from this repository for public-release readiness. Before adding any such asset back, confirm that it can be redistributed in a public source repository; when in doubt, keep it as an external dependency, replace it with original/verified redistributable material, or leave it out.
-
-Unity Package Manager dependencies and bundled asset release decisions are tracked in `docs/unity-dependencies.md` and `docs/third-party-assets.md`.
+Unity Package Manager dependencies are listed in `docs/unity-dependencies.md`. Asset and attribution guidance lives in `docs/third-party-assets.md`.

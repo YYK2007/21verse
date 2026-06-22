@@ -1,58 +1,40 @@
 # Game Design Summary
 
-Source reviewed:
+21Verse is an immersive learning platform for accessible education and life-skills practice. The selected Unity work in this repository focuses on short, structured VR modules for learners with Down syndrome and other intellectual disabilities, especially in Arabic-speaking educational settings.
 
-- Google Doc: `21Verse Game Design Document [May 2024]`
-- Created: 2024-05-09
-- Modified: 2024-05-20
+## Product Direction
 
-The original document includes Google Docs comment/reaction metadata and at least one personal email reference, so this repo keeps a sanitized summary instead of copying the full document text or linking the private source.
+21Verse turns specific educational and functional goals into repeatable VR activities. The broader product direction spans academic skills, language practice, daily living skills, onboarding, and future health-support experiences. This repository contains selected Unity scenes from that work.
 
-## Project Background
+## Current Experience Areas
 
-21Verse is an inclusive immersive learning platform designed to support individuals with Down syndrome through entertainment, education, therapy-oriented experiences, and social integration.
+- Mathematics: number sequences, number comparison, inequality signs, and arithmetic-oriented practice flows.
+- Language: Arabic word completion, letter-shape recognition, adjective/attribute identification, and future verb-to-action mapping patterns.
+- Daily living: cashier and supermarket-style practice for scanning items, reading prices, and handling money.
+- Recognition tasks: color and object identification with simple visual prompts.
+- Onboarding patterns: repeated interaction grammar so learners build comfort with VR controls over time.
 
-## Audience
+## Design Principles
 
-The design document identifies these audiences:
+- Keep one clear skill at the center of each module.
+- Use large, visually dominant prompts and answer targets.
+- Prefer spoken prompts or symbolic cues over text-heavy instructions.
+- Limit background clutter so the target concept is easy to identify.
+- Build difficulty gradually through levels and small variations.
+- Reuse interaction patterns across modules to reduce cognitive load.
+- Use real-world contexts when they make the practiced skill easier to transfer.
 
-- Individuals with Down syndrome older than 10
-- Down syndrome organizations
-- Hospitals and therapy centers
-- Care centers
-- Schools
-- Families and caregivers
+## Unity Implementation
 
-## Experience Paths
+The included Unity project contains scene-based prototypes and interaction scripts. The scenes use straightforward UI, serialized content, and simple controller logic so contributors can inspect, adjust, and extend modules without needing a large backend.
 
-The product concept is organized around three paths:
+Key scene families include:
 
-- Educational: math, language and communication, science/exploration, and creative expression modules.
-- Therapy: immersive speech/language, occupational, and physical therapy experiences created with healthcare professionals.
-- Entertainment: inclusive games, interactive experiences, and storytelling designed to be both fun and developmental.
+- `WordLevel01`
+- `AdjectiveLevel01`
+- `IdentifyingColors`
+- `NumberLevelUI01`
+- `NumberInequalitiesLevel`
+- `Cashier`
 
-## Core Features
-
-The GDD highlights:
-
-- Accessible user onboarding
-- Customizable avatars and personalization
-- Progress tracking and achievements
-- Collaborative/social multiplayer features
-- Parent/caregiver controls
-- Potential external therapy and healthcare integrations
-- Continuously updated content
-
-## Technical Direction
-
-The document aligns with the repository direction:
-
-- Unity game engine
-- VR/AR compatibility
-- Multi-platform responsiveness
-- Secure user data and privacy considerations
-- Scalable infrastructure for future growth
-
-## Open-Source Implication
-
-This summary is safe to publish as product context. The original Google Doc and related private Drive research, IRB, deck, and partner materials should remain private unless a separate redacted derivative is deliberately created for public inclusion.
+See `README.md` for setup and `docs/unity-validation.md` for scene validation status.

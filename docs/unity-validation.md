@@ -1,28 +1,16 @@
 # Unity Validation
 
-Status as of 2026-06-20: batchmode scene-open validation passed after the `Cashier` build-settings update and after removing uncleared bundled third-party/downloaded asset folders, and the listed project scenes open in batchmode with zero missing script references. Interactive gameplay/VR smoke testing is deferred by current project scope.
+Status as of 2026-06-22: the selected Unity project opens in Unity batchmode, and all configured project scenes validate with zero missing script components.
 
 ## Environment
 
 - Unity editor: `2022.3.25f1`
 - Project: `unity/21verse-vr-game-hub`
-- Project version file: `ProjectSettings/ProjectVersion.txt`
-- Validation command: Unity batchmode project open with `-batchmode -nographics -quit`
 - Scene validation command: `tools/run-unity-scene-validation.ps1`
-
-## Result
-
-Unity opened the curated project, rebuilt the local `Library` cache, imported assets, and exited successfully with return code `0`.
-
-The raw Unity batchmode log was not committed because it contains local machine and Unity licensing metadata. Earlier validation logs reported shader fallback warnings for several URP and Shader Graph materials; after the asset removal pass, the validation target is structural scene-open health rather than final gameplay visuals.
-
-Automated pre-smoke structural checks are tracked in `docs/inventory/unity-pre-smoke-status.csv` and regenerated with `tools/export-unity-pre-smoke-status.ps1`. They confirm scene presence, build-settings inclusion, and XR scene markers before interactive testing.
 
 ## Scene Validation
 
-`SceneValidation.ValidateConfiguredScenes` opened each listed scene in Unity batchmode and checked for missing script components.
-
-These scene files are treated as 21Verse-developed learning/gameplay scene compositions for release-prep purposes. The validation below proves the scene files open structurally; it does not clear the redistribution rights for every visual, package, sample, template, or downloaded asset referenced by those scenes.
+`SceneValidation.ValidateConfiguredScenes` opens each configured scene in Unity batchmode and checks for missing script components.
 
 | Scene | Result | Root objects | GameObjects |
 | --- | --- | ---: | ---: |
@@ -34,20 +22,16 @@ These scene files are treated as 21Verse-developed learning/gameplay scene compo
 | `Assets/Scenes/NumberInequalitiesLevel.unity` | Opened successfully; 0 missing scripts | 9 | 32 |
 | `Assets/Scenes/Cashier.unity` | Opened successfully; 0 missing scripts | 10 | 32 |
 
-A stale missing script component was removed from `Canvas/OptionsRow/OptionButton (2)` in `Assets/Scenes/NumberInequalitiesLevel.unity`; the rerun passed after that cleanup. The latest rerun also passed after removing uncleared bundled asset folders, with lower GameObject counts because third-party visual/sample/template content is no longer bundled.
+## Running Validation
 
-## Remaining Validation
+From the repository root:
 
-Interactive VR smoke testing is deferred by the current project scope. For a future gameplay release, open the project interactively in Unity `2022.3.25f1` and smoke-test these project scenes:
+```powershell
+.\tools\run-unity-scene-validation.ps1
+```
 
-- `Assets/Scenes/MainMenu.unity`
-- `Assets/Scenes/WordLevel01.unity`
-- `Assets/Scenes/AdjectiveLevel01.unity`
-- `Assets/Scenes/IdentifyingColors.unity`
-- `Assets/Scenes/NumberLevelUI01.unity`
-- `Assets/Scenes/NumberInequalitiesLevel.unity`
-- `Assets/Scenes/Cashier.unity`
+The script finds the Unity editor, opens `unity/21verse-vr-game-hub`, runs the configured scene validator, and writes a log to the path printed by the command.
 
-Optional future interactive smoke-test work is tracked in GitHub issue #3.
-Detailed interactive smoke-test status is tracked in `docs/unity-smoke-test-checklist.md` and `docs/inventory/unity-smoke-test-status.csv`.
-Pre-smoke structural status is tracked in `docs/inventory/unity-pre-smoke-status.csv`.
+## Manual Checks
+
+Batchmode validation confirms structural scene health. Gameplay, headset comfort, controller feel, audio prompts, visual clarity, and learner-facing flows should still be checked manually when a change affects scene behavior or UI.

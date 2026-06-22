@@ -1,19 +1,16 @@
 # Security Policy
 
-## Reporting A Vulnerability
+## Reporting
 
-Report suspected vulnerabilities or exposed sensitive material privately to the repository owner or project maintainers. Do not open public issues for:
+Report suspected vulnerabilities or accidental exposure of sensitive material through a non-public maintainer contact. Avoid posting credentials, personal data, participant data, or sensitive records in public issues.
 
-- Credentials, API keys, tokens, or private keys.
-- Student, testing, research, IRB, financial, investor, partner, or outreach material.
-- Private Google Drive exports or NAS files that were not reviewed for public release.
+## Scope
 
-## Release Gate
+Security reports may include:
 
-After any release-scope change, rerun the release audit:
+- Exposed credentials, tokens, or secret keys.
+- Unsafe dependency or package behavior.
+- Accidental inclusion of sensitive files.
+- Issues that could compromise users, contributors, or project infrastructure.
 
-```powershell
-.\tools\run-release-audit.ps1
-```
-
-Do not publish release-scope changes while the audit reports blockers.
+For ordinary Unity bugs, documentation fixes, or feature requests, use GitHub issues.

@@ -1,6 +1,0 @@
-"setting","status","evidence","next_action"
-"main_protection_endpoint","complete","GitHub branch protection endpoint returned 200 OK for main.","Keep branch protection enabled through public release."
-"pull_request_required","complete","required_pull_request_reviews is configured.","Require pull requests before merging to main."
-"repo_hygiene_required","complete","Required contexts: Repository hygiene","Require the Repository hygiene status check before merge."
-"force_pushes_disabled","complete","allow_force_pushes is disabled.","Confirm force pushes are disabled on main."
-"branch_deletions_disabled","complete","allow_deletions is disabled.","Confirm branch deletion is disabled on main."

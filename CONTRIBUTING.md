@@ -1,38 +1,49 @@
 # Contributing
 
-This repository is the public open-source release of selected 21Verse Unity work. Contributions are welcome when they stay inside the public-safe scope described in `README.md` and `docs/release-readiness.md`.
+Thanks for helping improve `21verse`.
 
-Please follow `CODE_OF_CONDUCT.md` and `SUPPORT.md` when participating in project discussions or reviews.
+This repository focuses on selected Unity VR learning experiences from 21Verse. Contributions are most useful when they improve the included scenes, scripts, documentation, setup flow, validation, accessibility, or asset clarity.
+
+Please follow `CODE_OF_CONDUCT.md` in issues, pull requests, reviews, and discussions.
 
 ## Development Setup
 
 1. Install Unity `2022.3.25f1`.
 2. Open `unity/21verse-vr-game-hub` in Unity Hub.
-3. Let Unity regenerate local folders such as `Library`, `Temp`, `Logs`, and `UserSettings`; these folders are intentionally ignored.
-4. Keep large binary assets under Git LFS according to `.gitattributes`.
+3. Let Unity regenerate local folders such as `Library`, `Temp`, `Logs`, and `UserSettings`.
+4. Keep generated folders out of Git.
+5. Keep large binary assets under Git LFS according to `.gitattributes`.
 
-## Validation
+## Pull Requests
 
-Before opening a pull request or publishing a release candidate, run the checks that match the change scope. Maintainers should run the full set before release-scope changes:
+Before opening a pull request:
+
+- Describe the experience, scene, or workflow affected.
+- Keep changes focused and easy to review.
+- Include screenshots or short clips for visible scene/UI changes when possible.
+- Update docs when setup, validation, dependencies, or asset requirements change.
+
+Run the checks that match your change:
 
 ```powershell
 .\tools\test-repo-hygiene.ps1
 .\tools\run-unity-scene-validation.ps1
-.\tools\export-unity-asset-audit.ps1
-.\tools\export-unity-risky-asset-references.ps1
-.\tools\run-release-audit.ps1
 ```
 
-The scene validation and repo hygiene checks should pass before merging code or Unity-scene changes. If the release audit reports a blocker, resolve it before publishing release-scope changes.
+## Unity Asset Policy
 
-Unity Package Manager dependency changes should be made in Unity and validated manually; see `docs/repository-maintenance.md`.
+- Prefer original, project-owned, or clearly redistributable assets.
+- Do not add Asset Store, marketplace, downloaded, sample, or generated assets unless their license allows redistribution in a public source repository.
+- Document new package dependencies in `docs/unity-dependencies.md`.
+- Update `NOTICE.md` and `docs/third-party-assets.md` when asset or attribution details change.
 
-## Asset Policy
+## Accessibility And Learning Design
 
-- Do not add Asset Store, downloaded, generated, or sample assets to this public repository unless redistribution rights are confirmed.
-- Prefer documented import steps or original placeholder assets for third-party packages.
-- Update `NOTICE.md`, `docs/third-party-assets.md`, `docs/unity-dependencies.md`, and `docs/asset-removal-plan.md` when asset decisions change.
+21Verse experiences should stay focused and approachable:
 
-## Sensitive Material
-
-Do not commit testing data, IRB material, financials, investor decks, partner outreach, credentials, API keys, or raw Google Drive exports unless they have been deliberately sanitized for public release.
+- Keep one primary learning goal per module.
+- Use large, clear targets and answer choices.
+- Favor audio-first or symbol-supported instructions.
+- Limit background clutter and unnecessary motion.
+- Keep interactions consistent across scenes where possible.
+- Add difficulty gradually rather than jumping between skill levels.

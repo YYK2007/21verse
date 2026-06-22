@@ -1,7 +1,7 @@
 param(
     [string] $UnityExe = "C:\Program Files\Unity\Hub\Editor\2022.3.25f1\Editor\Unity.exe",
     [string] $ProjectPath = (Join-Path $PSScriptRoot "..\unity\21verse-vr-game-hub"),
-    [string] $ReportPath = (Join-Path $PSScriptRoot "..\docs\inventory\generated\unity-scene-validation.md")
+    [string] $ReportPath = (Join-Path $env:TEMP "21verse-unity-scene-validation.md")
 )
 
 $ErrorActionPreference = "Stop"
@@ -9,6 +9,11 @@ $ErrorActionPreference = "Stop"
 $resolvedProject = (Resolve-Path -LiteralPath $ProjectPath).Path
 $resolvedReport = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ReportPath)
 $logPath = Join-Path $env:TEMP "21verse-unity-scene-validation.log"
+
+$reportDirectory = Split-Path -Parent $resolvedReport
+if (-not (Test-Path -LiteralPath $reportDirectory)) {
+    New-Item -ItemType Directory -Path $reportDirectory | Out-Null
+}
 
 $env:TWENTYONEVERSE_SCENE_VALIDATION_REPORT = $resolvedReport
 
