@@ -25,10 +25,10 @@ This repository is approved for public open-source release. Keep the checks belo
 - Release evidence is mapped in `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements-status.csv`.
 - Current blocker owner actions are generated in `docs/release-blocker-action-plan.md` and `docs/inventory/release-blocker-action-plan.csv`.
 - Final publication steps are documented in `docs/public-release-runbook.md`.
-- Public-repo governance docs and GitHub issue/PR templates are staged for release review.
-- Conduct, support, and changelog docs are staged for public release review.
-- Lightweight repository hygiene checks and a GitHub Actions release-blocker guard are staged in `.github/workflows/repo-hygiene.yml`.
-- Repository ownership and dependency-maintenance config are staged in `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
+- Public-repo governance docs and GitHub issue/PR templates are ready for ongoing public maintenance.
+- Conduct, support, and changelog docs are public-ready and should stay aligned with the open-source scope.
+- Lightweight repository hygiene checks and a GitHub Actions release-blocker guard are available in `.github/workflows/repo-hygiene.yml`.
+- Repository ownership and dependency-maintenance config are available in `.github/CODEOWNERS`, `.github/dependabot.yml`, and `docs/repository-maintenance.md`.
 - GitHub tracker milestone and labels are documented in `docs/github-tracker.md`.
 - GitHub repository metadata is documented in `docs/github-metadata.md`.
 - GitHub release-state snapshot is tracked in `docs/github-release-state.md` and `docs/inventory/github-release-state.csv`.
@@ -51,7 +51,7 @@ This repository is approved for public open-source release. Keep the checks belo
    - Review the UPM/package and removed-asset handoff in `docs/unity-dependencies.md`.
    - Review the external import/removal handoff in `docs/unity-external-imports.md`.
    - Use `docs/public-asset-manifest.md` and `docs/inventory/unity-public-asset-manifest.csv` as the retained-folder map for public release changes.
-   - Regenerate `docs/inventory/public-release-file-plan.csv` with `tools/export-public-release-file-plan.ps1` to review tracked include/exclude effects before future public release changes.
+   - Regenerate `docs/inventory/public-release-file-plan.csv` with `tools/export-public-release-file-plan.ps1` to review tracked include/exclude effects before future release-scope changes.
    - Confirm all rows in `docs/inventory/unity-asset-disposition.csv` are non-`pending`.
    - Keep removed downloaded/third-party asset folders out of Git unless redistribution rights are later confirmed.
    - Update `NOTICE.md` after any future third-party asset change.

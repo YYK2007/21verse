@@ -8,7 +8,7 @@ Repository:
 
 Description:
 
-- `Open-source release of 21Verse Unity VR learning mini-games; not the full private 21Verse project.`
+- `Selected Unity VR learning modules from 21Verse; this is only the open-source release, not the full private project.`
 
 Topics:
 

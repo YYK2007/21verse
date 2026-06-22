@@ -19,4 +19,4 @@ The planner does not copy, delete, publish, or change repository visibility. It 
 - `exclude_until_resolved`: tracked Unity files under asset folders that require rights confirmation, replacement, external import, or removal for public release.
 - `exclude_generated`: generated outputs that should not be part of a public source tree.
 
-This plan is a release-review aid, not a substitute for owner approval. Do not add excluded or unresolved files to future public release changes.
+This plan is a release-review aid, not a substitute for owner approval. Do not add excluded or unresolved files to future release-scope changes.
