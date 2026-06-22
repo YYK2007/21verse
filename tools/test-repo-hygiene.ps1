@@ -75,8 +75,13 @@ try {
         Add-Failure "Tracked files over 100 MB found: $($largeFiles -join ', ')"
     }
 
-    $secretPattern = '(ghp_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{20,}|(api[_-]?key|client_secret|password)\s*[:=]\s*[''"]?[A-Za-z0-9_./=+-]{12,})'
-    $secretMatches = @(rg -n --hidden -S $secretPattern --glob "!.git/**" --glob "!tools/test-repo-hygiene.ps1" . 2>$null)
+    $secretPattern = '(ghp_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{20,}|(api[_-]?key|client_secret|password)[[:space:]]*[:=][[:space:]]*[''"]?[A-Za-z0-9_./=+-]{12,})'
+    if (Get-Command rg -ErrorAction SilentlyContinue) {
+        $secretMatches = @(rg -n --hidden -S $secretPattern --glob "!.git/**" --glob "!tools/test-repo-hygiene.ps1" . 2>$null)
+    }
+    else {
+        $secretMatches = @(git grep -n -I -E $secretPattern -- . ":(exclude)tools/test-repo-hygiene.ps1" 2>$null)
+    }
     if ($secretMatches.Count -gt 0) {
         Add-Failure "Potential secret material found: $($secretMatches -join '; ')"
     }
