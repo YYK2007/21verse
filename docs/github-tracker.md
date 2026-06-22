@@ -12,7 +12,7 @@ The GitHub tracker is configured for public-release readiness and follow-up work
 
 | Issue | Purpose | Current release status |
 | --- | --- | --- |
-| [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse/issues/1) | Complete NAS inventory/review. | Closed after user excluded NAS from the current scope. |
+| [#1 Review private archive files](https://github.com/YYK2007/21verse/issues/1) | Complete private archive inventory/review if this scope is reopened. | Closed because private archive files are excluded from the current scope. |
 | [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse/issues/2) | Resolve asset rights, replacement, or removal decisions. | Closed after uncleared downloaded/third-party Unity asset folders were removed from the repo. |
 | [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse/issues/3) | Complete interactive Unity/VR smoke testing. | Closed after user deferred interactive VR smoke from the current scope. |
 | [#5 Verify GitHub branch protection](https://github.com/YYK2007/21verse/issues/5) | Verify or configure `main` branch protection from a GitHub admin session. | Closed after branch protection was applied and verified on the public repository. |
@@ -51,10 +51,10 @@ The GitHub tracker is configured for public-release readiness and follow-up work
 | `blocker` | Must be resolved before publishing release changes. |
 | `open-source-readiness` | Work required for public open-source release readiness and maintenance. |
 | `licensing` | Licensing, attribution, or redistribution rights review. |
-| `nas` | Youssef Storage / WDMyCloudEX4100 inventory and review. |
+| `nas` | Private archive inventory and review. |
 | `unity` | Unity project, scenes, packages, or assets. |
 | `validation` | Validation, smoke testing, or release audit work. |
 
 Future release changes should not proceed while this milestone has open blocker issues or while the release audit reports content blockers.
 
-`tools/test-github-release-state.ps1` verifies these release labels, issue label expectations, issue body evidence references, the milestone, public visibility, metadata, and the latest `Repo Hygiene` result from a Windows session with GitHub credentials.
+`tools/test-github-release-state.ps1` verifies these release labels, issue label expectations, issue body evidence references, the milestone, public visibility, metadata, and the latest `Repo Hygiene` result from an authenticated local environment.

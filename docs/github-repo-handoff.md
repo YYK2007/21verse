@@ -4,10 +4,6 @@ The public GitHub repository exists at:
 
 `https://github.com/YYK2007/21verse`
 
-Local checkout:
-
-`C:\Users\youss\OneDrive\Documents\21verse_opensource`
-
 Default branch:
 
 `main`
@@ -39,12 +35,12 @@ Expected state:
 - Release evidence map is present at `docs/release-evidence-manifest.md`.
 - Git LFS is installed and tracks Unity binary/media assets.
 - `Repo Hygiene` GitHub Actions checks pass, including the public-release visibility guard.
-- `tools/test-github-release-state.ps1` passes from a Windows session with GitHub credentials.
+- `tools/test-github-release-state.ps1` passes from an authenticated local environment.
 
 ## Release Tracker Issues
 
 - [Public release readiness milestone](https://github.com/YYK2007/21verse/milestone/1)
-- [#1 Review 21Verse files on Youssef Storage NAS](https://github.com/YYK2007/21verse/issues/1)
+- [#1 Review private archive files](https://github.com/YYK2007/21verse/issues/1)
 - [#2 Confirm third-party Unity asset redistribution rights](https://github.com/YYK2007/21verse/issues/2)
 - [#3 Open curated Unity project and smoke test main scenes](https://github.com/YYK2007/21verse/issues/3)
 - [#5 Verify GitHub branch protection](https://github.com/YYK2007/21verse/issues/5)
@@ -62,4 +58,4 @@ See `docs/github-branch-protection.md` for the branch protection handoff.
 - `docs/inventory/release-audit.md` reports no content blockers.
 - Branch protection is enabled and verified in `docs/github-branch-protection.md`.
 
-Repository visibility was approved for public release by user request on 2026-06-22. Keep future private, partner, investor, testing, research, and unsanitized Drive/NAS materials out of public commits.
+Repository visibility was approved for public release on 2026-06-22. Keep future private, partner, investor, testing, research, and unsanitized Drive/NAS materials out of public commits.

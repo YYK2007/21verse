@@ -1,6 +1,6 @@
 # Asset Removal and Replacement Plan
 
-This plan is for preparing a future public repository without redistributing third-party or uncertain-rights Unity assets.
+This plan keeps the public repository from redistributing third-party or uncertain-rights Unity assets.
 
 Source audits:
 

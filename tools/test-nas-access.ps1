@@ -1,14 +1,11 @@
 param(
-    [string] $HostName = "WDMyCloudEX4100",
-    [string] $Address = "192.168.0.104",
+    [string] $HostName = "",
+    [string] $Address = "",
     [string] $OutputPath = (Join-Path $PSScriptRoot "..\docs\inventory\nas-access-log.csv"),
     [string[]] $CandidateShares = @(
         "Public",
         "Shared",
         "Share",
-        "Youssef",
-        "Youssef Storage",
-        "YoussefStorage",
         "21verse",
         "21Verse",
         "homes",
@@ -20,6 +17,10 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+
+if ([string]::IsNullOrWhiteSpace($HostName) -and [string]::IsNullOrWhiteSpace($Address)) {
+    throw "Pass -HostName or -Address for the private archive you want to probe. Do not commit raw private host/IP evidence."
+}
 
 $repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 $resolvedOutput = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputPath)
@@ -132,26 +133,37 @@ function Test-ShareRoot {
 Push-Location $repoRoot
 try {
     $rows = [System.Collections.Generic.List[object]]::new()
+    $probeTargets = @()
+    if (-not [string]::IsNullOrWhiteSpace($Address)) {
+        $probeTargets += $Address
+    }
+    if (-not [string]::IsNullOrWhiteSpace($HostName)) {
+        $probeTargets += $HostName
+    }
 
     $smbMappings = @(Get-SmbMapping -ErrorAction SilentlyContinue |
         Where-Object {
-            $_.RemotePath -match [regex]::Escape($HostName) -or
-            $_.RemotePath -match [regex]::Escape($Address) -or
-            $_.RemotePath -match "Youssef"
+            (-not [string]::IsNullOrWhiteSpace($HostName) -and $_.RemotePath -match [regex]::Escape($HostName)) -or
+            (-not [string]::IsNullOrWhiteSpace($Address) -and $_.RemotePath -match [regex]::Escape($Address))
         })
 
-    $rows.Add((New-Result "Get-SmbMapping" ($(if ($smbMappings.Count -gt 0) { ($smbMappings | ForEach-Object { "$($_.LocalPath) -> $($_.RemotePath) [$($_.Status)]" }) -join "; " } else { "no active mapping for Youssef Storage/WDMyCloudEX4100" })))) | Out-Null
+    $rows.Add((New-Result "Get-SmbMapping" ($(if ($smbMappings.Count -gt 0) { ($smbMappings | ForEach-Object { "$($_.LocalPath) -> $($_.RemotePath) [$($_.Status)]" }) -join "; " } else { "no active mapping for requested private archive" })))) | Out-Null
 
     $netUse = Invoke-ExternalCommand "net.exe" @("use")
-    $activeNetUse = @($netUse.Output | Where-Object { $_ -match $HostName -or $_ -match [regex]::Escape($Address) -or $_ -match "Youssef" })
+    $activeNetUse = @($netUse.Output | Where-Object {
+        (-not [string]::IsNullOrWhiteSpace($HostName) -and $_ -match [regex]::Escape($HostName)) -or
+        (-not [string]::IsNullOrWhiteSpace($Address) -and $_ -match [regex]::Escape($Address))
+    })
     $rows.Add((New-Result "net use" ($(if ($activeNetUse.Count -gt 0) { $activeNetUse -join "; " } else { "no active connection" })))) | Out-Null
 
-    $ping = Test-Connection -ComputerName $Address -Count 1 -Quiet
-    $rows.Add((New-Result "ICMP ping" ($(if ($ping) { "$Address reachable" } else { "$Address did not respond to one ICMP ping" })))) | Out-Null
+    if (-not [string]::IsNullOrWhiteSpace($Address)) {
+        $ping = Test-Connection -ComputerName $Address -Count 1 -Quiet
+        $rows.Add((New-Result "ICMP ping" ($(if ($ping) { "address reachable" } else { "address did not respond to one ICMP ping" })))) | Out-Null
 
-    $nbtstat = Invoke-ExternalCommand "nbtstat.exe" @("-A", $Address)
-    $netbiosNames = @($nbtstat.Output | Where-Object { $_ -match "<(00|03|20)>" } | ForEach-Object { ($_ -replace "\s+", " ").Trim() })
-    $rows.Add((New-Result "NetBIOS" ($(if ($netbiosNames.Count -gt 0) { $netbiosNames -join "; " } else { "no NetBIOS names returned" })))) | Out-Null
+        $nbtstat = Invoke-ExternalCommand "nbtstat.exe" @("-A", $Address)
+        $netbiosNames = @($nbtstat.Output | Where-Object { $_ -match "<(00|03|20)>" } | ForEach-Object { ($_ -replace "\s+", " ").Trim() })
+        $rows.Add((New-Result "NetBIOS" ($(if ($netbiosNames.Count -gt 0) { "NetBIOS names returned; raw names omitted from public-safe summaries" } else { "no NetBIOS names returned" })))) | Out-Null
+    }
 
     $openPorts = [System.Collections.Generic.List[string]]::new()
     $closedPorts = [System.Collections.Generic.List[string]]::new()
@@ -166,6 +178,10 @@ try {
     )
 
     foreach ($port in $ports) {
+        if ([string]::IsNullOrWhiteSpace($Address)) {
+            continue
+        }
+
         $connection = Test-NetConnection -ComputerName $Address -Port $port.Number -WarningAction SilentlyContinue
         if ($connection.TcpTestSucceeded) {
             $openPorts.Add("$($port.Number) $($port.Label)") | Out-Null
@@ -178,7 +194,8 @@ try {
     $rows.Add((New-Result "Open TCP ports" ($(if ($openPorts.Count -gt 0) { $openPorts -join "; " } else { "none detected" })))) | Out-Null
     $rows.Add((New-Result "Closed TCP ports" ($(if ($closedPorts.Count -gt 0) { $closedPorts -join "; " } else { "none detected" })))) | Out-Null
 
-    foreach ($target in @("\\$Address", "\\$HostName")) {
+    foreach ($targetHost in $probeTargets) {
+        $target = "\\$targetHost"
         try {
             $items = @(Get-ChildItem -LiteralPath $target -ErrorAction Stop | Select-Object -First 5)
             $rows.Add((New-Result "UNC root $target" ("listed $($items.Count) entries: " + (($items | ForEach-Object { $_.Name }) -join "; ")))) | Out-Null
@@ -189,7 +206,8 @@ try {
         }
     }
 
-    foreach ($target in @("\\$Address", "\\$HostName")) {
+    foreach ($targetHost in $probeTargets) {
+        $target = "\\$targetHost"
         $viewTarget = $target.TrimEnd("\")
         $view = Invoke-ExternalCommand "net.exe" @("view", $viewTarget)
         if ($view.ExitCode -eq 0) {
@@ -209,7 +227,7 @@ try {
         ForEach-Object { $_.Trim() } |
         Select-Object -Unique)
 
-    foreach ($targetHost in @($Address, $HostName)) {
+    foreach ($targetHost in $probeTargets) {
         foreach ($share in $uniqueCandidateShares) {
             $sharePath = "\\$targetHost\$share"
             $shareResult = Test-ShareRoot -Path $sharePath -TimeoutSeconds $ShareProbeTimeoutSeconds
@@ -218,12 +236,14 @@ try {
     }
 
     $webStatus = "not checked"
-    try {
-        $response = Invoke-WebRequest -UseBasicParsing -Uri "http://$Address/" -TimeoutSec 10
-        $webStatus = "HTTP $($response.StatusCode) at root"
-    }
-    catch {
-        $webStatus = "HTTP probe failed: " + (($_.Exception.Message -replace "\s+", " ").Trim())
+    if (-not [string]::IsNullOrWhiteSpace($Address)) {
+        try {
+            $response = Invoke-WebRequest -UseBasicParsing -Uri "http://$Address/" -TimeoutSec 10
+            $webStatus = "HTTP $($response.StatusCode) at root"
+        }
+        catch {
+            $webStatus = "HTTP probe failed: " + (($_.Exception.Message -replace "\s+", " ").Trim())
+        }
     }
     $rows.Add((New-Result "WD web UI" $webStatus)) | Out-Null
 

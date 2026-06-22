@@ -2,47 +2,22 @@
 
 ## Local Sources Reviewed
 
-Primary local folder:
+Private local 21Verse source folders were reviewed during release preparation. Absolute workstation paths are intentionally omitted from this public repository.
 
-- `C:\Users\youss\Desktop\21Verse`
+The review covered:
 
-Additional 21Verse folders:
-
-- `C:\Users\youss\Desktop\Current Projects\21Verse Design`
-- `C:\Users\youss\Desktop\Current Projects\21Verse at GHE`
-
-Mounted drives checked:
-
-- `C:` System Disk
-- `D:` HDD
-- `E:` Old PC
-
-No active SMB/NAS mapping was detected with `Get-SmbMapping` during the first review. The user later identified the NAS as `Youssef Storage`; see `docs/design-and-nas-inventory.md` for the follow-up network evidence and access result.
+- The selected Unity project that became `unity/21verse-vr-game-hub`.
+- Older 21Verse Unity prototypes and backups that were not copied.
+- Local design and document folders summarized in `docs/design-and-nas-inventory.md`.
+- Mounted local drives that did not contribute public release files.
 
 ## Unity Projects Found
 
-The strongest release candidate was:
+The strongest release candidate was a Unity `2022.3.25f1` project with existing Git history and the latest adjective/color work. It was smaller and cleaner than duplicate-heavy older project folders, and it became:
 
-- `C:\Users\youss\Desktop\21Verse\21VerseVRGameHub-adjectives-game\21VerseVRGameHub-with-more`
+- `unity/21verse-vr-game-hub`
 
-Why this one:
-
-- Unity `2022.3.25f1`
-- Existing Git history
-- Contains the latest adjective/color work
-- Smaller and cleaner than the duplicate-heavy `21VerseVRGameHub` folder
-
-Other Unity project markers were found under:
-
-- `C:\Users\youss\Desktop\21Verse\21VerseVRGameHub`
-- `C:\Users\youss\Desktop\21Verse\Metaverse Academy Prototyping\21Verse Project copy`
-- `C:\Users\youss\Desktop\21Verse\Prototype`
-- `C:\Users\youss\Desktop\21Verse\VR Math Game`
-- `C:\Users\youss\Desktop\21Verse\VR Math Game (2)`
-- `C:\Users\youss\Desktop\21Verse\VR_Unity_Template`
-- `C:\Users\youss\Desktop\Current Projects\21Verse Design\21Verse`
-
-Those folders appear to be older prototypes, backups, templates, or much larger asset-heavy environments. They were not copied into this repo.
+Other Unity project markers appeared to be older prototypes, backups, templates, or larger asset-heavy environments. They were not copied into this repo.
 
 ## Brand/Public Assets Included
 
@@ -53,11 +28,11 @@ Those folders appear to be older prototypes, backups, templates, or much larger 
 
 ## Local Assets Not Included
 
-- PSD source files
-- Pitch decks and proposals
-- Backup archives
-- Duplicate logos and old banners
-- Local project zips/rar files
+- PSD source files.
+- Pitch decks and proposals.
+- Backup archives.
+- Duplicate logos and old banners.
+- Local project zips/rar files.
 
 See `docs/design-and-nas-inventory.md` for aggregate counts of local design/document files.
 
@@ -69,4 +44,4 @@ See `docs/design-and-nas-inventory.md` for aggregate counts of local design/docu
 - `docs/inventory/google-drive-21verse.csv`
 - `docs/inventory/nas-access-log.csv`
 
-The local inventory files can be rebuilt with `tools/rebuild-local-inventories.ps1`.
+The committed inventory files are sanitized for public release and omit private absolute paths and network details.

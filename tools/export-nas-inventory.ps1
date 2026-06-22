@@ -76,8 +76,8 @@ $candidateColumns = @(
 if ($Roots.Count -eq 0) {
     $mountedNasRoots = @(Get-PSDrive -PSProvider FileSystem |
         Where-Object {
-            $_.DisplayRoot -match "WDMyCloud|Youssef|192\.168\.0\.104|WDMYCLOUDEX4100" -or
-            $_.Root -match "WDMyCloud|Youssef|192\.168\.0\.104|WDMYCLOUDEX4100"
+            $_.DisplayRoot -match "21\s*verse|21verse|private\s*archive|nas" -or
+            $_.Root -match "21\s*verse|21verse|private\s*archive|nas"
         } |
         ForEach-Object { if ($_.DisplayRoot) { $_.DisplayRoot } else { $_.Root } })
 
@@ -88,7 +88,7 @@ if ($Roots.Count -eq 0) {
     $logRows.Add([PSCustomObject]@{
         root = ""
         status = "no mounted NAS root found"
-        detail = "Pass -Roots with a mounted drive path or UNC share after authenticating to Youssef Storage / WDMyCloudEX4100."
+        detail = "Pass -Roots with a mounted drive path or UNC share after authenticating to the private archive outside the repository."
     }) | Out-Null
 }
 
@@ -104,7 +104,7 @@ foreach ($root in $Roots) {
         $logRows.Add([PSCustomObject]@{
             root = $root
             status = "not accessible"
-            detail = "Path does not exist or is not mounted in this session."
+            detail = "Path does not exist or is not mounted in the current environment."
         }) | Out-Null
         continue
     }

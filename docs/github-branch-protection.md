@@ -4,7 +4,7 @@ This document records the verified `main` branch protection state for the public
 
 Current verification result:
 
-- The repo-prep session can verify repository metadata, labels, issues, milestone, and Actions runs.
+- Maintainer tooling can verify repository metadata, labels, issues, milestone, and Actions runs.
 - Branch protection was applied after publication.
 - `tools/test-github-branch-protection.ps1` verified the GitHub branch protection endpoint for `main` returned `200 OK`.
 - `docs/inventory/github-branch-protection-status.csv` records all required branch protection rows as `complete`.

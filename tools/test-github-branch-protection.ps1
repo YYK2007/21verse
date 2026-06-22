@@ -92,10 +92,10 @@ try {
         }
 
         $rows.Add((New-StatusRow "main_protection_endpoint" "blocked" $endpointEvidence "Verify branch protection from a GitHub admin session.")) | Out-Null
-        $rows.Add((New-StatusRow "pull_request_required" "pending_admin_verification" "Not inspected from this session." "Require pull requests before merging to main.")) | Out-Null
-        $rows.Add((New-StatusRow "repo_hygiene_required" "pending_admin_verification" "Not inspected from this session." "Require the Repository hygiene status check before merge.")) | Out-Null
-        $rows.Add((New-StatusRow "force_pushes_disabled" "pending_admin_verification" "Not inspected from this session." "Confirm force pushes are disabled on main.")) | Out-Null
-        $rows.Add((New-StatusRow "branch_deletions_disabled" "pending_admin_verification" "Not inspected from this session." "Confirm branch deletion is disabled on main.")) | Out-Null
+        $rows.Add((New-StatusRow "pull_request_required" "pending_admin_verification" "Not inspected from the current environment." "Require pull requests before merging to main.")) | Out-Null
+        $rows.Add((New-StatusRow "repo_hygiene_required" "pending_admin_verification" "Not inspected from the current environment." "Require the Repository hygiene status check before merge.")) | Out-Null
+        $rows.Add((New-StatusRow "force_pushes_disabled" "pending_admin_verification" "Not inspected from the current environment." "Confirm force pushes are disabled on main.")) | Out-Null
+        $rows.Add((New-StatusRow "branch_deletions_disabled" "pending_admin_verification" "Not inspected from the current environment." "Confirm branch deletion is disabled on main.")) | Out-Null
     }
 
     $outputDir = Split-Path -Parent $resolvedOutput

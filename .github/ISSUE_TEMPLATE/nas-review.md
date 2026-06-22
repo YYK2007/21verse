@@ -1,6 +1,6 @@
 ---
 name: NAS review
-about: Track review of 21Verse files on Youssef Storage / WDMyCloudEX4100
+about: Track review of private archive files for possible public-safe additions
 title: "NAS review: "
 labels: release, inventory
 assignees: ""
@@ -8,7 +8,7 @@ assignees: ""
 
 ## Access
 
-- Device: `Youssef Storage` / `WDMyCloudEX4100`
+- Device/share: private maintainer-provided archive location
 - Current evidence: `docs/inventory/nas-access-log.csv`
 
 ## Checklist

@@ -1,16 +1,12 @@
-# Design Files and NAS Inventory
+# Design Files and Private Archive Inventory
 
 Review date: 2026-06-19.
 
 ## Local Design/Document Inventory
 
-Scanned local 21Verse roots:
+Private local 21Verse design and document roots were reviewed during release preparation. Absolute workstation paths are intentionally omitted from the public repository.
 
-- `C:\Users\youss\Desktop\21Verse`
-- `C:\Users\youss\Desktop\Current Projects\21Verse Design`
-- `C:\Users\youss\Desktop\Current Projects\21Verse at GHE`
-
-Design/document file counts found in those roots:
+Aggregate file counts found in the private design/document roots:
 
 | Extension | Count | Approx. size |
 | --- | ---: | ---: |
@@ -25,35 +21,16 @@ Design/document file counts found in those roots:
 | `.png` | 53,727 | 7,988.7 MB |
 | `.psd` | 736 | 1,780.9 MB |
 
-Only selected brand/public collateral was copied into the repo. Most design sources are intentionally not bundled yet because they are large, duplicate-heavy, and need ownership/license review before public release.
+Only selected brand/public collateral was copied into the repo. Most private design sources are intentionally not bundled because they are large, duplicate-heavy, and need ownership/license review before any public release.
 
-## NAS: Youssef Storage
+## Private NAS/Archive Scope
 
-The NAS named by the user as `Youssef Storage` appears on the LAN as:
+A private NAS/archive source was identified during release preparation, but raw NAS files are excluded from this open-source release. The committed repository does not include the private host name, IP address, share names, credentials, or raw scan output.
 
-- Hostname: `WDMyCloudEX4100`
-- Reverse DNS: `WDMyCloudEX4100`
-- IP: `192.168.0.104`
-- NetBIOS name: `WDMYCLOUDEX4100`
-- Device type clue: WD My Cloud EX4100
+If this scope is reopened later, maintainers should:
 
-Evidence:
-
-- `arp -a` showed `192.168.0.104`.
-- `nbtstat -A 192.168.0.104` returned `WDMYCLOUDEX4100`.
-- `Resolve-DnsName 192.168.0.104` returned `WDMyCloudEX4100`.
-- Ports `445`, `139`, and `80` responded.
-- Windows Credential Manager has a saved credential target for `WDMYCLOUDEX4100` with user `admin`.
-
-Access result from this session:
-
-- No active SMB mapping existed in `Get-SmbMapping` or `net use`.
-- `\\192.168.0.104\Public` was blocked by Windows because unauthenticated guest access is disabled.
-- Attempts to connect to likely shares through the hostname timed out or failed.
-- The saved credential did not produce a successful share listing from this non-interactive session.
-
-Conclusion:
-
-The NAS is reachable, but its shares were not accessible for file review in this session. Reviewing NAS-hosted 21Verse files still requires either valid NAS share credentials in the current Windows session, a mounted drive/share, or a deliberate Windows SMB guest-access policy change by the user.
-
-When a share is mounted, use `tools/export-nas-inventory.ps1` and follow `docs/nas-review-runbook.md`.
+1. Mount or authenticate to the private archive outside the repository.
+2. Inventory candidate 21Verse files without committing raw network evidence.
+3. Review candidate files for privacy, ownership, and redistribution rights.
+4. Copy only reviewed public-safe files into the repository.
+5. Summarize decisions in public docs without private paths, network details, or credentials.

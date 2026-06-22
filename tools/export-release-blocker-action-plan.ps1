@@ -17,7 +17,7 @@ function Get-BlockerDetail {
     switch -Regex ($Requirement) {
         "NAS" {
             return [PSCustomObject]@{
-                OwnerAction = "Mount or authenticate to Youssef Storage / WDMyCloudEX4100, then run tools/export-nas-inventory.ps1 against the mounted share."
+                OwnerAction = "Mount or authenticate to the private archive outside the repository, then run tools/export-nas-inventory.ps1 against the mounted share without committing raw private evidence."
                 LocalNextCommand = ".\tools\test-nas-access.ps1"
                 CompletionEvidence = "docs/inventory/nas-review-status.csv has all rows complete and docs/inventory/generated/nas-candidate-files.csv has been reviewed for public-safe additions."
                 ExternalDependency = "NAS share path and/or SMB credentials."

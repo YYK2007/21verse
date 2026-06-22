@@ -4,9 +4,9 @@ Status: public open-source release prepared from the curated 21Verse project.
 
 ## Included
 
-- Main Unity project copied from `C:\Users\youss\Desktop\21Verse\21VerseVRGameHub-adjectives-game\21VerseVRGameHub-with-more`.
+- Main Unity project copied from a reviewed private local 21Verse source project.
 - 21Verse-developed Unity scene compositions, including the main learning/gameplay scenes listed in `README.md`.
-- Selected brand assets copied from `C:\Users\youss\Desktop\21Verse`.
+- Selected brand assets copied from reviewed private local 21Verse brand sources.
 - Public-facing poster PDF copied as `docs/poster-2.pdf`.
 - Repository docs, ignore rules, Git LFS patterns, license, and notices.
 

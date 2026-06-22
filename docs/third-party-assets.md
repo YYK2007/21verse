@@ -2,7 +2,7 @@
 
 This register is based on the Unity asset cleanup performed for `unity/21verse-vr-game-hub/Assets`.
 
-It is not legal advice. Treat any future third-party asset addition as needing owner/license confirmation before the repository is made public.
+It is not legal advice. Treat any future third-party asset addition as needing owner/license confirmation before release-scope changes are published.
 
 The main learning/gameplay scene compositions under `Assets/Scenes` are 21Verse-developed project work. This register focuses on referenced visual, template, package, sample, and downloaded assets that may be embedded in or linked from those scenes.
 
@@ -12,7 +12,7 @@ For the machine-readable folder audit, see `docs/inventory/unity-asset-audit.csv
 For serialized scene/prefab reference impact and removal sequencing, see `docs/asset-removal-plan.md`, `docs/inventory/unity-risky-asset-references.csv`, and `docs/inventory/unity-asset-replacement-worklist.csv`.
 For folder-level release decisions, see `docs/asset-disposition-tracker.md` and `docs/inventory/unity-asset-disposition.csv`.
 For NOTICE and attribution gaps, see `docs/unity-attribution-gap-report.md` and `docs/inventory/unity-attribution-gap-report.csv`.
-For deletion safety after the user's 2026-06-20 downloaded-asset cleanup request, see `docs/inventory/unity-third-party-removal-status.csv`.
+For deletion safety after the 2026-06-20 downloaded-asset cleanup, see `docs/inventory/unity-third-party-removal-status.csv`.
 
 ## Removed High-Risk Asset Folders
 

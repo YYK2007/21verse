@@ -136,7 +136,7 @@ try {
         "docs/inventory/github-release-state.csv" = 12
         "docs/inventory/release-blocker-action-plan.csv" = 0
         "docs/inventory/release-requirements-status.csv" = 10
-        "docs/inventory/local-drive-review-status.csv" = 2
+        "docs/inventory/local-drive-review-status.csv" = 0
         "docs/inventory/nas-review-status.csv" = 5
         "docs/inventory/unity-smoke-test-status.csv" = 5
         "docs/inventory/unity-pre-smoke-status.csv" = 7
@@ -168,12 +168,6 @@ try {
     }
 
     $localDriveRows = @(Import-Csv -LiteralPath "docs/inventory/local-drive-review-status.csv")
-    foreach ($expectedRoot in @("D:\Unity", "E:\Users\Yasser\Documents")) {
-        if (@($localDriveRows | Where-Object { $_.root -eq $expectedRoot }).Count -eq 0) {
-            Add-Failure "Local drive review status is missing root '$expectedRoot'."
-        }
-    }
-
     foreach ($row in $localDriveRows) {
         if ([string]::IsNullOrWhiteSpace($row.root) -or
             [string]::IsNullOrWhiteSpace($row.status) -or
@@ -395,6 +389,7 @@ try {
         "complete_inventory_pending_exports",
         "complete_ongoing",
         "excluded_by_user",
+        "excluded_by_scope",
         "deferred_optional",
         "deferred_platform_limit"
     )

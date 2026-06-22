@@ -14,7 +14,7 @@ Status as of 2026-06-20: batchmode scene-open validation passed after the `Cashi
 
 Unity opened the curated project, rebuilt the local `Library` cache, imported assets, and exited successfully with return code `0`.
 
-The raw Unity batchmode log was not committed because it contains local machine and Unity licensing metadata. Earlier validation logs reported shader fallback warnings for several URP and Shader Graph materials; after the asset removal pass, the validation target is structural scene-open health rather than final gameplay visuals.
+The raw Unity batchmode log was not committed because it can contain local environment and Unity licensing metadata. Earlier validation logs reported shader fallback warnings for several URP and Shader Graph materials; after the asset removal pass, the validation target is structural scene-open health rather than final gameplay visuals.
 
 Automated pre-smoke structural checks are tracked in `docs/inventory/unity-pre-smoke-status.csv` and regenerated with `tools/export-unity-pre-smoke-status.ps1`. They confirm scene presence, build-settings inclusion, and XR scene markers before interactive testing.
 

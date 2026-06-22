@@ -22,4 +22,4 @@ Refresh it with:
 - `summarize_or_redact_before_export`: create a public-safe summary or redacted derivative only.
 - `manual_review_before_export`: decide manually before any export.
 
-This manifest does not authorize exporting private Drive material. It is a release-review aid for keeping sensitive decks, docs, sheets, testing, investor, partner, and outreach files out of the future public repo unless the owner deliberately creates a sanitized derivative.
+This manifest does not authorize exporting private Drive material. It is a release-review aid for keeping sensitive decks, docs, sheets, testing, investor, partner, and outreach files out of the repository unless the owner deliberately creates a sanitized derivative.

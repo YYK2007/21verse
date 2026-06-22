@@ -1,6 +1,6 @@
-# NAS Review Checklist
+# Private Archive Review Checklist
 
-This checklist tracks the remaining `Youssef Storage` / `WDMyCloudEX4100` work for GitHub issue #1.
+This checklist tracks the remaining private archive review work for GitHub issue #1.
 
 Source evidence:
 
@@ -12,23 +12,23 @@ Source evidence:
 
 ## Current State
 
-The NAS is reachable on the local network as `WDMyCloudEX4100` / `192.168.0.104`, but shares were not accessible from this repo-prep session. The current blocker is authenticated share access or an exact listable share path, not network discovery.
+Private archive/NAS files are excluded from the current open-source release scope. The committed repository keeps only sanitized review status and does not include private network identifiers or raw scan output.
 
 ## Completion Checklist
 
 | Step | Status | Evidence required |
 | --- | --- | --- |
-| Confirm access method | `blocked` | A mounted drive letter or UNC share path that can be listed from this Windows session. |
-| Run NAS inventory export | `pending` | `tools/export-nas-inventory.ps1` writes `docs/inventory/generated/nas-candidate-files.csv` and `docs/inventory/generated/nas-scan-log.csv`. |
+| Confirm access method | `blocked` | A private mounted drive or UNC path can be listed by a maintainer without committing the raw path. |
+| Run archive inventory export | `pending` | `tools/export-nas-inventory.ps1` writes generated candidate files outside committed docs. |
 | Review candidate files | `pending` | Candidate files are classified as include, exclude, or private-only. |
-| Promote safe files or document exclusions | `pending` | Repo-worthy files are copied into reviewed locations, or exclusions are recorded with rationale. |
-| Refresh release evidence | `pending` | `docs/design-and-nas-inventory.md`, this checklist, issue #1, and `docs/inventory/release-audit.md` reflect the final NAS decision. |
+| Promote safe files or document exclusions | `pending` | Repo-worthy files are copied into reviewed locations, or public-safe exclusions are recorded with rationale. |
+| Refresh release evidence | `pending` | Public docs reflect the final archive decision without private paths or network details. |
 
 ## Review Rules
 
-- Do not commit raw NAS exports from `docs/inventory/generated/`; summarize reviewed results in tracked docs.
-- Keep testing, IRB, financial, investor, partner, proposal, and outreach materials private unless deliberately redacted.
+- Do not commit raw archive exports from `docs/inventory/generated/`; summarize reviewed results in tracked docs.
+- Keep testing, IRB, financial, investor, partner, proposal, outreach, and participant materials private unless deliberately redacted.
 - Do not copy generated Unity folders such as `Library`, `Temp`, `Logs`, `Obj`, `Build`, `Builds`, or `UserSettings`.
 - Prefer source files only when ownership and public-release rights are clear.
 
-Issue #1 can close only when every row in `docs/inventory/nas-review-status.csv` is `complete`, NAS candidate results have been reviewed, and the release audit no longer marks the NAS review as a blocker.
+Issue #1 can remain closed for the current release because private archive files are out of scope. Reopen it only if maintainers decide to review and add archive-derived public files.

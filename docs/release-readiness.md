@@ -34,15 +34,15 @@ This repository is approved for public open-source release. Keep the checks belo
 - GitHub release-state snapshot is tracked in `docs/github-release-state.md` and `docs/inventory/github-release-state.csv`.
 - GitHub branch protection verification is documented in `docs/github-branch-protection.md`.
 - GitHub branch protection verification status is tracked in `docs/inventory/github-branch-protection-status.csv`.
-- NAS device has been identified but excluded from the current release-prep scope by user request.
+- Private archive/NAS files are excluded from the current release-prep scope by maintainer decision.
 - NAS review instructions are staged in `docs/nas-review-runbook.md`.
 - NAS review completion status is tracked in `docs/nas-review-checklist.md` and `docs/inventory/nas-review-status.csv`.
 
 ## Ongoing Release Controls
 
 1. NAS review
-   - Excluded from the current release-prep scope by user request on 2026-06-20.
-   - Do not include NAS files unless the user reopens this scope.
+   - Excluded from the current release-prep scope by maintainer decision on 2026-06-20.
+   - Do not include NAS files unless maintainers reopen this scope.
 
 2. Unity asset licensing
    - Regenerate `docs/inventory/unity-asset-audit.csv` with `tools/export-unity-asset-audit.ps1` after asset changes.
@@ -62,7 +62,7 @@ This repository is approved for public open-source release. Keep the checks belo
    - Batchmode scene-open validation passed for all main scenes with zero missing script references.
    - Regenerate `docs/inventory/unity-pre-smoke-status.csv` with `tools/export-unity-pre-smoke-status.ps1`.
    - Regenerate `docs/inventory/unity-interactive-smoke-plan.csv` with `tools/export-unity-interactive-smoke-plan.ps1`.
-   - Interactive Unity/VR smoke testing is deferred by user request on 2026-06-20 and is optional before a VR gameplay release.
+   - Interactive Unity/VR smoke testing is deferred by the current maintainer scope and is optional before a VR gameplay release.
    - If that scope is reopened, load and smoke-test the main scenes listed in `README.md`, review shader/material warnings, and update issue #3 evidence.
 
 4. Google Drive/public docs

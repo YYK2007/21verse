@@ -201,13 +201,13 @@ try {
     Add-Gate $gates "Unity third-party asset release decisions" ($(if ($unityAssetGatePass) { "pass" } else { "blocker" })) "$($assetAuditRows.Count) asset folders audited; $($assetBlockers.Count) audited folders still need rights/replacement decisions; $($referencedRiskyFolders.Count) risky folders have serialized references to bundled high-risk folders; $($assetReplacementWorkRows.Count) removal/reconstruction worklist rows are tracked; $($pendingDispositions.Count) asset disposition rows are pending; $($removedRows.Count) high-risk folders are removed from the repo; $($coveredExternalImportRows.Count) pending/removed folders have external import/removal handoff rows; $($safeDeletionRows.Count) high-risk folders are currently safe to delete without replacing references; $($publicAssetExclusions.Count) public asset manifest rows and $($publicFileExclusions.Count) tracked files require exclusion/replacement/import for public release; $($attributionPendingRows.Count) attribution/NOTICE rows still require owner, package, or final asset-decision review." "If this gate is not passing, resolve issue #2 by replacing referenced downloaded assets, removing assets after references are cleared, documenting import steps, and updating NOTICE for retained third-party material."
 
     $nasRows = @(Import-Csv -LiteralPath "docs/inventory/nas-access-log.csv")
-    $nasRequirement = $requirementRows | Where-Object { $_.requirement -eq "Review attached NAS Youssef Storage" } | Select-Object -First 1
+    $nasRequirement = $requirementRows | Where-Object { $_.requirement -eq "Review private archive/NAS files" } | Select-Object -First 1
     $nasStatusRows = @(Import-Csv -LiteralPath "docs/inventory/nas-review-status.csv")
     $nasEvidence = ($nasRows | ForEach-Object { "$($_.check): $($_.result)" }) -join "; "
     $openNasSteps = @($nasStatusRows | Where-Object { $_.status -ne "complete" })
     $nasBlocked = $nasEvidence -match "blocked|password required|no active" -or $openNasSteps.Count -gt 0
-    $nasGateStatus = if (-not $nasBlocked) { "pass" } elseif ($nasRequirement -and $nasRequirement.status -eq "excluded_by_user") { "deferred" } else { "blocker" }
-    $nasNextStep = if ($nasGateStatus -eq "deferred") { "No action for the current scope; user removed NAS files from the release-prep requirement." } else { "Mount/authenticate to Youssef Storage / WDMyCloudEX4100 and inventory 21Verse files." }
+    $nasGateStatus = if (-not $nasBlocked) { "pass" } elseif ($nasRequirement -and $nasRequirement.status -in @("excluded_by_user", "excluded_by_scope")) { "deferred" } else { "blocker" }
+    $nasNextStep = if ($nasGateStatus -eq "deferred") { "No action for the current scope; private archive files are excluded from this open-source release." } else { "Mount/authenticate to the private archive outside the repository and inventory 21Verse files without committing raw private evidence." }
     Add-Gate $gates "NAS review" $nasGateStatus "NAS access log records: $nasEvidence; $($openNasSteps.Count) NAS review status rows are not complete; current requirement status: $($nasRequirement.status)." $nasNextStep
 
     $driveRows = @(Import-Csv -LiteralPath "docs/inventory/google-drive-21verse.csv")

@@ -106,7 +106,7 @@ try {
         "blocker" = "Must be resolved before publishing release changes"
         "open-source-readiness" = "Work required for public open-source release readiness and maintenance"
         "licensing" = "Licensing, attribution, or redistribution rights review"
-        "nas" = "Youssef Storage / WDMyCloudEX4100 inventory and review"
+        "nas" = "Private archive inventory and review"
         "unity" = "Unity project, scenes, packages, or assets"
         "validation" = "Validation, smoke testing, or release audit work"
     }
@@ -142,7 +142,7 @@ try {
     }
     $expectedIssueBodySnippets = @{
         1 = @(
-            "Excluded from the current release-prep scope by user request on 2026-06-20",
+            "Excluded from the current release-prep scope by maintainer decision on 2026-06-20",
             "docs/design-and-nas-inventory.md",
             "docs/nas-review-checklist.md",
             "docs/inventory/nas-access-log.csv",
@@ -166,7 +166,7 @@ try {
             "docs/inventory/public-release-file-plan.csv"
         )
         3 = @(
-            "Deferred by user request on 2026-06-20",
+            "Deferred by the current maintainer scope",
             "docs/unity-validation.md",
             "docs/unity-smoke-test-checklist.md",
             "docs/inventory/unity-smoke-test-status.csv",

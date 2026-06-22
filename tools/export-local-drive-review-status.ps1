@@ -1,8 +1,5 @@
 param(
-    [string[]] $Roots = @(
-        "D:\Unity",
-        "E:\Users\Yasser\Documents"
-    ),
+    [string[]] $Roots = @(),
     [string] $OutputPath = (Join-Path $PSScriptRoot "..\docs\inventory\local-drive-review-status.csv")
 )
 

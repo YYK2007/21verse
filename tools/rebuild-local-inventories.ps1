@@ -1,11 +1,5 @@
 param(
-    [string[]]$Roots = @(
-        "C:\Users\youss\Desktop\21Verse",
-        "C:\Users\youss\Desktop\Current Projects\21Verse Design",
-        "C:\Users\youss\Desktop\Current Projects\21Verse at GHE",
-        "D:\Unity",
-        "E:\Users\Yasser\Documents"
-    ),
+    [string[]]$Roots = @(),
     [string]$OutputDir = "docs\inventory\generated"
 )
 
@@ -52,18 +46,23 @@ $projects | Sort-Object Project |
     Set-Content -Encoding UTF8 -Force $unityOutput
 
 $designRoots = $Roots | Where-Object { $_ -like "*21Verse*" -or $_ -like "*21Verse Design*" -or $_ -like "*21Verse at GHE*" }
-Get-ChildItem -Path $designRoots -Recurse -Force -File -ErrorAction SilentlyContinue -Include *.psd,*.ai,*.fig,*.sketch,*.blend,*.fbx,*.obj,*.png,*.jpg,*.jpeg,*.pdf,*.docx,*.pptx |
-    Group-Object Extension |
-    Sort-Object Name |
-    ForEach-Object {
-        [PSCustomObject]@{
-            Extension = $_.Name
-            Count = $_.Count
-            SizeMB = [math]::Round(($_.Group | Measure-Object Length -Sum).Sum / 1MB, 1)
-        }
-    } |
-    ConvertTo-Csv -NoTypeInformation |
-    Set-Content -Encoding UTF8 -Force $designOutput
+if ($designRoots.Count -gt 0) {
+    Get-ChildItem -Path $designRoots -Recurse -Force -File -ErrorAction SilentlyContinue -Include *.psd,*.ai,*.fig,*.sketch,*.blend,*.fbx,*.obj,*.png,*.jpg,*.jpeg,*.pdf,*.docx,*.pptx |
+        Group-Object Extension |
+        Sort-Object Name |
+        ForEach-Object {
+            [PSCustomObject]@{
+                Extension = $_.Name
+                Count = $_.Count
+                SizeMB = [math]::Round(($_.Group | Measure-Object Length -Sum).Sum / 1MB, 1)
+            }
+        } |
+        ConvertTo-Csv -NoTypeInformation |
+        Set-Content -Encoding UTF8 -Force $designOutput
+}
+else {
+    '"Extension","Count","SizeMB"' | Set-Content -Encoding UTF8 -Force $designOutput
+}
 
 Write-Host "Wrote $unityOutput"
 Write-Host "Wrote $designOutput"

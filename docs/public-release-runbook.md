@@ -6,11 +6,11 @@ Use `docs/release-evidence-manifest.md` and `docs/inventory/release-requirements
 
 ## 1. NAS Review Scope
 
-NAS files are excluded from the current release-prep scope by user request on 2026-06-20. Do not include NAS files unless the user reopens this scope.
+Private archive/NAS files are excluded from the current release-prep scope by maintainer decision on 2026-06-20. Do not include archive files unless maintainers reopen this scope.
 
 If NAS review is reopened later:
 
-1. Mount or authenticate to `Youssef Storage` / `WDMyCloudEX4100`.
+1. Mount or authenticate to the private archive outside the repository.
 2. Search for 21Verse files across Unity projects, design files, documents, decks, and archives.
 3. Run `tools/export-nas-inventory.ps1` against the mounted share.
 4. Review `docs/inventory/generated/nas-candidate-files.csv`.
@@ -31,7 +31,7 @@ If NAS review is reopened later:
 
 ## 3. Final Unity Validation
 
-Interactive VR smoke testing is deferred by user request on 2026-06-20 and is optional before a VR gameplay release. Keep automated validation current before future release changes.
+Interactive VR smoke testing is deferred by the current maintainer scope and is optional before a VR gameplay release. Keep automated validation current before future release changes.
 
 1. Open `unity/21verse-vr-game-hub` in Unity `2022.3.25f1`.
 2. Load and smoke-test the README scenes interactively.
@@ -79,7 +79,7 @@ Commit any regenerated inventory or audit changes.
 
 ## 6. Publication State
 
-The user approved publication on 2026-06-22, and the repository is public at `YYK2007/21verse`.
+Publication was approved on 2026-06-22, and the repository is public at `YYK2007/21verse`.
 
 For future release changes:
 
